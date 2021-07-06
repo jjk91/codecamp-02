@@ -8,7 +8,7 @@ export default function Home() {
     <Wrapper>
       <Title>로그인</Title>
       <Name>아이디</Name>
-      <Box type=" text"placeholder="아이디를 입력하세요."></Box>
+      <Box type=" text" placeholder="아이디를 입력하세요."></Box>
       <Name>비밀번호</Name>
       <Box type="password" placeholder="비밀번호를 입력하세요." ></Box>
     </Wrapper>
