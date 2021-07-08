@@ -1,7 +1,50 @@
-import {Wrapper, Box, HeadTitle, Head1, HeadText, Head2, Body1, Body2, Body3, BodyWrapper, Body4, Text, Input, Input1, Input2, Input3, Click1, Footer1, Upload, Photo,Footer2, Input4, CheckBox, Footer3, Click2, Click3} from "../styles/Home.styles"
+import{useState} from "react"
+
+import {Wrapper, Box, HeadTitle, Head1, HeadText, Error, Head2
+  , Body1, Body2, Body3, BodyWrapper, Body4, Text, Input
+  , Input1, Input2, Input3, Click1, Footer1, Upload, Photo
+  , Footer2, Input4, CheckBox, Footer3, Click2, Click3} from "../styles/Home.styles"
 
 
 export default function Home() {
+
+  // const[변수,함수] = useState("")
+  const[user,setUser] = useState("")
+  const[password,setPassword] = useState("")
+  const[userError,setUserError] = useState("")
+  const[passwordError,setPasswordError] = useState("")
+
+  function alluser(event){
+    setUser(event.target.value)
+    if(user === ""){
+      setUserError("이름이 입력되지 않았습니다.")
+    } else {
+      setUserError("")
+    }
+  }
+
+  function allpassword(event){
+    setPassword(event.target.value)
+    if(password === ""){
+      setPasswordError("비밀번호가 입력되지 않았습니다.")
+    } else {
+      setPasswordError("")
+    }
+  }
+  function Check(){
+    if(user === ""){
+      setUserError("이름이 입력되지 않았습니다.")
+    } else {
+      setUserError("")
+    }
+
+    if(password === ""){
+      setPasswordError("비밀번호가 입력되지 않았습니다.")
+    } else {
+      setPasswordError("")
+    }
+  }
+
   return (
     <Wrapper>
       <Box>
@@ -12,11 +55,13 @@ export default function Home() {
         <Head2>
           <HeadText>
             <Text>작성자*</Text>
-            <Input type="text" placeholder="이름을 적어주세요."></Input>
+            <Input type="text" placeholder="이름을 적어주세요." onChange={alluser}></Input>
+            <Error>{userError}</Error>
           </HeadText>
           <HeadText>
             <Text>비밀번호</Text>
-            <Input type="password" placeholder="비밀번호를 입력해주세요."></Input>
+            <Input type="password" placeholder="비밀번호를 입력해주세요." onChange={allpassword}></Input>
+            <Error>{passwordError}</Error>
           </HeadText>
         </Head2>
 
@@ -50,9 +95,18 @@ export default function Home() {
         <Footer1>
           <Text>사진 첨부</Text>
           <Upload>
-            <Photo>Upload</Photo>
-            <Photo>Upload</Photo>
-            <Photo>Upload</Photo>
+            <Photo>
+              <div>+</div>
+              <div>Upload</div>
+            </Photo>
+            <Photo>
+              <div>+</div>
+              <div>Upload</div>
+            </Photo>
+            <Photo>
+              <div>+</div>
+              <div>Upload</div>
+            </Photo>
           </Upload>
         </Footer1>
         <Footer2>
@@ -65,10 +119,10 @@ export default function Home() {
           </CheckBox>
         </Footer2>
         <Footer3>
-          <Click2 type="button">취소하기</Click2>
-          <Click3 type="button">수정하기</Click3>
+          <Click2 type="button" onClick={Check}>등록하기</Click2>
         </Footer3>
       </Box>
     </Wrapper>
   )
 }
+ 

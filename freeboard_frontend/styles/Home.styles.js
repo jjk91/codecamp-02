@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
 export const Box = styled.div`
     // position:absolute
-    height: 1847px;
+    /* height: 1847px; */
     width:1200px; 
     border: 1px solid black;
     padding: 80px 102px;
@@ -41,7 +41,9 @@ export const HeadText = styled.div`
     flex-direction: column;
 
 `
-
+export const Error = styled.div`
+    color: red;
+`
 
 export const Text = styled.div`
     font-size: 16px;
@@ -133,6 +135,7 @@ export const Photo = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 12px;
 `
 
 export const Footer2 = styled.div`
@@ -162,18 +165,18 @@ export const Footer3 = styled.div`
 export const Click2 = styled.button`
     height: 52px;
     width: 179px;
-    background-color: #bdbdbd;
+    background-color: #FFD600;
     color: black;
     margin-right: 12px;
     border: 0px;
 `
 
 
-export const Click3 = styled.button`
-    height: 52px;
-    width: 179px;
-    background-color: #ffd600;
-    color: black;
-    margin-left: 12px;
-    border: 0px;
-`
+// export const Click3 = styled.button`
+//     height: 52px;
+//     width: 179px;
+//     background-color: #ffd600;
+//     color: black;
+//     margin-left: 12px;
+//     border: 0px;
+// `
