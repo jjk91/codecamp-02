@@ -1,23 +1,25 @@
 import {useState} from "react"
 import {useMutation, gql} from "@apollo/client"
+import { useRouter } from "next/router"
+
+const CREATE_BOARD = gql`
+    mutation createBoard ($createBoardInput: CreateBoardInput!){
+        createBoard(createBoardInput:$createBoardInput){
+            _id
+        }
+    }
+
+`
+
 export default function Apollo3Page() {
+    const router = useRouter()
 
     const [writer, setWriter] = useState()
     const [password, setPassword] = useState()
     const [title, setTitle] = useState()
     const [contents, setContents] = useState()
 
-    const [board] = useMutation(
-        gql`
-            mutation zzz ($tempwriter: String, $temppassword: String
-                , $temptitle: String, $tempcontents: String ){
-                createBoard(writer:$tempwriter, password:$temppassword
-                    , title:$temptitle, contents:$tempcontents){
-                    message
-                }
-            }
-        `
-    )
+    const [createBoard] = useMutation(CREATE_BOARD)
 
 
     function onChangeWriter (event){
@@ -42,15 +44,19 @@ export default function Apollo3Page() {
 
     async function onClickSubmit (){
         try{
-            const result = await board({
+            const result = await createBoard({
                 variables:{
-                    tempwriter: writer,
-                    temppassword: password,
-                    temptitle: title,
-                    tempcontents: contents
+                    createBoardInput:{
+                        writer : writer,
+                        password: password,
+                        title: title,
+                        contents: contents
+                    }
                 }
             })
-            alert(result.data.createBoard.message)
+            // console.log(result.)
+            alert(result.data.createBoard._id)
+            router.push(`/detail/${result.data.createBoard._id}`)
         } catch(error){
             alert(error.message)
         }

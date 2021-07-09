@@ -1,22 +1,39 @@
 import{useState} from "react"
+import{useMutation, gql} from "@apollo/client"
+import { useRouter } from "next/router"
 
 import {Wrapper, Box, HeadTitle, Head1, HeadText, Error, Head2
   , Body1, Body2, Body3, BodyWrapper, Body4, Text, Input
   , Input1, Input2, Input3, Click1, Footer1, Upload, Photo
-  , Footer2, Input4, CheckBox, Footer3, Click2, Click3} from "../styles/Home.styles"
+  , Footer2, Input4, CheckBox, Footer3, Click2, Click3} from "../../../styles/Home.styles"
 
 
 export default function Home() {
 
-  // const[변수,함수] = useState("")
-  const[user,setUser] = useState("")
-  const[password,setPassword] = useState("")
-  const[userError,setUserError] = useState("")
-  const[passwordError,setPasswordError] = useState("")
+  const [user,setUser] = useState("")
+  const [password,setPassword] = useState("")
+  const [userError,setUserError] = useState("")
+  const [passwordError,setPasswordError] = useState("")
+  const [title,setTitle] = useState("")
+  const [contents,setContents] = useState("")
+  const [usersns,setUserSns] = useState("")
+  const [userimage,setUserImage] = useState("");
+
+  const router = useRouter();
+
+  const [board] = useMutation(gql`
+    mutation createBoard($createBoardInput : CreateBoardInput!) {
+      createBoard(createBoardInput : $createBoardInput) {
+        _id
+      }
+    }
+    `
+  )
+
 
   function alluser(event){
     setUser(event.target.value)
-    if(user === ""){
+    if(event.target.value === ""){
       setUserError("이름이 입력되지 않았습니다.")
     } else {
       setUserError("")
@@ -25,25 +42,54 @@ export default function Home() {
 
   function allpassword(event){
     setPassword(event.target.value)
-    if(password === ""){
+    if(event.target.value === ""){
       setPasswordError("비밀번호가 입력되지 않았습니다.")
     } else {
       setPasswordError("")
     }
   }
-  function Check(){
-    if(user === ""){
-      setUserError("이름이 입력되지 않았습니다.")
-    } else {
-      setUserError("")
+
+  async function Check(){
+    try{
+      if(user === ""){
+        setUserError("이름이 입력되지 않았습니다.")
+      } else {
+        setUserError("")
+      }
+
+      if(password === ""){
+        setPasswordError("비밀번호가 입력되지 않았습니다.")
+      } else {
+        setPasswordError("")
+      }
+
+      if(user !== ""&& password !==""){
+        alert("등록되었습니다.")
+      }
+
+        const result = await board({
+            variables : {
+              createBoardInput : {
+                writer : user,
+                password,
+                title,
+                contents
+              }
+            }
+          })
+
+          router.push(`/detail/${result?.data?.createBoard?._id}`)
+
+      } catch (error){
+        alert(error.message)
+
+      }
+
+      
+
     }
 
-    if(password === ""){
-      setPasswordError("비밀번호가 입력되지 않았습니다.")
-    } else {
-      setPasswordError("")
-    }
-  }
+
 
   return (
     <Wrapper>
@@ -67,12 +113,12 @@ export default function Home() {
 
         <Body1>
           <Text>제목</Text>
-          <Input1 type="text" placeholder="제목을 작성해주세요."></Input1>
+          <Input1 type="text" placeholder="제목을 작성해주세요." onChange={(event) => setTitle(event.target.value)}></Input1>
         </Body1>
 
         <Body2>
           <Text>내용</Text>
-          <Input2 type="textarea" placeholder="내용을 작성해주세요."></Input2>
+          <Input2 type="textarea" placeholder="내용을 작성해주세요." onChange={(event) => setContents(event.target.value)}></Input2>
         </Body2>
 
         <Body3>
@@ -96,15 +142,15 @@ export default function Home() {
         <Footer1>
           <Text>사진 첨부</Text>
           <Upload>
-            <Photo>
+            <Photo onChange={setUserImage}>
               <div>+</div>
               <div>Upload</div>
             </Photo>
-            <Photo>
+            <Photo onChange={setUserImage}>
               <div>+</div>
               <div>Upload</div>
             </Photo>
-            <Photo>
+            <Photo onChange={setUserImage}>
               <div>+</div>
               <div>Upload</div>
             </Photo>
@@ -113,7 +159,7 @@ export default function Home() {
         <Footer2>
           <Text>메인 설정</Text>
           <CheckBox>
-            <Input4 type="radio" name="check"></Input4>
+            <Input4 type="radio" name="check" onChange={setUserSns}></Input4>
             <Text>유트브</Text>
             <Input4 type="radio" name="check"></Input4>
             <Text>사진</Text>
