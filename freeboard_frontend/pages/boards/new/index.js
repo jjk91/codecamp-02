@@ -9,13 +9,18 @@ import {Wrapper, Box, HeadTitle, Head1, HeadText, Error, Head2
 
 
 export default function Home() {
-
+  // const allDate = {user, password, title, c}
   const [user,setUser] = useState("")
   const [password,setPassword] = useState("")
-  const [userError,setUserError] = useState("")
-  const [passwordError,setPasswordError] = useState("")
+  // const [error,setError] = useState("")
   const [title,setTitle] = useState("")
   const [contents,setContents] = useState("")
+  // const [allDate,setAllDate] = useState("")
+  const [userError,setUserError] = useState("")
+  const [passwordError,setPasswordError] = useState("")
+  const [titleError,setTitleError]  = useState("")
+  const [contentsError,setContentsError] = useState("")
+
   const [usersns,setUserSns] = useState("")
   const [userimage,setUserImage] = useState("");
 
@@ -42,52 +47,105 @@ export default function Home() {
 
   function allpassword(event){
     setPassword(event.target.value)
-    if(event.target.value === ""){
+    if (event.target.value === ""){
       setPasswordError("비밀번호가 입력되지 않았습니다.")
     } else {
       setPasswordError("")
     }
   }
 
-  async function Check(){
-    try{
-      if(user === ""){
-        setUserError("이름이 입력되지 않았습니다.")
-      } else {
-        setUserError("")
-      }
-
-      if(password === ""){
-        setPasswordError("비밀번호가 입력되지 않았습니다.")
-      } else {
-        setPasswordError("")
-      }
-
-      if(user !== ""&& password !==""){
-        alert("등록되었습니다.")
-      }
-
-        const result = await board({
-            variables : {
-              createBoardInput : {
-                writer : user,
-                password,
-                title,
-                contents
-              }
-            }
-          })
-
-          router.push(`/detail/${result?.data?.createBoard?._id}`)
-
-      } catch (error){
-        alert(error.message)
-
-      }
-
-      
-
+  function alltitle(event){
+    setTitle(event.target.value)
+    if (event.target.value === ""){
+      setTitleError("제목이 입력되지 않았습니다.")
+    } else {
+      setContesetTitleErrorntsError("")
     }
+  }
+
+  function allcontents(event){
+    setContents(event.target.value)
+    if (event.target.value === ""){
+      setContentsError("내용이 입력되지 않았습니다.")
+    } else {
+      setContentsError("")
+    }
+  }
+  
+  async function Check(){
+    // if(user === ""){
+    //   setUserError("이름이 입력되지 않았습니다.")
+    // } else {
+    //   setUserError("")
+    // }
+
+    // if(password === ""){
+    //   setPasswordError("비밀번호가 입력되지 않았습니다.")
+    // } else if (password.length < 8 && password.length > 16){ 
+    //   setPasswordError("비밀번호는 8~16자 입니다.")
+    // } else {
+    //   setPasswordError("")
+    // }
+
+    if(user !== ""&& password !==""){
+      try {
+        const result = await board({
+          variables : {
+            createBoardInput : {
+              writer : user,
+              password,
+              title,
+              contents
+            }
+          }
+        })
+        alert("등록되었습니다.")
+        router.push(`/detail/${result?.data?.createBoard?._id}`)
+      } catch(error){
+        alert(error.message)
+      }
+    } else {
+      alert("입력창이 비어있습니다.")
+    }
+  }
+
+// ---- backup
+  // async function Check(){
+  //     if(user === ""){
+  //       setUserError("이름이 입력되지 않았습니다.")
+  //     } else {
+  //       setUserError("")
+  //     }
+
+  //     if(password === ""){
+  //       setPasswordError("비밀번호가 입력되지 않았습니다.")
+  //     } else if (password.length < 8 || password.length > 16){ 
+  //       setPasswordError("비밀번호는 8~16자 입니다.")
+  //     } else {
+  //       setPasswordError("")
+  //     }
+
+  //     if(user !== ""&& password !==""){
+  //       try {
+  //         const result = await board({
+  //           variables : {
+  //             createBoardInput : {
+  //               writer : user,
+  //               password,
+  //               title,
+  //               contents
+  //             }
+  //           }
+  //         })
+  //         alert("등록되었습니다.")
+  //         router.push(`/detail/${result?.data?.createBoard?._id}`)
+  //       } catch(error){
+  //         alert(error.message)
+  //       }
+  //     } else {
+  //       alert("입력창이 비어있습니다.")
+  //     }
+  //   }
 
 
 
@@ -113,12 +171,14 @@ export default function Home() {
 
         <Body1>
           <Text>제목</Text>
-          <Input1 type="text" placeholder="제목을 작성해주세요." onChange={(event) => setTitle(event.target.value)}></Input1>
+          <Input1 type="text" placeholder="제목을 작성해주세요." onChange={alltitle}></Input1>
+          <Error>{titleError}</Error>
         </Body1>
 
         <Body2>
           <Text>내용</Text>
-          <Input2 type="textarea" placeholder="내용을 작성해주세요." onChange={(event) => setContents(event.target.value)}></Input2>
+          <Input2 type="textarea" placeholder="내용을 작성해주세요." onChange={allcontents}></Input2>
+          <Error>{contentsError}</Error>
         </Body2>
 
         <Body3>

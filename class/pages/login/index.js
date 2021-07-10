@@ -9,7 +9,7 @@ export default function LoginPage() {
     const [idError,setIdError] = useState('')
     const [passwordError,setPasswordError] = useState('')
 
-    function aaa(event){
+    function allid(event){
         setId(event.target.value)
         if(id === ""){
             setIdError('아이디를 입력해주세요.')
@@ -19,7 +19,7 @@ export default function LoginPage() {
     }
 
  
-    function bbb(event){
+    function allpassword(event){
         setPassword(event.target.value)
         if (password === ""){
             setPasswordError('비밀번호를 입력해주세요')
@@ -50,12 +50,12 @@ export default function LoginPage() {
         <div>
             <h1>로그인</h1>
             <div>아이디</div>
-            <input type="text" onChange={aaa}/>
+            <input type="text" onChange={allid}/>
             <Error>
                 <div>{idError}</div>
             </Error>
             <div>비밀번호</div>
-            <input type="password" onChange={bbb}/>
+            <input type="password" onChange={allpassword}/>
             <Error>
                 <div>{passwordError}</div>
             </Error>
