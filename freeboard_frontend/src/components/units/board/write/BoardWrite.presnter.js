@@ -14,25 +14,25 @@ export default function BoardWriteUi(props){
         <Head2>
             <HeadText>
             <Text>작성자*</Text>
-            <Input type="text" placeholder="이름을 적어주세요." onChange={props.writer}></Input>
+            <Input type="text" placeholder="이름을 적어주세요." onChange={props.onChangeWriter}></Input>
             <Error>{props.writerError}</Error>
             </HeadText>
             <HeadText>
             <Text>비밀번호</Text>
-            <Input type="password" placeholder="비밀번호를 입력해주세요." onChange={props.password}></Input>
+            <Input type="password" placeholder="비밀번호를 입력해주세요." onChange={props.onChangePassword}></Input>
             <Error>{props.passwordError}</Error>
             </HeadText>
         </Head2>
 
         <Body1>
             <Text>제목</Text>
-            <Input1 type="text" placeholder="제목을 작성해주세요." onChange={props.title}></Input1>
+            <Input1 type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeTitle}></Input1>
             <Error>{props.titleError}</Error>
         </Body1>
 
         <Body2>
             <Text>내용</Text>
-            <Input2 type="textarea" placeholder="내용을 작성해주세요." onChange={props.contents}></Input2>
+            <Input2 type="textarea" placeholder="내용을 작성해주세요." onChange={props.onChangeContents}></Input2>
             <Error>{props.contentsError}</Error>
         </Body2>
 
@@ -81,7 +81,7 @@ export default function BoardWriteUi(props){
             </CheckBox>
         </Footer2>
         <Footer3>
-            <Click2 type="button" onClick={props.click}>등록하기</Click2>
+            <Click2 disabled={props.click} type="button" onClick={props.onClickSubmit}>등록하기</Click2>
         </Footer3>
         </Box>
     </Wrapper>

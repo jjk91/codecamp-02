@@ -1,4 +1,15 @@
-import {gql} from '@apollo/client'
+import { gql } from "@apollo/client"
+
+export const FETCH_BOARDS = gql`
+    query fetchBoards{
+        fetchBoards{
+            _id
+            writer
+            title
+            createdAt
+        }
+    }
+`
 
 export const FETCH_BOARD = gql`
     query fetchBoard($boardId : ID!){
@@ -7,15 +18,6 @@ export const FETCH_BOARD = gql`
             title
             contents
             createdAt
-            _id
         }
-    }
-`
-
-export const DELETE_BOARD = gql`
-    mutation deleteBoard($deleteBoard : ID!){
-        deleteBoard(boardId:$deleteBoard)
-           
-              
     }
 `

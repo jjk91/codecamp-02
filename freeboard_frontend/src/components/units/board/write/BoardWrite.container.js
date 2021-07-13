@@ -15,47 +15,67 @@ export default function BoardWrite(){
     const [passwordError,setPasswordError] = useState("")
     const [titleError,setTitleError]  = useState("")
     const [contentsError,setContentsError] = useState("")
+
+    const [click,setClick] = useState(true)
     
     const [usersns,setUserSns] = useState("")
     const [userimage,setUserImage] = useState("");
-
+ 
     const [board] = useMutation(CREATE_BOARD)
     const router = useRouter();
 
     function onChangeWriter(event){
         setWriter(event.target.value)
         if(event.target.value === ""){
-          setWriterError("이름이 입력되지 않았습니다.")
+          setWriterError("이름이 입력되지 않았습니다.") 
+          setClick(true)
         } else {
-          setWriterError("")
+          setWriterError("") 
+          if(password !=="" && title !=="" && contents !==""){
+            setClick(false)
+         }
         }
       }
     
       function onChangePassword(event){
         setPassword(event.target.value)
         if (event.target.value === ""){
-          setPasswordError("비밀번호가 입력되지 않았습니다.")
+          setPasswordError("비밀번호가 입력되지 않았습니다.") 
+          setClick(true)
         } else {
-          setPasswordError("")
+          setPasswordError("") 
+          if(writer !=="" && title !=="" && contents !==""){
+            setClick(false)
+         }
         }
       }
     
       function onChangeTitle(event){
         setTitle(event.target.value)
         if (event.target.value === ""){
-          setTitleError("제목이 입력되지 않았습니다.")
+          setTitleError("제목이 입력되지 않았습니다.") 
+          setClick(true)
         } else {
           setTitleError("")
+          if(password !=="" && writer !=="" && contents !==""){
+            setClick(false)
+         }
         }
       }
     
       function onChangeContents(event){
         setContents(event.target.value)
         if (event.target.value === ""){
-          setContentsError("내용이 입력되지 않았습니다.")
+          setContentsError("내용이 입력되지 않았습니다.") 
+          setClick(true)
         } else {
           setContentsError("") 
+          if(password !=="" && title !=="" && writer !==""){
+            setClick(false)
+         } 
         }
+
+        
       }
       
       async function onClickSubmit(){
@@ -71,8 +91,11 @@ export default function BoardWrite(){
         //   setPasswordError("비밀번호는 8~16자 입니다.")
         // } else {
         //   setPasswordError("")
-        // }
-    
+        // }\
+      //   if(writer !== ""&& password !=="" && title !=="" && contents !==""){
+      //     setClick(true)
+      //  }
+        console.log("click")
         if(writer !== ""&& password !==""){
           try {
             const result = await board({
@@ -86,7 +109,7 @@ export default function BoardWrite(){
               }
             })
             alert("등록되었습니다.")
-            router.push(`/detail/${result?.data?.createBoard?._id}`)
+            router.push(`/boards/${result?.data?.createBoard?._id}`)
           } catch(error){
             alert(error.message)
           }
@@ -139,11 +162,12 @@ export default function BoardWrite(){
             passwordError={passwordError}
             titleError={titleError}
             contentsError={contentsError}
-            writer={onChangeWriter}
-            password={onChangePassword}
-            title={onChangeTitle}
-            contents={onChangeContents}
-            click={onClickSubmit}
+            onChangeWriter={onChangeWriter}
+            onChangePassword={onChangePassword}
+            onChangeTitle={onChangeTitle}
+            onChangeContents={onChangeContents}
+            onClickSubmit={onClickSubmit}
+            click={click}
           />
 
       )

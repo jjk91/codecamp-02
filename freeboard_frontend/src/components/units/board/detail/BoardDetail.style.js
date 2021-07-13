@@ -4,7 +4,7 @@ export const Wrapper =styled.div`
     width: 1200px;
     padding: 20px 102px 80px 102px;
     border: 1px solid black;
-    margin: 100px 100px;
+    /* margin: 100px 100px; */
 
 `
 
@@ -120,4 +120,35 @@ export const Like2 = styled.div`
     height: 51px;
     width: 40px;
     background-color: gray;
+`
+
+export const Wrpper2 = styled.div`
+    width: 1200px;
+    padding: 80px 298px 87px 298px; 
+    
+    `
+
+export const ButtonList = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-color: #ffffff;
+    background-color: white;
+
+`
+
+export const List = styled.button`
+    height: 45px;
+    width: 179px;
+
+`
+
+export const Update = styled.button`
+    height: 45px;
+    width: 179px;
+`
+
+export const Delete = styled.button`
+    height: 45px;
+    width: 179px;
 `

@@ -168,7 +168,10 @@ export const Click2 = styled.button`
     background-color: #FFD600;
     color: black;
     margin-right: 12px;
-    border: 0px;
+    :disabled{
+        background-color: gray;
+    }
+    /* border: 0px; */
 `
 
 
