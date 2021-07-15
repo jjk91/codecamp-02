@@ -28,10 +28,10 @@ export const WriterInfo =styled.div`
 
 `
 
-export const WriterImg =styled.div`
+export const WriterImg =styled.img`
     width: 47px;
     height: 47px;
-    background-color: gray;
+    /* background-color: gray; */
 `
 export const WriterDate =styled.div`
 
@@ -51,16 +51,14 @@ export const WriterIcon =styled.div`
 
 
 `
-export const Connect =styled.div`
+export const Connect =styled.img`
     width: 32px;
     height: 32px;
-    background-color: yellow;
     margin-right: 20px;
 `
-export const Location =styled.div`
+export const Location =styled.img`
     width: 32px;
     height: 32px;
-    background-color: yellow;
 `
 export const BodyWrapper =styled.div``
 
@@ -109,26 +107,24 @@ export const FooterWrapper= styled.div`
 
 `
 
-export const Like1= styled.div`
+export const Like1= styled.img`
     height: 51px;
     width: 40px;
-    background-color: yellow;
     margin-right: 40px;
 `
 
-export const Like2 = styled.div`
+export const Like2 = styled.img`
     height: 51px;
     width: 40px;
-    background-color: gray;
 `
 
-export const Wrpper2 = styled.div`
+export const Wrapper2 = styled.div`
     width: 1200px;
     padding: 80px 298px 87px 298px; 
     
     `
 
-export const ButtonList = styled.div`
+export const Wrapper2ButtonList = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -151,4 +147,8 @@ export const Update = styled.button`
 export const Delete = styled.button`
     height: 45px;
     width: 179px;
+`
+
+export const Wrapper2Comment = styled.div`
+
 `

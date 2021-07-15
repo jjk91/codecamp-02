@@ -1,84 +1,84 @@
-import { useRouter } from "next/router"
-import { useState } from "react"
-import { useMutation } from "@apollo/client"
-import BoardWriteUi from "./BoardWrite.presenter"
-import { CREATE_BOARD, UPDATE_BOARD }from "./BoardWrite.queries"
-import { ChangeEvent } from "react"
-import { IBoardWriteContainerProps } from "./BoardWrite.types"
+import { useMutation } from '@apollo/client'
+import { useRouter } from 'next/router'
+import { ChangeEvent, useState } from 'react'
+import { IMutation, IMutationCreateBoardArgs, IQuery } from '../../../../commons/types/generated/types'
+import BoardWriteUI from './BoardWrite.presenter'
+import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 
-
-const inputInit = {
-    writer:"",
-    password:"",
-    title:"",
-    contents:""
+const inputsInit = {
+    writer: "",
+    password: "",
+    title: "",
+    contents: ""
+}
+interface INewInputs {
+    title?: string,
+    contents?: string
 }
 
-export default function BoardWrite(props: IBoardWriteContainerProps){
-    
+
+interface IProps {
+    isEdit?: boolean
+    data?: IQuery 
+}
+export default function BoardWrite(props: IProps){
     const router = useRouter()
-    const [active,setActive] = useState(false)
-    const [inputs, setInputs] = useState(inputInit)
-    const [createBoard] = useMutation(CREATE_BOARD)
+    const [active, setActive] = useState(false)
+    const [inputs, setInputs] = useState(inputsInit)
+    const [createBoard] = useMutation<IMutation, IMutationCreateBoardArgs>(CREATE_BOARD)
     const [updateBoard] = useMutation(UPDATE_BOARD)
 
-    
-    function OnChangeInputs(event: ChangeEvent<HTMLInputElement>){
-        const newInputs ={       // const newInputs 안에있는 event 를 사용하기 위에 function OnChangeInputs 안에 있어야 한다
-            ...inputs,     // const[inputs, setInputs] = useState(inputInit) 에서 inputInit 값 기본값으로 가져온다
-            [event.target.name] : event.target.value,   // [event.target.name] 은 presenter에 있는 name 변수값
+    function onChangeInputs(event: ChangeEvent<HTMLInputElement>){
+        const newInputs = {
+            ...inputs,
+            [event.target.name]: event.target.value,
         }
         setInputs(newInputs)
-        if(Object.values(newInputs).every(data => data)){
-            setActive(true)
-        }
-        // if (newInputs.writer && newInputs.password && newInputs.title && newInputs.contents){
-        //     setActive(true)
-        // }
+        if(Object.values(newInputs).every(data => data)) setActive(true)
     }
-
-    async function onClickSubmit (){
+    
+    async function onClickSubmit(){
         try{
             const result = await createBoard({
-                variables:{
-                    createBoardInput:{ ...inputs }}
+                variables: { createBoardInput :{ ...inputs }}
             })
-            alert(result.data.createBoard._id)
-            router.push(`/detail/${result.data.createBoard._id}`)
+            alert(result.data?.createBoard._id)
+            router.push(`/detail/${result.data?.createBoard._id}`)
         } catch(error){
             alert(error.message)
         }
     }
 
     async function onClickEdit(){
-        try{
+        const newInputs: INewInputs = {}
+        if (inputs.title) newInputs.title = inputs.title
+        if (inputs.contents) newInputs.contents = inputs.contents
+
+
+        try {
             const result = await updateBoard({
-                variables:{
-                    boardId : router.query.boardId,
+                variables: {
+                    boardId: router.query.boardId,
                     password: inputs.password,
-                    updateBoardInput:{
-                        title: inputs.title,
-                        contents: inputs.contents
-                    }
+                    updateBoardInput: { ...newInputs }
                 }
             })
-            alert(result.data.updateBoard._id)
+            alert(result.data?.updateBoard._id)
             router.push(`/detail/${result.data.updateBoard._id}`)
         } catch(error) {
-           
             alert(error.message)
-
         }
-
     }
 
-    return(
-        <BoardWriteUi 
-            OnChangeInputs={OnChangeInputs}
+
+    return (
+        <BoardWriteUI
+            onChangeInputs={onChangeInputs}
             onClickSubmit={onClickSubmit}
             onClickEdit={onClickEdit}
             active={active}
             isEdit={props.isEdit}
+            data={props.data}
         />
     )
 }
