@@ -69,3 +69,7 @@ export const ListDate = styled.div`
     border-bottom: 1px solid #bdbdbd;
 
 `
+
+export const NewBoradWiter =styled.button`
+
+`

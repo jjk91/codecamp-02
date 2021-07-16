@@ -1,9 +1,8 @@
 import { useRouter } from "next/router"
 import { useQuery, useMutation } from "@apollo/client"
 import BoardDetailUi from "./BoardDetail.presnter";
-import { FETCH_BOARD
-    , DELETE_BOARD
-      } from './BoardDetail.queries'
+import { FETCH_BOARD, DELETE_BOARD } from './BoardDetail.queries'
+
 
 
 
@@ -19,11 +18,11 @@ export default function BoardDetail (){
     )
 
     async function onClickDelete(){
-        alert("해당 글을 삭제합니다.")
         try { 
             await deleteBoard({
-                variables:{deleteBoard: router.query.boardId}
+                variables:{ boardId: router.query.boardId }
             })
+            alert("해당 글을 삭제합니다.")
             router.push(`/boards/list/`)
         } catch(error){
             alert(error.message)
@@ -43,7 +42,7 @@ export default function BoardDetail (){
 
     return (
         <BoardDetailUi 
-        gql={data}
+        data={data}
         onClickList = {onClickList}
         onClickDelete={onClickDelete}
         onClickUpdate={onClickUpdate}

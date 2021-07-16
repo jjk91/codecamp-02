@@ -1,6 +1,5 @@
-import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.container"
+import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.container";
 
-export default function Detail(){
-
-    return<BoardDetail />
+export default function Detail() {
+  return <BoardDetail />;
 }

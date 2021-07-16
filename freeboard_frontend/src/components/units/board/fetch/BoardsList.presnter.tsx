@@ -9,7 +9,7 @@ import {Wrapper
     , ListNumber
     , ListTitle
     , ListWriter
-    , ListDate } from './BoardsList.style'
+    , ListDate ,NewBoradWiter } from './BoardsList.style'
 
 
 export default function BoardDetailUi (props){
@@ -30,6 +30,7 @@ export default function BoardDetailUi (props){
                     <ListDate>{getDate(data.createdAt)}</ListDate>
                 </WrapperList>
              ))} 
+             <NewBoradWiter onClick={props.onClickCreate} >등록하기</NewBoradWiter>
         </Wrapper>
     )
 }

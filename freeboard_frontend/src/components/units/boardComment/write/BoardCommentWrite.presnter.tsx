@@ -9,9 +9,9 @@ import { Wrapper
     , CommentContents
     , CommentText
     , CommentSubmit
-    , WrapperBodyComment } from "./BoardDetailComment.style"
+    , WrapperBodyComment } from "./BoardCommentWrite.style"
 
-export default function BoardDetailCommentUi(props){
+export default function BoardCommentWriteUi(props){
 
     return(
         <Wrapper>

@@ -1,15 +1,15 @@
-import { MouseEvent } from 'react'
 import {Wrapper, HeadWrapper, WriterInfo, WriterImg, WriterDate, Writer
     , WriterDay, WriterIcon, Connect, Location
     , BodyWrapper, Title, Contents, ContentsImg, ContentsText, ContentsUrl
     , FooterWrapper, Like1, Like2, Wrapper2, Wrapper2ButtonList
-    , List, Update, Delete, Wrapper2Comment} from './BoardDetail.style'
-import BoardDetailComment from '../../boardComment/write/BoardDetailComment.container'
+    , List, Update, Delete} from './BoardDetail.style'
+
 
 interface IBoardDetailUIPresenterProps {
     onClickDelete: () => void
     onClickUpdate: () => void
-    gql: boolean
+    onClickList: () => void
+    gql: any
 }
 
 export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
@@ -23,9 +23,9 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
                         <WriterImg src="/images/ic_profile-96px.png" />
                         <WriterDate>
                             
-                            <Writer>{props.gql?.fetchBoard.writer}</Writer>
+                            <Writer>{props.data?.fetchBoard.writer}</Writer>
 
-                            <WriterDay>{props.gql?.fetchBoard.createdAt}</WriterDay>
+                            <WriterDay>{props.data?.fetchBoard.createdAt}</WriterDay>
 
                         </WriterDate>
 
@@ -40,10 +40,10 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
 
                 <BodyWrapper>
 
-                    <Title>{props.gql?.fetchBoard.title}</Title>
+                    <Title>{props.data?.fetchBoard.title}</Title>
                     <Contents>
                         <ContentsImg></ContentsImg>
-                        <ContentsText>{props.gql?.fetchBoard.contents}</ContentsText>
+                        <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
                         <ContentsUrl></ContentsUrl>
                     </Contents>
 
@@ -61,7 +61,7 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
                     <Delete onClick={props.onClickDelete} >삭제하기</Delete>
                 </Wrapper2ButtonList>
             </Wrapper2>   
-            <BoardDetailComment />
+            
         </>
     )
 }

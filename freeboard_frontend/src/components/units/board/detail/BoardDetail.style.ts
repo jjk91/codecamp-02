@@ -5,7 +5,7 @@ export const Wrapper =styled.div`
     padding: 20px 102px 80px 102px;
     border: 1px solid black;
     /* margin: 100px 100px; */
-
+    
 `
 
 export const HeadWrapper =styled.div`

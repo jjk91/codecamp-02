@@ -1,14 +1,23 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
-import { useMutation } from "@apollo/client"
+import { useMutation , useQuery} from "@apollo/client"
 import BoardWriteUi from "./BoardWrite.presnter"
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
+import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries"
 import { ChangeEvent } from "react"
-import { IBoardWriteContainerProps } from "./BoardWrite.types"
+import { IBoardWriteContainerProps, newInputsType,newInputsTypes } from "./BoardWrite.types"
+import { IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types"
 
 // import { FETCH_BOARD } from "../fetch/BoardsList.queries"
 
-const InputInit = {
+
+interface InputTypes {
+  writer? : string | null,
+  password : string;
+  title? : string;
+  contents? : string;
+}
+
+const InputInit:InputTypes = {
   writer:"",
   password:"",
   title:"",
@@ -25,49 +34,72 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
   const [board] = useMutation(CREATE_BOARD)
 
 
+  const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: { boardId: String(router.query.boardId) }
+  })
+  
+
   function onChangeInputs(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
 
-    const newInputs = {
+    const newInputs :newInputsTypes= {
       ...inputs,
       [event.target.name] : event.target.value,
-    }    
+     
+    }
+    if(props.isEdit){
+      newInputs.writer = data?.fetchBoard.writer
+      console.log(data) 
+    }
+
     setInputs(newInputs)
-    if(Object.values(newInputs).every(data => data)){
+    if(newInputs.title || newInputs.contents) { 
       setdisabled(false)
-    } 
+    }
+
+    // if(Object.values(newInputs).every(data => data)){
+    //   setdisabled(false)
+    // }
+
   }
     
-  async function onClickSubmit(){
-    try {
-      const result = await board({
-        variables : {
-          createBoardInput : {...inputs }}
-      })
-      alert("등록되었습니다.")
-      router.push(`/boards/${result?.data?.createBoard?._id}`)
+  async function onClickSubmit() {
+    if(Object.values(inputs).every(data => data)){ 
+      try {
+        const result = await board({
+          variables : {
+            createBoardInput : {...inputs }}
+        })
+        alert("등록되었습니다.")
+        router.push(`/boards/${result.data.createBoard._id}`)
 
-    } catch(error){
-      
-      alert(error.message)
+      } catch(error){
+        
+        alert(error.message)
+      }
     }
   }
-  async function onClickUpdate(){
-    const newInputs = {}
+
+
+
+  async function onClickUpdate() {
+    const newInputs  = {}
     if (inputs.title) newInputs.title = inputs.title
     if (inputs.contents) newInputs.contents = inputs.contents
-
-    alert("해당 글을 수정합니다.")
-    try{
-      const result = await updateBoard({
-        variables:{
+    
+    if (Object.values(newInputs).every(data => data)){
+      try{
+        const result = await updateBoard({
+          variables:{
             boardId : router.query.boardId,    // router은 주소
             password : inputs.password,         // inputs에 입력된 password
-            updateBoardInput : { ... newInputs }
-        }
-      })
-      router.push(`/boards/${result.data.updateBoard._id}`)
-    } catch (error){
-        alert(error.message)
+            updateBoardInput : { ...newInputs }
+          }
+        })
+        alert("해당 글을 수정합니다.")
+        router.push(`/boards/${result.data.updateBoard._id}`)
+      } catch (error){
+          alert(error.message)
+      }
     }
   }
 
@@ -79,6 +111,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
       alert(error.meassage)
     }
   }
+
   
     return (
         <BoardWriteUi
@@ -88,7 +121,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
           onClickSubmit={onClickSubmit}
           disabled={disabled}
           isEdit={props.isEdit}
-          data={props.data}
+          data={data}
         />
     )
 }
