@@ -12,13 +12,16 @@ import {Wrapper
     , CommentMain } from '../BoardCommentList.style'
 import { getDate } from "../../../../../commons/libraries/utils";
 
+import BoardCommentWrite from '../../write/BoardCommentWrite.container';
+
 export default function CommentListItemUi (props){
 
     // isEdit ===>  false
 
     return(
         <>
-            {!props.isEdit && (<Wrapper>
+            {!props.isEdit && 
+            (<Wrapper>
                 <CommentInfo>
                     <CommentImg src="/images/ic_profile-96px.png"/>
                 </CommentInfo>
@@ -42,9 +45,10 @@ export default function CommentListItemUi (props){
                 </CommentMain>
             </Wrapper>)
             }
-            {props.isEdit &&  (
-                <div>수정화면입니다</div>
-            )}
+            {props.isEdit && 
+            
+                (<BoardCommentWrite isEdit={true} />)                
+            }
         </>
     )
 

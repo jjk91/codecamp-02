@@ -12,7 +12,7 @@ const CommentInputInit = {
 }
 
 
-export default function BoardCommentWrite(){
+export default function BoardCommentWrite(props){
 
     const router = useRouter()
   
@@ -50,7 +50,8 @@ export default function BoardCommentWrite(){
             
             alert("등록되었습니다.")
             setCommentInput({writer:"", contents:"", password:""})
-            // router.push(`/boards/${router.query.boardId}`)
+            // router.push(`/boards/${router.query.boardId}`) 
+            // BoardDetail 페이지를 전체적으로 새로고침 비효율적
         } catch (error){
             alert(error.meessage)
         }
@@ -63,6 +64,7 @@ export default function BoardCommentWrite(){
             commentInput = {commentInput}
             onChangeInputs={onChangeInputs}
             onClickSumit={onClickSumit}
+            isEdit={props.isEdit}
         />
     )
 }

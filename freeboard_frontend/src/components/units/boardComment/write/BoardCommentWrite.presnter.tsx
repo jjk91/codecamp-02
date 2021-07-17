@@ -10,28 +10,31 @@ import { Wrapper
     , CommentContents
     , CommentText
     , CommentSubmit
-    , WrapperBodyComment
     , WrapperGroup
     , WrapperFooterComment  } from "./BoardCommentWrite.style"
 
-export default function BoardCommentWriteUi(props){
+export default function BoardCommentWriteUi(props: IBoardCommentWriterProps){
 
     return(
         <Wrapper>
             <WrapperComment>
                 <WrapperHeadComment>
 
+                    {!props.isEdit && 
                     <CommentTop>
                         <CommentImg  src="/images/Vector.png"/>
                         <CommentTitle>댓글</CommentTitle>
-                    </CommentTop>
+                    </CommentTop>}
+                    {!props.isEdit && ""}
                     
                     <CommentMid>
                         <CommentWriter
                             onChange={props.onChangeInputs}
                             name="writer" 
                             type="text" 
-                            value={props.commentInput.writer}
+                            // value={props.commentInput.writer}
+                            defaultValue={props.isEdit?.fetchBoardComment?.writer}
+                            readOnly={props.isEdit?.fetchBoardComment?.writer}
                             placeholder="작성자"/>
                             
                         <CommentPassword
@@ -44,18 +47,17 @@ export default function BoardCommentWriteUi(props){
                     
                 </WrapperHeadComment>
                 <WrapperGroup>
-                    <WrapperBodyComment>
-                        <CommentContents 
-                            onChange ={props.onChangeInputs}
-                            name="contents"
-                            value={props.commentInput.contents}
-                            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 
-                            이에 대한 민형사상 책임은 게시자에게 있습니다."
-                            /> 
-                    </WrapperBodyComment> 
+                    <CommentContents 
+                        onChange ={props.onChangeInputs}
+                        name="contents"
+                        // value={props.commentInput.contents}
+                        defaultValue={props.isEdit?.fetchBoardComment?.contents}
+                        placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+                        /> 
                     <WrapperFooterComment> 
                         <CommentText>0/100</CommentText>
-                        <CommentSubmit onClick={props.onClickSumit}>등록하기</CommentSubmit>
+                        {!props.isEdit && <CommentSubmit onClick={props.onClickSumit} isEdit={false} >등록하기</CommentSubmit>}
+                        {props.isEdit && <CommentSubmit onClick={props.onClickUpdate} isEdit={true} >수정하기</CommentSubmit>}
                     </WrapperFooterComment> 
                 </WrapperGroup>
             </WrapperComment>

@@ -4,7 +4,7 @@ import { useMutation , useQuery} from "@apollo/client"
 import BoardWriteUi from "./BoardWrite.presnter"
 import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries"
 import { ChangeEvent } from "react"
-import { IBoardWriteContainerProps, newInputsType,newInputsTypes } from "./BoardWrite.types"
+import { IBoardWriteContainerProps, newInputsTypes } from "./BoardWrite.types"
 import { IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types"
 
 // import { FETCH_BOARD } from "../fetch/BoardsList.queries"
