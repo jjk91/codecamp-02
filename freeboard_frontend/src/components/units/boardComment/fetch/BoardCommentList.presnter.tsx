@@ -1,50 +1,15 @@
-import { getDate } from '../../../../commons/libraries/utils'
-import {Wrapper
-    , Comment
-    , CommentHead
-    , CommentInfo
-    , CommentImg
-    , CommentDate
-    , CommentWiter
-    , CommentContents 
-    , CommentCreateAt
-    , CommentIcon
-    , Update
-    , Close
-    , CommentMain } from './BoardCommentList.style'
+import CommentListItem from './editItem/BoardCommentListItem.container'
 
-export default function BoardCommentListUi (props){
+export default function BoardCommentListUi (props : any){
 
 
     return(
         <>
-            <Wrapper>
-                {props.data?.fetchBoardComments.map(data =>
-                <Comment key={data._id}>
-                    <CommentInfo>
-                        <CommentImg src="/images/ic_profile-96px.png"/>
-                    </CommentInfo>
-                    <CommentMain>
-                        <CommentHead>
+            {props.data?.fetchBoardComments.map(data =>
 
-                            <CommentDate>
-                                <CommentWiter>{data.writer}</CommentWiter> 
-                            </CommentDate>
-
-                            <CommentIcon>
-                                <Update onClick={props.onClickEdit} src="/images/mode-24px.png" />
-                                <Close id={data._id} onClick={props.onClickDelete} src="/images/clear-24px 2.png" />
-                            </CommentIcon>
-
-                        </CommentHead>
-
-                        <CommentContents>{data.contents}</CommentContents>
-
-                        <CommentCreateAt>{getDate(data.createdAt)}</CommentCreateAt>
-                    </CommentMain>
-                </Comment>
-                )}
-            </Wrapper>
+                
+                <CommentListItem key={data._id} data={data} />
+            )}
         </>
     )
 } 

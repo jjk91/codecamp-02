@@ -1,15 +1,14 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-`
-export const Comment = styled.div`
     width: 1200px;
     height: 120px;
     display: flex;
-    border: 1px solid black;
+    border-bottom: 1px solid gray;
 `
 
 export const CommentInfo = styled.div`
+    margin: 16px;
    
 
 `
@@ -18,7 +17,10 @@ export const CommentImg = styled.img`
     width: 40px;
 `
 export const CommentMain = styled.div`
- width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 
 `
 
@@ -51,7 +53,7 @@ export const Update = styled.img`
     width: 18px;
 
 `
-export const Close = styled.img`
+export const Delet = styled.img`
     height: 18px;
     width: 18px;
 `
