@@ -3,6 +3,7 @@ import {Wrapper, HeadWrapper, WriterInfo, WriterImg, WriterDate, Writer
     , BodyWrapper, Title, Contents, ContentsImg, ContentsText, ContentsUrl
     , FooterWrapper, Like1, Like2, Wrapper2, Wrapper2ButtonList
     , List, Update, Delete} from './BoardDetail.style'
+import { getDate } from '../../../../commons/libraries/utils'
 
 
 interface IBoardDetailUIPresenterProps {
@@ -25,7 +26,7 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
                             
                             <Writer>{props.data?.fetchBoard.writer}</Writer>
 
-                            <WriterDay>{props.data?.fetchBoard.createdAt}</WriterDay>
+                            <WriterDay>{getDate(props.data?.fetchBoard.createdAt)}</WriterDay>
 
                         </WriterDate>
 

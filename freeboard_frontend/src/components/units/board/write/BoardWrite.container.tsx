@@ -34,7 +34,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
   const [board] = useMutation(CREATE_BOARD)
 
 
-  const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
+  const { data  } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: { boardId: String(router.query.boardId) }
   })
   

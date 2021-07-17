@@ -46,8 +46,10 @@ export default function BoardCommentWrite(){
                             boardId: router.query.boardId
                         }}]
             })
+
             
             alert("등록되었습니다.")
+            setCommentInput({writer:"", contents:"", password:""})
             // router.push(`/boards/${router.query.boardId}`)
         } catch (error){
             alert(error.meessage)
@@ -58,6 +60,7 @@ export default function BoardCommentWrite(){
 
     return(
         <BoardCommentWriteUi 
+            commentInput = {commentInput}
             onChangeInputs={onChangeInputs}
             onClickSumit={onClickSumit}
         />

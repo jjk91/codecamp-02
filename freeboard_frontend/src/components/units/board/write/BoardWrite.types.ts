@@ -15,6 +15,7 @@ export interface IBoardWritePresenterProps {
 
 export interface IBoardWriteContainerProps {
   isEdit?: boolean;
+  data?: 
 }
 
 export interface dataType {
