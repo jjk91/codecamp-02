@@ -47,7 +47,7 @@ export default function CommentListItemUi (props){
             }
             {props.isEdit && 
             
-                (<BoardCommentWrite isEdit={true} />)                
+                (<BoardCommentWrite isEdit={true} data={props.data} />)                
             }
         </>
     )

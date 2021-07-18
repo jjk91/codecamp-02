@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-    height: 300px;
+    height: ${(props) => props.isEdit ? "230px" : "300px"};
     width: 1200px;
-    background-color: pink;
+    background-color : ${(props) => props.isEdit ? "skyblue" : "pink"};
     
     `
 
@@ -53,7 +53,7 @@ export const CommentPassword = styled.input`
     width: 180px;
 `
 export const CommentContents = styled.textarea`
-    height: 108px;
+    height: ${(props) => props.isEdit ? "64px" : "108px"};
     width: 1200px;
     resize: none;
 `

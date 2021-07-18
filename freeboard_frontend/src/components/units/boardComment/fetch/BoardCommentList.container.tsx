@@ -9,7 +9,7 @@ export default function BoardCommentList (){
   
   const { data } = useQuery(
     FETCH_BOARD_COMMENTS,
-    {variables:{ boardId: router.query.boardId }}
+      {variables:{ boardId: router.query.boardId }}
     )
     
     return(

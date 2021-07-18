@@ -19,13 +19,3 @@ export const DELETE_BOARD_COMMENT = gql`
     }
 `
 
-export const UPDATE_BOARD_COMMENT = gql`
-    mutation updateBoardComment 
-        ($boardCommentId : ID!
-        , $password : String
-        , $updateBoardCommentInput : UpdateBoardCommentInput){
-            updateBoardComment 
-                ( boardCommentId : $boardCommentId
-                , password : $password
-                , updateBoardCommentInput: $updateBoardCommentInput )} 
-`
