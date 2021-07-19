@@ -20,7 +20,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                      placeholder="이름을 적어주세요."
                      onChange={props.onChangeInputs} 
                      defaultValue={props.data?.fetchBoard?.writer || ""}
-                     readOnly={props.data?.fetchBoard?.writer} ></Input>
+                     readOnly={props.data?.fetchBoard?.writer} />
                     </HeadText>
                     <HeadText>
                     <Text>비밀번호</Text>
@@ -28,7 +28,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                      name="password"
                      type="password"
                      placeholder="비밀번호를 입력해주세요."
-                     onChange={props.onChangeInputs}></Input>
+                     onChange={props.onChangeInputs}/>
                     </HeadText>
                 </Head2>
 
@@ -96,7 +96,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                     </CheckBox>
                 </Footer2>
                 <Footer3>
-                    {!props.isEdit &&<Click2 disabled={props.disabled} type="button" onClick={() => props.onClickSubmit('a')}>등록하기</Click2>}
+                    {!props.isEdit &&<Click2 disabled={props.disabled} type="button" onClick={props.onClickSubmit}>등록하기</Click2>}
                     {props.isEdit && <Click2 type="button" onClick={props.onClickList}>취소하기</Click2>}
                     {props.isEdit &&<Click2 disabled={props.disabled} type="button" onClick={props.onClickUpdate}>수정하기</Click2>}
                 </Footer3>

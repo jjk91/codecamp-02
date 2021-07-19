@@ -4,10 +4,18 @@ import { IQuery } from "../../../../commons/types/generated/types";
 export interface IBoardWritePresenterProps {
   onChangeInputs?: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  onClickSubmit: () => void;
-  onClickList:() => void
-  onClickUpdate:() => void
+   ) => void;
+  onClickSubmit: (
+    event: MouseEvent<HTMLButtonElement>
+    ) => void;
+  onClickList:(
+    event: MouseEvent<HTMLButtonElement>
+    ) => void
+  onClickUpdate:(
+    event: MouseEvent<HTMLButtonElement>
+    ) => void
+
+  readOnly?: any;
   data?: IQuery;
   isEdit?: boolean;
   disabled?: boolean
@@ -27,10 +35,10 @@ export interface newInputsType {
   contents?: string;
 }
 
-// export interface newInputsTypes {
-//   writer?: string | null
-//   password:string;
-//   title?: string;
-//   contents?: string;
+export interface newInputsTypes {
+  writer?: string | null
+  password:string;
+  title?: string;
+  contents?: string;
 
-// }
+}
