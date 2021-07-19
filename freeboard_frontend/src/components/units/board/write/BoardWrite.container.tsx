@@ -83,7 +83,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
 
 
   async function onClickUpdate () {
-    const newInputs  = {}
+    const newInputs = {}
     if (inputs.title) newInputs.title = inputs.title
     if (inputs.contents) newInputs.contents = inputs.contents
     
