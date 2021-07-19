@@ -39,7 +39,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                      type="text"
                      placeholder="제목을 작성해주세요."
                      onChange={props.onChangeInputs}
-                     defaultValue={props.data?.fetchBoard?.title}></Input1>
+                     defaultValue={props.data?.fetchBoard?.title} />
                 </Body1>
 
                 <Body2>
@@ -48,7 +48,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                     name="contents"
                     placeholder="내용을 작성해주세요."
                     onChange={props.onChangeInputs}
-                    defaultValue={props.data?.fetchBoard?.contents} ></Input2>
+                    defaultValue={props.data?.fetchBoard?.contents} />
                 </Body2>
 
                 <Body3>
@@ -66,7 +66,12 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
 
                 <Body4>
                     <Text>유튜브</Text>
-                    <Input1 type="text" placeholder="링크를 복사해주세요."></Input1>
+                    <Input1 
+                        name="youtubeUrl" 
+                        type="text" 
+                        placeholder="링크를 복사해주세요." 
+                        onChange={props.onChangeInputs} 
+                        defaultValue={props.data?.fetchBoard?.youtubeUrl}/>
                 </Body4>
 
                 <Footer1>

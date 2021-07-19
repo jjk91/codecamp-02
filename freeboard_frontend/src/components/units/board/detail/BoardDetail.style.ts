@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import ReactPlayer from "react-player"
 
 export const Wrapper =styled.div`
     width: 1200px;
@@ -88,10 +89,10 @@ export const ContentsText =styled.div`
     padding-bottom: 120px;
     padding-top: 40px;
 `
-export const ContentsUrl =styled.div`
+export const ContentsUrl =styled(ReactPlayer)`
     width: 486px;
     height: 240px;
-    background-color: gray;
+    /* background-color: gray; */
     margin-bottom: 160px;
 `
 

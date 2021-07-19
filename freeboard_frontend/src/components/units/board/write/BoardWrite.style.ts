@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import ReactPlayer from "react-player"
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -13,7 +14,7 @@ export const Wrapper = styled.div`
 export const Box = styled.div`
     // position:absolute
     /* height: 1847px; */
-    width:1200px; 
+    max-width: 1200px; 
     border: 1px solid black;
     padding: 80px 102px;
     
@@ -105,6 +106,10 @@ export const Input3 = styled.input`
     font-size: 16px;
     margin-right: 16px;
 `
+
+// export const YouTube = styled(ReactPlayer)`
+
+// `
 
 export const Click1 = styled.button`
     height: 52px;

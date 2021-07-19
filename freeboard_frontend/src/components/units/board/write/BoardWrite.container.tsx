@@ -11,17 +11,19 @@ import { IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generate
 
 
 interface InputTypes {
-  writer? : string | null,
-  password : string;
-  title? : string;
-  contents? : string;
+  writer? : string | null
+  password : string
+  title? : string
+  contents? : string
+  youtubeUrl? : string
 }
 
 const InputInit:InputTypes = {
   writer:"",
   password:"",
   title:"",
-  contents:""
+  contents:"",
+  youtubeUrl:""
 }
 
 
@@ -38,23 +40,32 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
     variables: { boardId: String(router.query.boardId) }
   })
   
+  function checkInputs(newInputs) {
+    let able = false;
+    Object.values(newInputs !== null ? newInputs : inputs).filter( (data, idx) => {
+      if(idx !== 4) {
+        if(!data) {
+          able = true;
+        }
+      }
+    })
+
+    return able;
+  }
 
   function onChangeInputs(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
 
     const newInputs :newInputsTypes= {
       ...inputs,
       [event.target.name] : event.target.value,
-     
-    }
-    if(props.isEdit){
-      newInputs.writer = data?.fetchBoard.writer
-      console.log(data) 
     }
 
+    if(props.isEdit){ newInputs.writer = data?.fetchBoard.writer }
+
     setInputs(newInputs)
-    if(newInputs.title || newInputs.contents) { 
-      setdisabled(false)
-    }
+    // if(newInputs.title || newInputs.contents) { 
+    setdisabled(checkInputs(newInputs))
+    // }
 
     // if(Object.values(newInputs).every(data => data)){
     //   setdisabled(false)
@@ -63,20 +74,22 @@ export default function BoardWrite(props: IBoardWriteContainerProps){
   }
     
   async function onClickSubmit() {
-    if(Object.values(inputs).every(data => data)){ 
+    // if(Object.values(inputs).every(data => data)  ){ 
+    if(checkInputs(null) === false) {
       try {
         const result = await board({
           variables : {
             createBoardInput : {...inputs }}
-        })
-        alert("등록되었습니다.")
-        router.push(`/boards/${result.data.createBoard._id}`)
+          })
+          alert("등록되었습니다.")
+          router.push(`/boards/${result.data.createBoard._id}`)
 
       } catch(error){
         
         alert(error.message)
       }
     }
+    // }
   }
 
   

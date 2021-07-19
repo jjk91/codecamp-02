@@ -45,7 +45,14 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
                     <Contents>
                         <ContentsImg></ContentsImg>
                         <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
-                        <ContentsUrl></ContentsUrl>
+                        <ContentsUrl
+                            url={props.data?.fetchBoard.youtubeUrl}
+                            width = "480px"
+                            height = "240px"
+                            playing = {true}
+                            muted ={true} 
+                            volume ={0}
+                            controls = {true}/>
                     </Contents>
 
                 </BodyWrapper>
