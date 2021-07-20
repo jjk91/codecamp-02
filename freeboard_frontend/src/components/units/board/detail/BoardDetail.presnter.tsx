@@ -1,7 +1,7 @@
 import {Wrapper, HeadWrapper, WriterInfo, WriterImg, WriterDate, Writer
     , WriterDay, WriterIcon, Connect, Location
     , BodyWrapper, Title, Contents, ContentsImg, ContentsText, ContentsUrl
-    , FooterWrapper, Like1, Like2, Wrapper2, Wrapper2ButtonList
+    , FooterWrapper, LikeGroup ,Like, LikeCount, DislikeGroup ,Dislike, DislikeCount, Wrapper2, Wrapper2ButtonList
     , List, Update, Delete} from './BoardDetail.style'
 import { getDate } from '../../../../commons/libraries/utils'
 
@@ -58,8 +58,14 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps){
                 </BodyWrapper>
 
                 <FooterWrapper>
-                    <Like1 src="/images/ic_thumb_up_off_alt-24px.png"/>
-                    <Like2 src="/images/ic_thumb_down-24px.png"/>
+                    <LikeGroup>
+                        <Like onClick={props.onClickLikeCount}/>
+                        <LikeCount>{props.data?.fetchBoard.likeBoard}</LikeCount>
+                    </LikeGroup>
+                    <DislikeGroup>
+                        <Dislike onClick={props.onClickDislikeCount} />
+                        <DislikeCount>{props.data?.fetchBoard.dislikeBoard}</DislikeCount>
+                    </DislikeGroup>
                 </FooterWrapper>
             </Wrapper>
             <Wrapper2>

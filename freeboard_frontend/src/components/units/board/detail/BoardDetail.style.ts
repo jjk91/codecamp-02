@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import ReactPlayer from "react-player"
+import { LikeOutlined, DislikeOutlined } from '@ant-design/icons'
 
 export const Wrapper =styled.div`
     width: 1200px;
@@ -104,19 +105,44 @@ export const FooterWrapper= styled.div`
     justify-content: center;
     /* align-items: flex-end; */
     /* margin-right: 40px; */
+    font-weight: bold;
 
 
 `
-
-export const Like1= styled.img`
-    height: 51px;
-    width: 40px;
+export const LikeGroup = styled.div`
+    display: flex;
+    flex-direction: column;
     margin-right: 40px;
 `
 
-export const Like2 = styled.img`
-    height: 51px;
-    width: 40px;
+export const Like= styled(LikeOutlined)`
+    font-size: 51px;
+    color: yellow;
+`
+export const LikeCount= styled.div`
+    font-size: 18px;
+    color: yellow;
+    text-align: center;
+   
+
+`
+
+
+
+export const DislikeGroup = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+
+export const Dislike = styled(DislikeOutlined)`
+    font-size: 51px;
+    
+`
+
+export const DislikeCount = styled.div`
+    font-size: 18px;
+    text-align: center;
 `
 
 export const Wrapper2 = styled.div`
