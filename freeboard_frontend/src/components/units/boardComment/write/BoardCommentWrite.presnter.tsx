@@ -4,6 +4,7 @@ import {
   WrapperHeadComment,
   CommentTop,
   CommentMid,
+  StarRate,
   CommentImg,
   CommentTitle,
   CommentWriter,
@@ -58,6 +59,7 @@ export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
               value={props.commentInput.password}
               placeholder="비밀번호"
             />
+            <StarRate onChange={props.onChangerate} />
           </CommentMid>
         </WrapperHeadComment>
         <WrapperGroup>

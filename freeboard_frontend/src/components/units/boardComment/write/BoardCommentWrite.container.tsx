@@ -16,11 +16,11 @@ const CommentInputInit = {
   writer: "",
   password: "",
   contents: "",
+  rating: 0,
 };
 
-export default function BoardCommentWrite(props) {
+export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   const router = useRouter();
-  // const { data } = useQuery(FETCH_BOARD_COMMENTS)
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [commentInput, setCommentInput] = useState(CommentInputInit);
   const [createBoardComment] = useMutation<
@@ -28,14 +28,14 @@ export default function BoardCommentWrite(props) {
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
 
-  function onChangeInputs(event: any) {
+  function onChangeInputs(event) {
     const newCommentInput = {
       ...commentInput,
       [event.target.name]: event.target.value,
     };
     setCommentInput(newCommentInput);
     if (props.isEdit) {
-      newCommentInput.writer = props.data?.fetchBoardComment.writer;
+      newCommentInput.writer = props.data?.fetchBoardComment?.writer;
     }
   }
 
@@ -47,7 +47,7 @@ export default function BoardCommentWrite(props) {
           createBoardCommentInput: {
             writer: commentInput.writer,
             contents: commentInput.contents,
-            rating: 5,
+            rating: commentInput.rating,
           },
         },
         refetchQueries: [
@@ -75,14 +75,17 @@ export default function BoardCommentWrite(props) {
     if (commentInput.writer) newCommentInputs.writer = commentInput.writer;
     if (commentInput.contents)
       newCommentInputs.contents = commentInput.contents;
-
+    if (commentInput.rating) newCommentInputs.rating = commentInput.rating;
+    console.log(newCommentInputs);
     if (Object.values(newCommentInputs).every((data) => data)) {
       try {
         await updateBoardComment({
           variables: {
             boardCommentId: event.target.id,
             password: commentInput.password,
-            updateBoardCommentInput: { ...newCommentInputs },
+            updateBoardCommentInput: {
+              ...newCommentInputs,
+            },
           },
           refetchQueries: [
             {
@@ -91,6 +94,7 @@ export default function BoardCommentWrite(props) {
             },
           ],
         });
+        console.log(newCommentInputs);
         alert("해당 댓글을 수정합니다.");
       } catch (error) {
         alert(error.message);
@@ -98,10 +102,15 @@ export default function BoardCommentWrite(props) {
     }
   }
 
+  function onChangerate(value: number) {
+    setCommentInput({ ...commentInput, rating: value });
+  }
+
   return (
     <BoardCommentWriteUi
       data={props.data}
       commentInput={commentInput}
+      onChangerate={onChangerate}
       onClickUpdate={onClickUpdate}
       onChangeInputs={onChangeInputs}
       onClickSumit={onClickSumit}

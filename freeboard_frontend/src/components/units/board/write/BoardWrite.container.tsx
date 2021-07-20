@@ -11,8 +11,6 @@ import {
 } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
 
-// import { FETCH_BOARD } from "../fetch/BoardsList.queries"
-
 interface InputTypes {
   writer?: string | null;
   password: string;
@@ -42,11 +40,16 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   function onComplete(data) {
     setAddress(data.address);
     setZoneCode(data.zoneCode);
-    setIsOpen(false);
   }
   function onClickModal() {
     setIsOpen(true);
   }
+
+  function onOk() {
+    setIsOpen(false);
+  }
+
+  function countDown() {}
 
   const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: { boardId: String(router.query.boardId) },
@@ -148,6 +151,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       address={address}
       zoneCode={zoneCode}
       isOpen={isOpen}
+      onOk={onOk}
       onComplete={onComplete}
       onClickModal={onClickModal}
       onClickUpdate={onClickUpdate}

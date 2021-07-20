@@ -92,7 +92,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
 
           <BodyWrapper>
             {props.isOpen && (
-              <Modal title="주소검색" visible={true} onOk={props.onClickModal}>
+              <Modal title="주소검색" visible={true} onOk={props.onOk}>
                 <DaumPostcode onComplete={props.onComplete} animation />
               </Modal>
             )}
