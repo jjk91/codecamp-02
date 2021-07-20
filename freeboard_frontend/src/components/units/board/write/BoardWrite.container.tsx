@@ -1,142 +1,162 @@
-import { useState } from "react"
-import { useRouter } from "next/router"
-import { useMutation , useQuery} from "@apollo/client"
-import BoardWriteUi from "./BoardWrite.presnter"
-import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries"
-import { ChangeEvent } from "react"
-import { IBoardWriteContainerProps, newInputsTypes } from "./BoardWrite.types"
-import { IQuery, IQueryFetchBoardArgs } from "../../../../commons/types/generated/types"
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useMutation, useQuery } from "@apollo/client";
+import BoardWriteUi from "./BoardWrite.presnter";
+import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries";
+import { ChangeEvent } from "react";
+import { IBoardWriteContainerProps, newInputsTypes } from "./BoardWrite.types";
+import {
+  IQuery,
+  IQueryFetchBoardArgs,
+} from "../../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 // import { FETCH_BOARD } from "../fetch/BoardsList.queries"
 
-
 interface InputTypes {
-  writer? : string | null
-  password : string
-  title? : string
-  contents? : string
-  youtubeUrl? : string
+  writer?: string | null;
+  password: string;
+  title?: string;
+  contents?: string;
+  youtubeUrl?: string;
 }
 
-const InputInit:InputTypes = {
-  writer:"",
-  password:"",
-  title:"",
-  contents:"",
-  youtubeUrl:""
-}
+const InputInit: InputTypes = {
+  writer: "",
+  password: "",
+  title: "",
+  contents: "",
+  youtubeUrl: "",
+};
 
+export default function BoardWrite(props: IBoardWriteContainerProps) {
+  const router = useRouter();
+  const [inputs, setInputs] = useState(InputInit);
+  const [disabled, setdisabled] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [address, setAddress] = useState("");
+  const [zoneCode, setZoneCode] = useState("");
+  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [board] = useMutation(CREATE_BOARD);
 
-export default function BoardWrite(props: IBoardWriteContainerProps){
+  function onComplete(data) {
+    setAddress(data.address);
+    setZoneCode(data.zoneCode);
+    setIsOpen(false);
+  }
+  function onClickModal() {
+    setIsOpen(true);
+  }
 
-  const router = useRouter()
-  const [inputs, setInputs] = useState(InputInit)
-  const [disabled, setdisabled] = useState(true)
-  const [updateBoard] = useMutation(UPDATE_BOARD)
-  const [board] = useMutation(CREATE_BOARD)
+  const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
+    variables: { boardId: String(router.query.boardId) },
+  });
 
-
-  const { data  } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
-    variables: { boardId: String(router.query.boardId) }
-  })
-  
   function checkInputs(newInputs) {
     let able = false;
-    Object.values(newInputs !== null ? newInputs : inputs).filter( (data, idx) => {
-      if(idx !== 4) {
-        if(!data) {
-          able = true;
+    Object.values(newInputs !== null ? newInputs : inputs).filter(
+      (data, idx) => {
+        if (idx !== 4) {
+          if (!data) {
+            able = true;
+          }
         }
       }
-    })
+    );
 
     return able;
   }
 
-  function onChangeInputs(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>){
-
-    const newInputs :newInputsTypes= {
+  function onChangeInputs(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const newInputs: newInputsTypes = {
       ...inputs,
-      [event.target.name] : event.target.value,
+      [event.target.name]: event.target.value,
+    };
+
+    if (props.isEdit) {
+      newInputs.writer = data?.fetchBoard.writer;
     }
 
-    if(props.isEdit){ newInputs.writer = data?.fetchBoard.writer }
-
-    setInputs(newInputs)
-    // if(newInputs.title || newInputs.contents) { 
-    setdisabled(checkInputs(newInputs))
+    setInputs(newInputs);
+    // if(newInputs.title || newInputs.contents) {
+    setdisabled(checkInputs(newInputs));
     // }
 
     // if(Object.values(newInputs).every(data => data)){
     //   setdisabled(false)
     // }
-
   }
-    
+
   async function onClickSubmit() {
-    // if(Object.values(inputs).every(data => data)  ){ 
-    if(checkInputs(null) === false) {
+    // if(Object.values(inputs).every(data => data)  ){
+    if (checkInputs(null) === false) {
       try {
         const result = await board({
-          variables : {
-            createBoardInput : {...inputs }}
-          })
-          alert("등록되었습니다.")
-          router.push(`/boards/${result.data.createBoard._id}`)
-
-      } catch(error){
-        
-        alert(error.message)
+          variables: {
+            createBoardInput: { ...inputs },
+          },
+        });
+        Modal.success({
+          title: "등록확인",
+          content: "게시물이 등록 되었습니다.",
+        });
+        router.push(`/boards/${result.data.createBoard._id}`);
+      } catch (error) {
+        Modal.error(error.massage);
       }
     }
     // }
   }
 
-  
+  async function onClickUpdate() {
+    const newInputs = {};
+    if (inputs.title) newInputs.title = inputs.title;
+    if (inputs.contents) newInputs.contents = inputs.contents;
 
-
-  async function onClickUpdate () {
-    const newInputs = {}
-    if (inputs.title) newInputs.title = inputs.title
-    if (inputs.contents) newInputs.contents = inputs.contents
-    
-    if (Object.values(newInputs).every(data => data)){
-      try{
+    if (Object.values(newInputs).every((data) => data)) {
+      try {
         const result = await updateBoard({
-          variables:{
-            boardId : router.query.boardId,    // router은 주소
-            password : inputs.password,         // inputs에 입력된 password
-            updateBoardInput : { ...newInputs }
-          }
-        })
-        alert("해당 글을 수정합니다.")
-        router.push(`/boards/${result.data.updateBoard._id}`)
-      } catch (error){
-          alert(error.message)
+          variables: {
+            boardId: router.query.boardId, // router은 주소
+            password: inputs.password, // inputs에 입력된 password
+            updateBoardInput: { ...newInputs },
+          },
+        });
+        Modal.info({
+          title: "수정확인",
+          content: "게시물을 수정 합니다.",
+        });
+        router.push(`/boards/${result.data.updateBoard._id}`);
+      } catch (error) {
+        Modal.error(error.massage);
       }
     }
   }
 
-  async function onClickList (){
-    try{
-
-      router.push(`/boards/${router.query.boardId}`)
-    } catch (error){
-      alert(error.meassage)
+  async function onClickList() {
+    try {
+      router.push(`/boards/${router.query.boardId}`);
+    } catch (error) {
+      Modal.error(error.massage);
     }
   }
 
-  
-    return (
-        <BoardWriteUi
-          onClickUpdate={onClickUpdate}
-          onClickList={onClickList}
-          onChangeInputs={onChangeInputs}
-          onClickSubmit={onClickSubmit}
-          disabled={disabled}
-          isEdit={props.isEdit}
-          data={data}
-        />
-    )
+  return (
+    <BoardWriteUi
+      address={address}
+      zoneCode={zoneCode}
+      isOpen={isOpen}
+      onComplete={onComplete}
+      onClickModal={onClickModal}
+      onClickUpdate={onClickUpdate}
+      onClickList={onClickList}
+      onChangeInputs={onChangeInputs}
+      onClickSubmit={onClickSubmit}
+      disabled={disabled}
+      isEdit={props.isEdit}
+      data={data}
+    />
+  );
 }
-

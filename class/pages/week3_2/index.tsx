@@ -11,12 +11,12 @@ export default function Week3_2Page() {
     setIsOpen(false);
   }
 
-  //   function onClickSuccess() {
-  //     Modal.success({
-  //       title: "게시글 등록",
-  //       content: " 게시글이 등록 되었습니다. ",
-  //     });
-  //   }
+  function onClickSuccess() {
+    Modal.success({
+      title: "게시글 등록",
+      content: " 게시글이 등록 되었습니다. ",
+    });
+  }
 
   function onClickOpenModal() {
     setIsOpen(true);
@@ -28,8 +28,8 @@ export default function Week3_2Page() {
 
   return (
     <>
-      {/* <DaumPostcode onComplete={onComplete} autoClose />
-      <Button onClick={onClickSuccess}>모달열기</Button> */}
+      <DaumPostcode onComplete={onComplete} autoClose />
+      <Button onClick={onClickSuccess}>모달열기</Button>
       {isOpen && (
         <Modal title="주소 검색" visible={true} onCancel={onClickCancel}>
           <DaumPostcode onComplete={onComplete} />

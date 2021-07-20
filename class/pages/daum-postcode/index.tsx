@@ -11,7 +11,7 @@ export default function DaumPostcodePage() {
   function onComplete(data) {
     setAddress(data.address);
     setZoneCode(data.zonecode);
-    setIsOpen(false);
+    // setIsOpen(false);
   }
 
   function onClickOpenModal() {
@@ -25,11 +25,21 @@ export default function DaumPostcodePage() {
   return (
     <>
       {isOpen && (
-        <Modal title="주소검색하기" visible={true} onCancel={onClickCancel}>
+        <Modal
+          title="주소검색하기"
+          visible
+          // onCancel={onClickCancel}
+          // onOk={() => {
+          //   setIsOpen(false);
+          // }}
+        >
           {/* <input type="text" />
           <br />
           <input type="password" /> */}
           <DaumPostcode onComplete={onComplete} animation />
+          {address !== "" && (
+            <input type="text" placeholder="상세 주소를 입력해주세요." />
+          )}
         </Modal>
       )}
       <button onClick={onClickOpenModal}>주소 검색</button>
