@@ -34,10 +34,13 @@ export default function CommentListItem(props) {
   function onClickEdit() {
     setIsEdit(true);
   }
-
+  function handleUpdate() {
+    setIsEdit(false);
+  }
   return (
     <CommentListItemUi
       data={props.data}
+      handleUpdate={handleUpdate}
       onClickEdit={onClickEdit}
       onClickDelete={onClickDelete}
       isEdit={isEdit}

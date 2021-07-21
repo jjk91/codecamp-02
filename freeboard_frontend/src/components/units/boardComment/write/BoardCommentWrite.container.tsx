@@ -94,7 +94,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
             },
           ],
         });
-        console.log(newCommentInputs);
+        props.handleUpdate();
         alert("해당 댓글을 수정합니다.");
       } catch (error) {
         alert(error.message);

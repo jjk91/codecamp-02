@@ -54,7 +54,13 @@ export default function CommentListItemUi(props) {
           </CommentMain>
         </Wrapper>
       )}
-      {props.isEdit && <BoardCommentWrite isEdit={true} data={props.data} />}
+      {props.isEdit && (
+        <BoardCommentWrite
+          isEdit={true}
+          data={props.data}
+          handleUpdate={props.handleUpdate}
+        />
+      )}
     </>
   );
 }
