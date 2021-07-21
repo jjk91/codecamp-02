@@ -29,6 +29,7 @@ import {
   Delete,
 } from "./BoardDetail.style";
 import { getDate } from "../../../../commons/libraries/utils";
+import { Tooltip } from "antd";
 
 interface IBoardDetailUIPresenterProps {
   onClickDelete: () => void;
@@ -57,7 +58,12 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
 
           <WriterIcon>
             <Connect src="/images/ic_link-32px.png" />
-            <Location src="/images/ic_location_on-32px.png" />
+            <Tooltip
+              placement="topRight"
+              title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+            >
+              <Location src="/images/ic_location_on-32px.png" />
+            </Tooltip>
           </WriterIcon>
         </HeadWrapper>
 

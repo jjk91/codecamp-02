@@ -1,4 +1,4 @@
-import { Modal } from "antd";
+import { Modal, Tooltip, Button } from "antd";
 import { useState } from "react";
 
 export default function Libraries3Page() {
@@ -23,6 +23,10 @@ export default function Libraries3Page() {
         <div>게시물이 정상적으로 등록되었습니다.</div>
       </Modal>
       <button onClick={onClickSubmit}>게시물등록</button>
+
+      <Tooltip placement="topRight" title={"text"}>
+        <Button>TR</Button>
+      </Tooltip>
     </>
   );
 }

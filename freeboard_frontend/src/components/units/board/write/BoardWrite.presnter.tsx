@@ -99,13 +99,17 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
             <PostInput
               type="text"
               placeholder="07250"
-              value={props.zoneCode}
+              value={props.zipcode}
             ></PostInput>
             <PostSerch onClick={props.onClickModal}>우편번호 검색 </PostSerch>
           </BodyWrapper>
 
           <Address type="text" placeholder="" value={props.address}></Address>
-          <AddressDetail type="text" placeholder=""></AddressDetail>
+          <AddressDetail
+            type="text"
+            placeholder=""
+            onChange={props.onChangAddressDetail}
+          ></AddressDetail>
         </Body3>
 
         <Body4>

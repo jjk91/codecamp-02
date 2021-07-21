@@ -32,15 +32,17 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [inputs, setInputs] = useState(InputInit);
   const [disabled, setdisabled] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [addressDetail, setAddressDetail] = useState("");
   const [address, setAddress] = useState("");
-  const [zoneCode, setZoneCode] = useState("");
+  const [zipcode, setZipcode] = useState("");
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [board] = useMutation(CREATE_BOARD);
 
   function onComplete(data) {
     setAddress(data.address);
-    setZoneCode(data.zoneCode);
+    setZipcode(data.zoneCode);
   }
+
   function onClickModal() {
     setIsOpen(true);
   }
@@ -49,7 +51,9 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setIsOpen(false);
   }
 
-  function countDown() {}
+  function onChangAddressDetail(event) {
+    setAddressDetail(event.target.value);
+  }
 
   const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
     variables: { boardId: String(router.query.boardId) },
@@ -98,9 +102,17 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       try {
         const result = await board({
           variables: {
-            createBoardInput: { ...inputs },
+            createBoardInput: {
+              ...inputs,
+              boardAddress: {
+                zipcode: String(zipcode),
+                address: address,
+                addressDetail: addressDetail,
+              },
+            },
           },
         });
+        console.log(inputs);
         Modal.success({
           title: "등록확인",
           content: "게시물이 등록 되었습니다.",
@@ -149,9 +161,10 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   return (
     <BoardWriteUi
       address={address}
-      zoneCode={zoneCode}
+      zipcode={zipcode}
       isOpen={isOpen}
       onOk={onOk}
+      onChangAddressDetail={onChangAddressDetail}
       onComplete={onComplete}
       onClickModal={onClickModal}
       onClickUpdate={onClickUpdate}

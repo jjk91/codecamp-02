@@ -28,14 +28,14 @@ export default function DaumPostcodePage() {
         <Modal
           title="주소검색하기"
           visible
-          // onCancel={onClickCancel}
-          // onOk={() => {
-          //   setIsOpen(false);
-          // }}
+          onCancel={onClickCancel}
+          onOk={() => {
+            setIsOpen(false);
+          }}
         >
-          {/* <input type="text" />
+          <input type="text" />
           <br />
-          <input type="password" /> */}
+          <input type="password" />
           <DaumPostcode onComplete={onComplete} animation />
           {address !== "" && (
             <input type="text" placeholder="상세 주소를 입력해주세요." />
