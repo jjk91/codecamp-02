@@ -1,20 +1,14 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { FETCH_BOARD } from "../detail/BoardDetail.queries";
 import BoardsListUi from "./BoardsList.presnter";
 import { FETCH_BOARDS } from "./BoardsList.queries";
 
 export default function BoardsList() {
-  // const { data } = useQuery(
-  //     FETCH_BOARDS, refetchQueries [{query:FETCH_BOARDS}]
-  //     )
-  // const [board] = useQuery(FETCH_BOARD)
-
   const router = useRouter();
 
-  const { data } = useQuery(FETCH_BOARDS, FETCH_BOARD, {
-    variables: { boardId: router.query.boardId },
-  });
+  const { data, refetch } = useQuery(FETCH_BOARDS);
+
+  // const { data: count } = useQuery(FETCH_BOARD_COUNT);
 
   function onClickSubmit(event) {
     router.push(`/boards/${event.target.id}`); // router.push 는 페이지 이동을 위함
@@ -24,10 +18,14 @@ export default function BoardsList() {
   function onClickCreate() {
     router.push(`/boards/new`);
   }
+  function onClickPage(event) {
+    refetch();
+  }
 
   return (
     <BoardsListUi
       gql={data}
+      onClickPage={onClickPage}
       onClickSubmit={onClickSubmit}
       onClickCreate={onClickCreate}
     />

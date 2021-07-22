@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { StepLabel } from "@material-ui/core";
 import { Button } from "antd";
 
 export const Wrapper = styled.div`
@@ -57,6 +58,19 @@ export const ListDate = styled.div`
   border-bottom: 1px solid #bdbdbd;
 `;
 
-export const NewBoradWiter = styled(Button)`
+export const WrapperFooter = styled.div`
+  padding: 50px;
   display: flex;
+  flex-direction: row;
 `;
+
+export const Pagination = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+export const Pageprev = styled.div``;
+export const PageNext = styled.div``;
+
+export const NewBoradWiter = styled(Button)``;

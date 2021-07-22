@@ -40,7 +40,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
 
   function onComplete(data) {
     setAddress(data.address);
-    setZipcode(data.zoneCode);
+    setZipcode(data.zonecode);
   }
 
   function onClickModal() {
@@ -61,15 +61,15 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
 
   function checkInputs(newInputs) {
     let able = false;
-    Object.values(newInputs !== null ? newInputs : inputs).filter(
-      (data, idx) => {
+    Object.values(newInputs !== null ? newInputs : inputs)
+      // .slice(0, Object.values(newInputs).length - 1)
+      .filter((data, idx) => {
         if (idx !== 4) {
           if (!data) {
             able = true;
           }
         }
-      }
-    );
+      });
 
     return able;
   }
@@ -97,6 +97,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   }
 
   async function onClickSubmit() {
+    console.log(zipcode, typeof zipcode);
     // if(Object.values(inputs).every(data => data)  ){
     if (checkInputs(null) === false) {
       try {
@@ -105,7 +106,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
             createBoardInput: {
               ...inputs,
               boardAddress: {
-                zipcode: String(zipcode),
+                zipcode: zipcode,
                 address: address,
                 addressDetail: addressDetail,
               },

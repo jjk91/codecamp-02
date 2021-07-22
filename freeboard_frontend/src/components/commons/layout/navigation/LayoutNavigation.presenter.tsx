@@ -1,3 +1,9 @@
+import { Wrapper, WrapperItem } from "./LayoutNavigation.styles";
+
 export default function LayoutNavigationUi() {
-  return <div>navigation scope</div>;
+  return (
+    <Wrapper>
+      <WrapperItem></WrapperItem>
+    </Wrapper>
+  );
 }

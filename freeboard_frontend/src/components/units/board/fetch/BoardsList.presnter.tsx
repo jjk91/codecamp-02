@@ -11,6 +11,10 @@ import {
   ListTitle,
   ListWriter,
   ListDate,
+  WrapperFooter,
+  Pagination,
+  Pageprev,
+  PageNext,
   NewBoradWiter,
 } from "./BoardsList.style";
 
@@ -33,7 +37,14 @@ export default function BoardDetailUi(props) {
           <ListDate>{getDate(data.createdAt)}</ListDate>
         </WrapperList>
       ))}
-      <NewBoradWiter onClick={props.onClickCreate}>등록하기</NewBoradWiter>
+      <WrapperFooter>
+        <PagePrev>이전</PagePrev>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data) => (
+          <Pagination onClick={props.onClickPage}>{data}</Pagination>
+        ))}
+        <PageNext>다음</PageNext>
+        <NewBoradWiter onClick={props.onClickCreate}>등록하기</NewBoradWiter>
+      </WrapperFooter>
     </Wrapper>
   );
 }
