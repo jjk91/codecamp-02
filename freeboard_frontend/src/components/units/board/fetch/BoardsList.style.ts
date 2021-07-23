@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { StepLabel } from "@material-ui/core";
 import { Button } from "antd";
 
 export const Wrapper = styled.div`
+  width: 1200px;
   line-height: 52px;
   text-align: center;
 `;
@@ -59,18 +59,45 @@ export const ListDate = styled.div`
 `;
 
 export const WrapperFooter = styled.div`
-  padding: 50px;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 50px;
+`;
+export const BoardPagination = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 230px;
+  cursor: pointer;
 `;
 
 export const Pagination = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  font-size: 18px;
+  margin: 10px;
 `;
 
-export const Pageprev = styled.div``;
-export const PageNext = styled.div``;
+export const PagePrev = styled.img`
+  margin: 10px;
+  height: 12px;
+  width: 7.5px;
+`;
+export const PageNext = styled.img`
+  margin: 10px;
+  height: 12px;
+  width: 7.5px;
+`;
 
-export const NewBoradWiter = styled(Button)``;
+export const NewBoradWiter = styled(Button)`
+  width: 171px;
+  height: 52px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+export const NewBoardImg = styled.img``;
+export const NewBoardSubmit = styled.div``;

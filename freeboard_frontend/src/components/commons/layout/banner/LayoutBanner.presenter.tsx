@@ -8,7 +8,7 @@ export default function LayoutBannerUi() {
     dots: true,
     fade: true,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -16,24 +16,12 @@ export default function LayoutBannerUi() {
   return (
     <Wrapper>
       <Slider {...settings}>
-        <div>
-          <SliderItem src="/images/banner01.jpg"></SliderItem>
-        </div>
-        <div>
-          <SliderItem src="/images/banner02_1.jpg"></SliderItem>
-        </div>
-        <div>
-          <SliderItem src="/images/banner03.jpg"></SliderItem>
-        </div>
-        <div>
-          <SliderItem src="/images/banner05.jpg"></SliderItem>
-        </div>
-        <div>
-          <SliderItem src="/images/banner06.jpg"></SliderItem>
-        </div>
-        <div>
-          <SliderItem src="/images/banner07.jpg"></SliderItem>
-        </div>
+        <SliderItem src="/images/banner01.jpg"></SliderItem>
+        <SliderItem src="/images/banner02_1.jpg"></SliderItem>
+        <SliderItem src="/images/banner03.jpg"></SliderItem>
+        <SliderItem src="/images/banner05.jpg"></SliderItem>
+        <SliderItem src="/images/banner06.jpg"></SliderItem>
+        <SliderItem src="/images/banner07.jpg"></SliderItem>
       </Slider>
     </Wrapper>
   );

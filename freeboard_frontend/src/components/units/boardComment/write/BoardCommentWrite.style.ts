@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   height: ${(props) => (props.isEdit ? "230px" : "300px")};
   width: 1200px;
   background-color: ${(props) => (props.isEdit ? "purple" : "skyblue")};
+  margin: auto;
 `;
 
 export const WrapperComment = styled.div`
@@ -45,7 +46,7 @@ export const CommentPassword = styled.input`
   margin-right: 20px;
 `;
 export const StarRate = styled(Rate)`
-  color: red;
+  color: yellow;
 `;
 export const CommentContents = styled.textarea`
   height: ${(props) => (props.isEdit ? "64px" : "108px")};

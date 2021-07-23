@@ -12,10 +12,13 @@ import {
   ListWriter,
   ListDate,
   WrapperFooter,
+  BoardPagination,
   Pagination,
-  Pageprev,
+  PagePrev,
   PageNext,
   NewBoradWiter,
+  NewBoardImg,
+  NewBoardSubmit,
 } from "./BoardsList.style";
 
 export default function BoardDetailUi(props) {
@@ -38,12 +41,36 @@ export default function BoardDetailUi(props) {
         </WrapperList>
       ))}
       <WrapperFooter>
-        <PagePrev>이전</PagePrev>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data) => (
-          <Pagination onClick={props.onClickPage}>{data}</Pagination>
-        ))}
-        <PageNext>다음</PageNext>
-        <NewBoradWiter onClick={props.onClickCreate}>등록하기</NewBoradWiter>
+        <BoardPagination>
+          <PagePrev
+            src="/images/Vector (1).png"
+            onClick={props.onClickPrevPage}
+          />
+          {new Array(10).fill(1).map((_, index) => {
+            const currentPage = props.startPage + index;
+            return (
+              currentPage <= props.lastPage && (
+                <Pagination
+                  key={props.startPage + index}
+                  onClick={props.onClickPage}
+                  id={String(props.startPage + index)}
+                >
+                  {currentPage}
+                </Pagination>
+              )
+            );
+          })}
+          <PageNext
+            src="/images/Vector (2).png"
+            onClick={props.onClickNextPage}
+          />
+        </BoardPagination>
+        <NewBoradWiter>
+          <NewBoardImg src="/images/mode-24px.png" />
+          <NewBoardSubmit onClick={props.onClickCreate}>
+            등록하기
+          </NewBoardSubmit>
+        </NewBoradWiter>
       </WrapperFooter>
     </Wrapper>
   );

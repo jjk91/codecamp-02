@@ -1,9 +1,22 @@
-import { Wrapper, Wrapperimg } from "./LayoutHeader.styles";
+import {
+  Wrapper,
+  InnerWrapper,
+  InnerText,
+  InnerButton,
+} from "./LayoutHeader.styles";
 
 export default function LayoutHeaderUi() {
   return (
-    <Wrapper>
-      <Wrapperimg></Wrapperimg>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <InnerWrapper>
+          <InnerText>Grand Tour</InnerText>
+          <div>
+            <InnerButton>Login</InnerButton>
+            <InnerButton>Sing up</InnerButton>
+          </div>
+        </InnerWrapper>
+      </Wrapper>
+    </>
   );
 }

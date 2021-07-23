@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   padding: 20px 102px 80px 102px;
   border: 1px solid black;
   /* margin: 100px 100px; */
+  margin: auto;
 `;
 
 export const HeadWrapper = styled.div`
@@ -134,6 +135,7 @@ export const DislikeCount = styled.div`
 export const Wrapper2 = styled.div`
   width: 1200px;
   padding: 80px 298px 87px 298px;
+  margin: auto;
 `;
 
 export const Wrapper2ButtonList = styled.div`

@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   height: 120px;
   display: flex;
   border-bottom: 1px solid gray;
+  margin: auto;
 `;
 
 export const CommentInfo = styled.div`

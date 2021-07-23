@@ -38,7 +38,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [board] = useMutation(CREATE_BOARD);
 
-  function onComplete(data) {
+  function onComplete(data: any) {
     setAddress(data.address);
     setZipcode(data.zonecode);
   }
@@ -51,7 +51,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setIsOpen(false);
   }
 
-  function onChangAddressDetail(event) {
+  function onChangAddressDetail(event: ChangeEvent<HTMLInputElement>) {
     setAddressDetail(event.target.value);
   }
 
@@ -59,7 +59,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     variables: { boardId: String(router.query.boardId) },
   });
 
-  function checkInputs(newInputs) {
+  function checkInputs(newInputs: any) {
     let able = false;
     Object.values(newInputs !== null ? newInputs : inputs)
       // .slice(0, Object.values(newInputs).length - 1)
