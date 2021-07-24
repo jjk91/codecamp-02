@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: darkslateblue;
+  background-color: midnightblue;
 `;
 
 export const InnerWrapper = styled.div`
@@ -14,7 +14,7 @@ export const InnerWrapper = styled.div`
   /* background-color: skyblue; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   cursor: pointer;
 `;

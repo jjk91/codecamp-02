@@ -10,7 +10,7 @@ export const NavigationList = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background-color: darkslateblue;
+  background-color: midnightblue;
   color: white;
   font-weight: bold;
   font-size: 18px;

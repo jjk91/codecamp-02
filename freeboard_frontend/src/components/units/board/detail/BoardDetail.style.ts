@@ -108,13 +108,12 @@ export const LikeGroup = styled.div`
 
 export const Like = styled(LikeOutlined)`
   font-size: 51px;
-  color: yellow;
+  color: midnightblue;
 `;
 export const LikeCount = styled.div`
   font-size: 18px;
-  color: yellow;
+  color: midnightblue;
   text-align: center;
-  background-color: greenyellow;
 `;
 
 export const DislikeGroup = styled.div`
@@ -124,12 +123,13 @@ export const DislikeGroup = styled.div`
 
 export const Dislike = styled(DislikeOutlined)`
   font-size: 51px;
+  color: midnightblue;
 `;
 
 export const DislikeCount = styled.div`
   font-size: 18px;
   text-align: center;
-  background-color: pink;
+  color: midnightblue;
 `;
 
 export const Wrapper2 = styled.div`
@@ -149,16 +149,19 @@ export const Wrapper2ButtonList = styled.div`
 export const List = styled(Button)`
   height: 45px;
   width: 179px;
+  border-radius: 10px;
 `;
 
 export const Update = styled(Button)`
   height: 45px;
   width: 179px;
+  border-radius: 10px;
 `;
 
 export const Delete = styled(Button)`
   height: 45px;
   width: 179px;
+  border-radius: 10px;
 `;
 
 export const Wrapper2Comment = styled.div``;

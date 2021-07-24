@@ -4,7 +4,7 @@ import { Button } from "antd";
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  margin: 20px 20px;
+  margin: auto;
   align-items: center;
   justify-content: center;
 `;

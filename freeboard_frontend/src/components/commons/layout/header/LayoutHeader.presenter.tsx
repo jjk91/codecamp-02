@@ -10,7 +10,7 @@ export default function LayoutHeaderUi() {
     <>
       <Wrapper>
         <InnerWrapper>
-          <InnerText>Grand Tour</InnerText>
+          <InnerText>모 여</InnerText>
           <div>
             <InnerButton>Login</InnerButton>
             <InnerButton>Sing up</InnerButton>

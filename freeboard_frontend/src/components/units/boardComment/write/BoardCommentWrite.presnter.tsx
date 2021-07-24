@@ -4,6 +4,8 @@ import {
   WrapperHeadComment,
   CommentTop,
   CommentMid,
+  CommentEdit,
+  CommentEditClose,
   StarRate,
   CommentImg,
   CommentTitle,
@@ -30,36 +32,44 @@ export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
           {props.isEdit && ""}
 
           <CommentMid>
-            {!props.isEdit && (
-              <CommentWriter
-                onChange={props.onChangeInputs}
-                name="writer"
-                type="text"
-                value={props.commentInput.writer}
-                // defaultValue={props.isEdit?.fetchBoardComment?.writer}
-                // readOnly={props.isEdit?.fetchBoardComment?.writer}
-                placeholder="작성자"
-              />
-            )}
-            {props.isEdit && (
-              <CommentWriter
-                onChange={props.onChangeInputs}
-                name="writer"
-                type="text"
-                defaultValue={props.data?.writer}
-                // readOnly={props.isEdit?.fetchBoardComment?.writer}
-                placeholder="작성자"
-              />
-            )}
+            <CommentEdit>
+              {!props.isEdit && (
+                <CommentWriter
+                  onChange={props.onChangeInputs}
+                  name="writer"
+                  type="text"
+                  value={props.commentInput.writer}
+                  // defaultValue={props.isEdit?.fetchBoardComment?.writer}
+                  // readOnly={props.isEdit?.fetchBoardComment?.writer}
+                  placeholder="작성자"
+                />
+              )}
+              {props.isEdit && (
+                <CommentWriter
+                  onChange={props.onChangeInputs}
+                  name="writer"
+                  type="text"
+                  defaultValue={props.data?.writer}
+                  // readOnly={props.isEdit?.fetchBoardComment?.writer}
+                  placeholder="작성자"
+                />
+              )}
 
-            <CommentPassword
-              onChange={props.onChangeInputs}
-              name="password"
-              type="password"
-              value={props.commentInput.password}
-              placeholder="비밀번호"
-            />
-            <StarRate onChange={props.onChangerate} />
+              <CommentPassword
+                onChange={props.onChangeInputs}
+                name="password"
+                type="password"
+                value={props.commentInput.password}
+                placeholder="비밀번호"
+              />
+              <StarRate onChange={props.onChangerate} />
+            </CommentEdit>
+            {props.isEdit && (
+              <CommentEditClose
+                src="/images/clear-24px 2.png"
+                onClick={props.onClickClose}
+              />
+            )}
           </CommentMid>
         </WrapperHeadComment>
         <WrapperGroup>

@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   width: 1200px;
   line-height: 52px;
   text-align: center;
+  margin: auto;
 `;
 export const WrapperTitleList = styled.div`
   border-top: 2px solid black;

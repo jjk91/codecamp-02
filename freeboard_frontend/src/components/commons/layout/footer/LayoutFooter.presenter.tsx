@@ -1,3 +1,11 @@
+import { Wrapper, LayoutFooter } from "./LayoutFooter.styles";
+
 export default function LayoutFooterUi() {
-  return <div>footer scope</div>;
+  return (
+    <>
+      <Wrapper>
+        <LayoutFooter>푸터영역</LayoutFooter>
+      </Wrapper>
+    </>
+  );
 }

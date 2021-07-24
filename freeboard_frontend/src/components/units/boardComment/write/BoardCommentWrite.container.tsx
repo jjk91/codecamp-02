@@ -106,6 +106,10 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     setCommentInput({ ...commentInput, rating: value });
   }
 
+  function onClickClose() {
+    return true;
+  }
+
   return (
     <BoardCommentWriteUi
       data={props.data}
