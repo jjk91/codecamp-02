@@ -17,7 +17,7 @@ export default function LifecycleFunction() {
 
   useEffect(() => {
     console.log("컴포넌트 변경됨!!");
-  });
+  }, []);
 
   const onClickCount = () => {
     setCount((prev) => prev + 1);

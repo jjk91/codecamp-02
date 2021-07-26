@@ -8,17 +8,14 @@ export default function Week4Page() {
   const [isChange, setIsChange] = useState(false);
   const Router = useRouter();
   const inputRef = useRef();
-  const [test, setTest] = useState(1);
 
   const onClickChange = () => {
     setIsChange(true);
     console.log(isChange);
-    // alert("Changed!!");
   };
 
   useEffect(() => {
     inputRef.current?.focus();
-    // alert(1);
     alert("Rendered!");
     return () => {
       alert("Bye!!");
@@ -40,14 +37,13 @@ export default function Week4Page() {
       <div>컴포넌트 생명주기</div>
       <button onClick={onClickChange}>변경</button>
       <button onClick={onClickMove}>이동</button>
-      <input type="button" onClick={() => setTest((prev) => prev + 1)} />
       <input type="password" ref={inputRef} />
     </>
   );
 }
 
 // export default function MyComponent() {
-// console.log();
+//   console.log();
 //   const [count, setCount] = useState(0);
 //   const inputRef = useRef<HTMLInputElement>(null);
 //   const Router = useRouter();

@@ -1,12 +1,20 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AxiosPage() {
   const [imgUrl, setImgUrl] = useState("");
 
+  useEffect(() => {
+    const getImg = async () => {
+      const result = await axios.get("https://dog.ceo/api/breeds/image/random");
+      setImgUrl(result.data.message);
+    };
+    getImg();
+  });
+
   return (
     <>
-      <img scr={} />
+      <img src={imgUrl} />
     </>
   );
 }
