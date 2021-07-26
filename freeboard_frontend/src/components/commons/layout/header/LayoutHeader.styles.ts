@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  height: 50px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -10,14 +10,16 @@ export const Wrapper = styled.div`
 `;
 
 export const InnerWrapper = styled.div`
-  width: 1200px;
+  width: 100%;
   /* background-color: skyblue; */
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 `;
+
+export const InnerLogo = styled.img``;
 export const InnerText = styled.div`
   font-size: 30px;
   font-weight: bold;

@@ -1,4 +1,5 @@
 import { getDate } from "../../../../commons/libraries/utils";
+import { IQuery } from "../../../../commons/types/generated/types";
 import {
   Wrapper,
   WrapperTitleList,
@@ -21,7 +22,7 @@ import {
   NewBoardSubmit,
 } from "./BoardsList.style";
 
-export default function BoardDetailUi(props) {
+export default function BoardDetailUi(props: IBoardDetailUiProps) {
   return (
     <Wrapper>
       <WrapperTitleList>
@@ -66,8 +67,8 @@ export default function BoardDetailUi(props) {
           />
         </BoardPagination>
         <NewBoradWiter>
-          <NewBoardImg src="/images/mode-24px.png" />
           <NewBoardSubmit onClick={props.onClickCreate}>
+            <NewBoardImg src="/images/mode-24px.png" />
             등록하기
           </NewBoardSubmit>
         </NewBoradWiter>

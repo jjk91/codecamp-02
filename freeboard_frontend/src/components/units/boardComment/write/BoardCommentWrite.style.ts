@@ -41,8 +41,9 @@ export const CommentMid = styled.div`
 `;
 export const CommentEdit = styled.div``;
 
-export const CommentEditClose = styled.img`
+export const CommentEditClose = styled.div`
   height: 18px;
+  background-color: aqua;
   width: 18px;
   margin-top: 10px;
   margin-right: 10px;

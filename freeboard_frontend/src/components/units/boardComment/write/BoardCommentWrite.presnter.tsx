@@ -66,6 +66,7 @@ export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
             </CommentEdit>
             {props.isEdit && (
               <CommentEditClose
+                isEdit={false}
                 src="/images/clear-24px 2.png"
                 onClick={props.onClickClose}
               />

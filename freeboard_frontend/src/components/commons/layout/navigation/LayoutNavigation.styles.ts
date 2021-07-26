@@ -8,7 +8,7 @@ export const NavigationList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   background-color: midnightblue;
   color: white;
@@ -17,13 +17,16 @@ export const NavigationList = styled.div`
 `;
 
 export const Borads = styled.div`
+  margin: 0px 60px;
   cursor: pointer;
 `;
 
 export const Marktet = styled.div`
+  margin: 0px 60px;
   cursor: pointer;
 `;
 
 export const Mypage = styled.div`
+  margin: 0px 60px;
   cursor: pointer;
 `;

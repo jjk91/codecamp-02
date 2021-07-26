@@ -42,7 +42,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [board] = useMutation(CREATE_BOARD);
 
-  function onComplete(data: any) {
+  function onComplete(data) {
     setAddress(data.address);
     setZipcode(data.zonecode);
   }
