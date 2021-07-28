@@ -28,7 +28,7 @@ export interface INewInputs {
 
 export interface IBoardWriteContainerProps {
   isEdit?: boolean;
-  data?: any;
+  data?: IQuery;
 }
 
 export interface dataType {

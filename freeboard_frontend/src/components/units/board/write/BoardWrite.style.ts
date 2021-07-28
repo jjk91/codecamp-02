@@ -123,11 +123,10 @@ export const Footer1 = styled.div`
 export const Upload = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 `;
 
-export const Photo = styled.div`
+export const PhotoWrapper = styled.div`
   background-color: #bdbdbd;
   height: 78px;
   width: 78px;
@@ -137,6 +136,14 @@ export const Photo = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 12px;
+`;
+export const PhotoInPut = styled.input`
+  display: none;
+`;
+
+export const Photo = styled.img`
+  height: 78px;
+  width: 78px;
 `;
 
 export const Footer2 = styled.div`

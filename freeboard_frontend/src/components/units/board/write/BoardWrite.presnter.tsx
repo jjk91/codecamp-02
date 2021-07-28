@@ -23,6 +23,8 @@ import {
   Footer1,
   Upload,
   Photo,
+  PhotoWrapper,
+  PhotoInPut,
   Footer2,
   Input4,
   CheckBox,
@@ -125,19 +127,22 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
 
         <Footer1>
           <Text>사진 첨부</Text>
+
           <Upload>
-            <Photo>
-              <div>+</div>
-              <div>Upload</div>
-            </Photo>
-            <Photo>
-              <div>+</div>
-              <div>Upload</div>
-            </Photo>
-            <Photo>
-              <div>+</div>
-              <div>Upload</div>
-            </Photo>
+            {!props?.fileRef && (
+              <Photo src={`https://storage.googleapis.com/${props.imageUrl}`} />
+            )}
+            {props?.fileRef && (
+              <PhotoWrapper onClick={props.onClickImg}>
+                <PhotoInPut
+                  type="file"
+                  ref={props.fileRef}
+                  onChange={props.onChangeFile}
+                />
+                <div>+</div>
+                <div>Upload</div>
+              </PhotoWrapper>
+            )}
           </Upload>
         </Footer1>
         <Footer2>
