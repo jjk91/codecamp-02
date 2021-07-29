@@ -135,6 +135,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                 key={`${data}_${index}`}
                 fileUrl={data}
                 index={index}
+                onChangeFile={props.onChangeFile}
                 onChangeFileUrls={props.onChangeFileUrls}
               />
             ))}

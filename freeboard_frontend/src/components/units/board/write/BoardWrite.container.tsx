@@ -2,7 +2,12 @@ import { useRef, useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import BoardWriteUi from "./BoardWrite.presnter";
-import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries";
+import {
+  CREATE_BOARD,
+  UPDATE_BOARD,
+  FETCH_BOARD,
+  UPLOAD_FILE,
+} from "./BoardWrite.queries";
 import {
   IBoardWriteContainerProps,
   newInputsTypes,
@@ -39,9 +44,11 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [files, setFiles] = useState("");
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
-  const [board] = useMutation(CREATE_BOARD);
+  const [createboard] = useMutation(CREATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
 
   function onComplete(data: any) {
     setAddress(data.address);
@@ -102,15 +109,20 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   }
 
   async function onClickSubmit() {
-    console.log(zipcode, typeof zipcode);
-    // if(Object.values(inputs).every(data => data)  ){
     if (checkInputs(null) === false) {
       try {
-        const result = await board({
+        const resultFile = await Promise.all([
+          uploadFile({ variables: { file: data } }),
+        ]);
+
+        const images = resultFile.map((data) =>
+          uploadFile({ variables: { file: data } })
+        );
+        const result = await createboard({
           variables: {
             createBoardInput: {
               ...inputs,
-              images: [...fileUrls],
+              images: [...images],
               boardAddress: {
                 zipcode: zipcode,
                 address: address,
@@ -119,7 +131,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
             },
           },
         });
-        console.log(inputs);
+        console.log(resultFile);
         Modal.success({
           title: "등록확인",
           content: "게시물이 등록 되었습니다.",
@@ -170,7 +182,13 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setFileUrls(newFileUrls);
   }
 
-  console.log(fileUrls);
+  function onChangeFile(file: string, index: number) {
+    const newFiles = [...files];
+    newFiles[index] = file;
+    setFiles(newFiles);
+    console.log(newFiles);
+  }
+
   return (
     <BoardWriteUi
       address={address}
@@ -186,6 +204,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       onChangeInputs={onChangeInputs}
       onClickSubmit={onClickSubmit}
       onChangeFileUrls={onChangeFileUrls} // 이미지 업로드
+      onChangeFile={onChangeFile}
       disabled={disabled}
       isEdit={props.isEdit}
       data={data}
