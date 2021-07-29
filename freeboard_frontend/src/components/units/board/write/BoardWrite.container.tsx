@@ -199,6 +199,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   }
 
   function onClickImg() {
+    console.log(fileRef.current);
     fileRef.current?.click();
   }
 

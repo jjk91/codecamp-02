@@ -102,6 +102,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
               type="text"
               placeholder="07250"
               value={props.zipcode}
+              readOnly
             ></PostInput>
             <PostSerch onClick={props.onClickModal}>우편번호 검색 </PostSerch>
           </BodyWrapper>
@@ -129,10 +130,10 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
           <Text>사진 첨부</Text>
 
           <Upload>
-            {!props?.fileRef && (
+            {props?.fileRef.current && (
               <Photo src={`https://storage.googleapis.com/${props.imageUrl}`} />
             )}
-            {props?.fileRef && (
+            {!props?.fileRef.current && (
               <PhotoWrapper onClick={props.onClickImg}>
                 <PhotoInPut
                   type="file"
