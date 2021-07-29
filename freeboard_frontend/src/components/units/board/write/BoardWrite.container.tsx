@@ -111,18 +111,18 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   async function onClickSubmit() {
     if (checkInputs(null) === false) {
       try {
-        const resultFile = await Promise.all([
-          uploadFile({ variables: { file: data } }),
-        ]);
-
-        const images = resultFile.map((data) =>
-          uploadFile({ variables: { file: data } })
+        const resultFile = await Promise.all(
+          files.map((data) => uploadFile({ variables: { file: data } }))
         );
+
+        // const images = resultFile.map((data) =>
+        //   uploadFile({ variables: { file: data } })
+        // );
         const result = await createboard({
           variables: {
             createBoardInput: {
               ...inputs,
-              images: [...images],
+              images: resultFile.map((el) => el.data.uploadFile.url),
               boardAddress: {
                 zipcode: zipcode,
                 address: address,

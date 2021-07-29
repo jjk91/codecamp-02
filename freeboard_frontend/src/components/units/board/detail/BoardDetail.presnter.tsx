@@ -11,6 +11,7 @@ import {
   Location,
   BodyWrapper,
   Title,
+  Img,
   Contents,
   ContentsImg,
   ContentsText,
@@ -71,7 +72,12 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
           <Title>{props.data?.fetchBoard.title}</Title>
           <Contents>
             <ContentsImg>
-              {props.data?.fetchBoard.images.map((data, index) => {})}
+              {props.data?.fetchBoard.images?.map((data) => (
+                <Img
+                  src={`https://storage.googleapis.com/${data}`}
+                  key={data}
+                />
+              ))}
             </ContentsImg>
             <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
             <ContentsUrl

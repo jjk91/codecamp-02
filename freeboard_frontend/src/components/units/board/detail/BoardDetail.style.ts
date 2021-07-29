@@ -70,9 +70,13 @@ export const Contents = styled.div`
   align-items: center;
 `;
 export const ContentsImg = styled.div`
-  background-color: gray;
   width: 996px;
   height: 520px;
+  padding-bottom: 40px;
+`;
+export const Img = styled.img`
+  width: 50%;
+  height: 50%;
   padding-bottom: 40px;
 `;
 export const ContentsText = styled.div`
