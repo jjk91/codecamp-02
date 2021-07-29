@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
     fetchBoard(boardId: $boardId) {
+      _id
       writer
       createdAt
       title
@@ -10,6 +11,7 @@ export const FETCH_BOARD = gql`
       youtubeUrl
       likeCount
       dislikeCount
+      images
       boardAddress {
         zipcode
         address

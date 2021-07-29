@@ -70,7 +70,9 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
         <BodyWrapper>
           <Title>{props.data?.fetchBoard.title}</Title>
           <Contents>
-            <ContentsImg></ContentsImg>
+            <ContentsImg>
+              {props.data?.fetchBoard.images.map((data, index) => {})}
+            </ContentsImg>
             <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
             <ContentsUrl
               url={props.data?.fetchBoard.youtubeUrl}

@@ -116,8 +116,16 @@ export const PostSerch = styled(Button)`
 
 export const Footer1 = styled.div`
   height: 118px;
-  width: 282px;
+  width: 996px;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+`;
+export const UploadWrapper = styled.div`
+  width: 282px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Upload = styled.div`

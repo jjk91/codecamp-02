@@ -21,6 +21,7 @@ import {
   PostInput,
   PostSerch,
   Footer1,
+  UploadWrapper,
   Upload,
   Photo,
   PhotoWrapper,
@@ -35,6 +36,7 @@ import {
 } from "./BoardWrite.style";
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
+import Uploads01 from "../../../commons/uploads/01/uploads01.container";
 
 export default function BoardWriteUi(props: IBoardWritePresenterProps) {
   return (
@@ -54,7 +56,6 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
               placeholder="이름을 적어주세요."
               onChange={props.onChangeInputs}
               defaultValue={props.data?.fetchBoard?.writer || ""}
-              readOnly={props.data?.fetchBoard?.writer}
             />
           </HeadText>
           <HeadText>
@@ -127,13 +128,23 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
         </Body4>
 
         <Footer1>
-          <Text>사진 첨부</Text>
+          <Text>사진첨부</Text>
+          <UploadWrapper>
+            {props.fileUrls.map((data, index) => (
+              <Uploads01
+                key={`${data}_${index}`}
+                fileUrl={data}
+                index={index}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </UploadWrapper>
 
-          <Upload>
-            {props?.fileRef.current && (
+          {/* <Upload>
+            {props?.fileRef?.current !== null && (
               <Photo src={`https://storage.googleapis.com/${props.imageUrl}`} />
             )}
-            {!props?.fileRef.current && (
+            {props?.fileRef?.current === null && (
               <PhotoWrapper onClick={props.onClickImg}>
                 <PhotoInPut
                   type="file"
@@ -144,7 +155,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                 <div>Upload</div>
               </PhotoWrapper>
             )}
-          </Upload>
+          </Upload> */}
         </Footer1>
         <Footer2>
           <Text>메인 설정</Text>

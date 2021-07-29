@@ -2,12 +2,7 @@ import { useRef, useState, ChangeEvent } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import BoardWriteUi from "./BoardWrite.presnter";
-import {
-  CREATE_BOARD,
-  UPDATE_BOARD,
-  FETCH_BOARD,
-  UPLOAD_FILE,
-} from "./BoardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, FETCH_BOARD } from "./BoardWrite.queries";
 import {
   IBoardWriteContainerProps,
   newInputsTypes,
@@ -18,7 +13,6 @@ import {
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
-import { Writer } from "../detail/BoardDetail.style";
 
 interface InputTypes {
   writer?: string | null;
@@ -44,13 +38,10 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [addressDetail, setAddressDetail] = useState("");
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [board] = useMutation(CREATE_BOARD);
-  const [uploadFile] = useMutation(UPLOAD_FILE);
-
-  const fileRef = useRef<HTMLInputElement>(null);
 
   function onComplete(data: any) {
     setAddress(data.address);
@@ -119,6 +110,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
           variables: {
             createBoardInput: {
               ...inputs,
+              images: [...fileUrls],
               boardAddress: {
                 zipcode: zipcode,
                 address: address,
@@ -137,7 +129,6 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
         Modal.error(error.massage);
       }
     }
-    // }
   }
 
   async function onClickUpdate() {
@@ -173,45 +164,19 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     }
   }
 
-  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    // if (!file?.size) {
-    //   alert("파일이 없습니다.");
-    // }
-    // if (file?.size > 5 * 1024 * 1024) {
-    //   alert("파일 사이즈가 너무 큽니다.(제한:5MB)");
-    // }
-    // if (file?.type.includes("png") && file?.type.includes("jpeg")) {
-    //   alert("png 또는 jpeg 파일만 등록 가능합니다.");
-    // }
-
-    try {
-      const result = await uploadFile({
-        variables: {
-          file: file,
-        },
-      });
-      console.log(result.data.uploadFile.url);
-      setImageUrl(result.data.uploadFile.url);
-    } catch (error) {
-      alert(error.message);
-    }
+  function onChangeFileUrls(fileUrl: string, index: number) {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
   }
 
-  function onClickImg() {
-    console.log(fileRef.current);
-    fileRef.current?.click();
-  }
-
+  console.log(fileUrls);
   return (
     <BoardWriteUi
-      imageUrl={imageUrl}
-      fileRef={fileRef}
       address={address}
       zipcode={zipcode}
       isOpen={isOpen}
-      onClickImg={onClickImg}
-      onChangeFile={onChangeFile}
+      fileUrls={fileUrls} // 이미지 업로드
       onOk={onOk}
       onChangAddressDetail={onChangAddressDetail}
       onComplete={onComplete}
@@ -220,6 +185,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       onClickList={onClickList}
       onChangeInputs={onChangeInputs}
       onClickSubmit={onClickSubmit}
+      onChangeFileUrls={onChangeFileUrls} // 이미지 업로드
       disabled={disabled}
       isEdit={props.isEdit}
       data={data}
