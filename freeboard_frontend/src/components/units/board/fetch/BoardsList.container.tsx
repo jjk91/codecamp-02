@@ -23,9 +23,11 @@ export default function BoardsList() {
     // router.push('/boards/'+event.target.id )               // (`/파일위치/$`)
     //target 뒤에 id 값은 BoardsList.presnter.js 파일에 있는 ListTitle 에 있는 id ={data._id} 값
   }
+
   function onClickCreate() {
     router.push(`/boards/new`);
   }
+
   function onClickPage(event) {
     refetch({ page: Number(event.target.id) });
   }
@@ -34,6 +36,7 @@ export default function BoardsList() {
     if (startPage <= 1) return;
     setStartPage((prev) => prev - 10);
   }
+
   function onClickNextPage() {
     if (startPage + 10 > lastPage) return;
     setStartPage((prev) => prev + 10);

@@ -55,6 +55,7 @@ export const Body1 = styled.div`
 `;
 
 export const ContentsTitle = styled.input`
+  padding-left: 16px;
   height: 52px;
   width: 996px;
 `;
@@ -80,6 +81,7 @@ export const Body4 = styled.div`
 export const YoutubeUrl = styled.input`
   height: 52px;
   width: 996px;
+  padding-left: 16px;
 `;
 
 export const Address = styled.input`
@@ -105,6 +107,7 @@ export const PostInput = styled.input`
   width: 77px;
   font-size: 16px;
   margin-right: 16px;
+  padding-left: 16px;
 `;
 
 export const PostSerch = styled(Button)`

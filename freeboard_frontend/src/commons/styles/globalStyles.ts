@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 export const globalStyles = css`
   * {
     margin: 0px;
+    padding: 0px;
 
     box-sizing: border-box;
     font-family: "NanumSquare_acEB";
@@ -14,5 +15,10 @@ export const globalStyles = css`
     src: url("/fonts/나눔손글씨 성실체.ttf");
     font-family: "NanumSquare_acEB";
     src: url("/fonts/NanumSquare_acEB.ttf");
+  }
+  input,
+  textarea,
+  button {
+    outline: none;
   }
 `;

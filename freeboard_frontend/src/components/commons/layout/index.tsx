@@ -6,6 +6,9 @@ import styled from "@emotion/styled";
 
 const Body = styled.div`
   padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default function Layout(props: any) {

@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   margin: auto;
 `;
 export const WrapperTitleList = styled.div`
+  margin-top: 40px;
   border-top: 2px solid black;
   border-bottom: 1px solid #bdbdbd;
   font-size: 18px;
@@ -77,8 +78,9 @@ export const BoardPagination = styled.div`
 export const Pagination = styled.div`
   font-size: 18px;
   margin: 10px;
+  color: ${(props) => (props.isActive ? "yellow" : "black")};
 `;
-
+//midnightblue
 export const PagePrev = styled.img`
   margin: 10px;
   height: 12px;

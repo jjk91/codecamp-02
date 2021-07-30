@@ -1,5 +1,5 @@
 import { getDate } from "../../../../commons/libraries/utils";
-import { IQuery } from "../../../../commons/types/generated/types";
+import SearchPage from "../../../commons/search/01/search01.container";
 import {
   Wrapper,
   WrapperTitleList,
@@ -25,6 +25,7 @@ import {
 export default function BoardDetailUi(props: IBoardDetailUiProps) {
   return (
     <Wrapper>
+      <SearchPage />
       <WrapperTitleList>
         <TitleNumber>번호</TitleNumber>
         <TitleTitle>제목</TitleTitle>
@@ -55,6 +56,7 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
                   key={props.startPage + index}
                   onClick={props.onClickPage}
                   id={String(props.startPage + index)}
+                  isActive={currentPage === props.startPage}
                 >
                   {currentPage}
                 </Pagination>
