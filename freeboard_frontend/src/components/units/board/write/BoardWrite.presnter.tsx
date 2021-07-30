@@ -130,7 +130,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
         <Footer1>
           <Text>사진첨부</Text>
           <UploadWrapper>
-            {props.fileUrls.map((data, index) => (
+            {props.fileUrls.map((data: string, index: number) => (
               <Uploads01
                 key={`${data}_${index}`}
                 fileUrl={data}

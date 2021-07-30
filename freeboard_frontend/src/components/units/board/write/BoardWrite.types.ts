@@ -10,7 +10,7 @@ export interface IBoardWritePresenterProps {
   onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void;
   onOk: () => void;
   onChangAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
-  onComplete: (event: ChangeEvent<HTMLInputElement>) => void;
+  onComplete: (data: any) => void;
   onClickModal: () => void;
   readOnly?: any;
   data?: IQuery;
