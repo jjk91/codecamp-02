@@ -25,14 +25,19 @@ import {
 export default function BoardDetailUi(props: IBoardDetailUiProps) {
   return (
     <Wrapper>
-      <SearchPage />
+      <SearchPage
+        data={props.data}
+        refetch={props.refetch}
+        search={props.search}
+        setSearch={props.setSearch}
+      />
       <WrapperTitleList>
         <TitleNumber>번호</TitleNumber>
         <TitleTitle>제목</TitleTitle>
         <TitleWriter>작성자</TitleWriter>
         <TitleDate>날짜</TitleDate>
       </WrapperTitleList>
-      {props.gql?.fetchBoards.map((data, index) => (
+      {props.data?.fetchBoards.map((data, index) => (
         <WrapperList>
           <ListNumber>{10 - index}</ListNumber>
           <ListTitle id={data._id} onClick={props.onClickSubmit}>
@@ -56,7 +61,6 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
                   key={props.startPage + index}
                   onClick={props.onClickPage}
                   id={String(props.startPage + index)}
-                  isActive={currentPage === props.startPage}
                 >
                   {currentPage}
                 </Pagination>

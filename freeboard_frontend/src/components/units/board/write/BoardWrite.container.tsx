@@ -43,7 +43,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [addressDetail, setAddressDetail] = useState("");
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  // const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [files, setFiles] = useState("");
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -176,11 +176,11 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     }
   }
 
-  function onChangeFileUrls(fileUrl: string, index: number) {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
-  }
+  // function onChangeFileUrls(fileUrl: string, index: number) {
+  //   const newFileUrls = [...fileUrls];
+  //   newFileUrls[index] = fileUrl;
+  //   setFileUrls(newFileUrls);
+  // }
 
   function onChangeFile(file: string, index: number) {
     const newFiles = [...files];
@@ -194,7 +194,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       address={address}
       zipcode={zipcode}
       isOpen={isOpen}
-      fileUrls={fileUrls} // 이미지 업로드
+      files={files} // 이미지 업로드
       onOk={onOk}
       onChangAddressDetail={onChangAddressDetail}
       onComplete={onComplete}
@@ -203,7 +203,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       onClickList={onClickList}
       onChangeInputs={onChangeInputs}
       onClickSubmit={onClickSubmit}
-      onChangeFileUrls={onChangeFileUrls} // 이미지 업로드
+      // onChangeFileUrls={onChangeFileUrls} // 이미지 업로드
       onChangeFile={onChangeFile}
       disabled={disabled}
       isEdit={props.isEdit}

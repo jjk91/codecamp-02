@@ -13,15 +13,15 @@ export default function Uploads01(props) {
   async function onChangeFile(event) {
     const file = event.target.files?.[0];
 
-    if (CheckValidationFile(file)) return;
+    // if (CheckValidationFile(file)) return;
 
     const fileReader = new FileReader();
     fileReader.readAsDataURL(file);
     fileReader.onload = (data) => {
       setFile(data.target?.result);
       props.onChangeFile(file, props.index);
-      console.log(file);
     };
+
     // try {
     //   const result = await uploadFile({ variables: { file } });
     //   props.onChangeFileUrls(result.data.uploadFile.url, props.index);
