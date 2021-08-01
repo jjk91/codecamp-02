@@ -63,7 +63,7 @@ export const ListDate = styled.div`
 export const WrapperFooter = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 50px;
 `;
 export const BoardPagination = styled.div`
@@ -102,5 +102,7 @@ export const NewBoradWiter = styled(Button)`
   align-items: center;
 `;
 
-export const NewBoardImg = styled.img``;
+export const NewBoardImg = styled.img`
+  margin-right: 20px;
+`;
 export const NewBoardSubmit = styled.div``;

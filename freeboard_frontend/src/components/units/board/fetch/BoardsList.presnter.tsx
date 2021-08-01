@@ -21,6 +21,7 @@ import {
   NewBoardImg,
   NewBoardSubmit,
 } from "./BoardsList.style";
+import Paginations01 from "../../../commons/paginations/01/paginations01.container";
 
 export default function BoardDetailUi(props: IBoardDetailUiProps) {
   return (
@@ -40,7 +41,7 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
       {props.data?.fetchBoards.map((data, index) => (
         <WrapperList>
           <ListNumber>{10 - index}</ListNumber>
-          <ListTitle id={data._id} onClick={props.onClickSubmit}>
+          <ListTitle id={data._id} onClick={props.onClickBoardDetail}>
             {data.title}
           </ListTitle>
           <ListWriter>{data.writer}</ListWriter>
@@ -48,7 +49,13 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
         </WrapperList>
       ))}
       <WrapperFooter>
-        <BoardPagination>
+        <Paginations01
+          refetch={props.refetch}
+          startPage={props.startPage}
+          setStartPage={props.setStartPage}
+          dataBoardsCount={props.dataBoardsCount?.fetchBoardsCount}
+        />
+        {/* <BoardPagination>
           <PagePrev
             src="/images/Vector (1).png"
             onClick={props.onClickPrevPage}
@@ -71,7 +78,7 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
             src="/images/Vector (2).png"
             onClick={props.onClickNextPage}
           />
-        </BoardPagination>
+        </BoardPagination> */}
         <NewBoradWiter>
           <NewBoardSubmit onClick={props.onClickCreate}>
             <NewBoardImg src="/images/mode-24px.png" />

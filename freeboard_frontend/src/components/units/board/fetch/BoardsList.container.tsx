@@ -1,7 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
-import { IQuery } from "../../../../commons/types/generated/types";
+import {
+  IQuery,
+  IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
+} from "../../../../commons/types/generated/types";
 import BoardsListUi from "./BoardsList.presnter";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardsList.queries";
 
@@ -10,40 +14,46 @@ export default function BoardsList() {
   const [startPage, setStartPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const { data, refetch } = useQuery<IQuery>(FETCH_BOARDS, {
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BOARDS, {
     variables: { page: startPage },
   });
 
-  const { data: dataBoardsCount } = useQuery<IQuery>(FETCH_BOARDS_COUNT);
-  const lastPage = Math.ceil(Number(dataBoardsCount?.fetchBoardsCount) / 10);
+  const { data: dataBoardsCount } = useQuery<
+    Pick<IQuery, "fetchBoardsCount">,
+    IQueryFetchBoardsCountArgs
+  >(FETCH_BOARDS_COUNT);
 
-  // const { data: count } = useQuery(FETCH_BOARD_COUNT);
-
-  function onClickSubmit(event) {
-    router.push(`/boards/${event.target.id}`);
-    // router.push 는 페이지 이동을 위함
-    // router.push('/boards/'+event.target.id )
-    // (`/파일위치/$`)
-    //target 뒤에 id 값은 BoardsList.presnter.js 파일에 있는 ListTitle 에 있는 id ={data._id} 값
+  function onClickBoardDetail(event) {
+    router.push(`/boards/${(event.target as Element).id}`);
   }
+
+  // router.push 는 페이지 이동을 위함
+  // router.push('/boards/'+event.target.id )
+  // (`/파일위치/$`)
+  //target 뒤에 id 값은 BoardsList.presnter.js 파일에 있는 ListTitle 에 있는 id ={data._id} 값
 
   function onClickCreate() {
     router.push(`/boards/new`);
   }
 
-  function onClickPage(event) {
-    refetch({ page: Number(event.target.id) });
-  }
+  // paginations 분리로 주석처리
 
-  function onClickPrevPage() {
-    if (startPage <= 1) return;
-    setStartPage((prev) => prev - 10);
-  }
+  // function onClickPage(event) {
+  //   refetch({ page: Number(event.target.id) });
+  // }
 
-  function onClickNextPage() {
-    if (startPage + 10 > lastPage) return;
-    setStartPage((prev) => prev + 10);
-  }
+  // function onClickPrevPage() {
+  //   if (startPage <= 1) return;
+  //   setStartPage((prev) => prev - 10);
+  // }
+
+  // function onClickNextPage() {
+  //   if (startPage + 10 > lastPage) return;
+  //   setStartPage((prev) => prev + 10);
+  // }
 
   // function onChangeSearch() {
   //   setGetSearch(getSearch);
@@ -53,15 +63,17 @@ export default function BoardsList() {
     <BoardsListUi
       data={data}
       startPage={startPage}
-      lastPage={lastPage}
+      setStartPage={setStartPage}
+      dataBoardsCount={dataBoardsCount}
       search={search}
       setSearch={setSearch}
       refetch={refetch}
-      onClickPrevPage={onClickPrevPage}
-      onClickNextPage={onClickNextPage}
-      onClickPage={onClickPage}
-      onClickSubmit={onClickSubmit}
+      onClickBoardDetail={onClickBoardDetail}
       onClickCreate={onClickCreate}
+      // lastPage={lastPage}
+      // onClickPrevPage={onClickPrevPage}  // paginations 분리로 주석처리
+      // onClickNextPage={onClickNextPage}  // paginations 분리로 주석처리
+      // onClickPage={onClickPage}  // paginations 분리로 주석처리
     />
   );
 }

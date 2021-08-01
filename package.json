@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "lodash": "^4.17.21",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.171"
   }
 }
