@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   height: 75px;
 `;
 export const NavigationList = styled.div`
-  height: 64px;
+  height: 75px;
   width: 100%;
   display: flex;
   flex-direction: row;

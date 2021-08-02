@@ -5,7 +5,7 @@ import {
   IMutation,
   IMutationCreateBoardCommentArgs,
 } from "../../../../commons/types/generated/types";
-import BoardCommentWriteUi from "./BoardCommentWrite.presnter";
+import BoardCommentWriteUi from "./BoardCommentWrite.presenter";
 import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,

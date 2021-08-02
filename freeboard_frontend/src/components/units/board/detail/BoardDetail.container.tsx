@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useQuery, useMutation } from "@apollo/client";
-import BoardDetailUi from "./BoardDetail.presnter";
+import BoardDetailUi from "./BoardDetail.presenter";
 import {
   FETCH_BOARD,
   DELETE_BOARD,

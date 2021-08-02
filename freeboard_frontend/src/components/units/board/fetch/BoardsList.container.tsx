@@ -6,7 +6,7 @@ import {
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
-import BoardsListUi from "./BoardsList.presnter";
+import BoardsListUi from "./BoardsList.presenter";
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardsList.queries";
 
 export default function BoardsList() {
