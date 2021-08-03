@@ -47,6 +47,7 @@ export const CommentEditClose = styled.div`
   width: 18px;
   margin-top: 10px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 export const CommentWriter = styled.input`

@@ -59,6 +59,7 @@ export default function CommentListItemUi(props) {
           isEdit={true}
           data={props.data}
           handleUpdate={props.handleUpdate}
+          onClickClose={props.onClickClose}
         />
       )}
     </>

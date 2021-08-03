@@ -10,7 +10,12 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 80px;
 `;
-export const WrapperSignUp = styled.div``;
+export const WrapperSignUp = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const SignUpTitle = styled.div`
   font-size: 28px;
   color: white;

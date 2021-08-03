@@ -39,6 +39,7 @@ export default function CommentListItem(props) {
   }
 
   function onClickClose() {
+    console.log("클릭");
     setIsEdit(false);
   }
   return (

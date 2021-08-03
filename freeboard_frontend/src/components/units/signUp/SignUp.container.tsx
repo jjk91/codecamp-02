@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import SignUpUi from "./SignUp.presenter";
 import { CREATE_USER } from "./SignUp.queries";
-// import { createContext } from "react";
+import { createContext } from "react";
 
 export const inputsInit = {
   email: "",
@@ -14,13 +14,13 @@ interface IContext {
   onClickSubmit?: () => Promise<void>;
   onChangeLoginInput?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
-// export const SignUpcontext = createContext<IContext>({});
+export const SignUpcontext = createContext<IContext>({});
 
 export default function SignUp() {
-  // const value = {
-  //   onClickSubmit: onClickSubmit,
-  //   onChangeLoginInput: onChangeLoginInput,
-  // };
+  const value = {
+    onClickSubmit: onClickSubmit,
+    onChangeLoginInput: onChangeLoginInput,
+  };
   const [inputs, setInputs] = useState(inputsInit);
   const [inputsErrors, setInputsErrors] = useState(inputsInit);
 
@@ -61,12 +61,12 @@ export default function SignUp() {
 
   return (
     <>
-      {/* <SignUpcontext.Provider value={value}> */}
-      <SignUpUi
-        onClickSubmit={onClickSubmit}
-        onChangeLoginInput={onChangeLoginInput}
-      />
-      {/* </SignUpcontext.Provider> */}
+      <SignUpcontext.Provider value={value}>
+        <SignUpUi
+        // onClickSubmit={onClickSubmit}
+        // onChangeLoginInput={onChangeLoginInput}
+        />
+      </SignUpcontext.Provider>
     </>
   );
 }

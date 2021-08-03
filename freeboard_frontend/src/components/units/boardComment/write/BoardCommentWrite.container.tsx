@@ -109,6 +109,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
   return (
     <BoardCommentWriteUi
       data={props.data}
+      onClickClose={props.onClickClose}
       commentInput={commentInput}
       onChangerate={onChangerate}
       onClickUpdate={onClickUpdate}
