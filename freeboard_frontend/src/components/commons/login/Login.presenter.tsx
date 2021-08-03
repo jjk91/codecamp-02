@@ -1,35 +1,42 @@
+import { useContext } from "react";
+import { Logincontext } from "./Login.container";
 import {
   WrapperLoginPage,
   HeadLoginPage,
   BodyLoginPage,
   LoginPageLogo,
   LoginInputWrapper,
-  LoginIdInput,
-  LoginPasswordInput,
+  LoginText,
+  LoginInput,
   LoginState,
   Login,
+  Bar,
   FindWrapper,
   FindEmail,
   FindPassword,
   SingUp,
 } from "./Login.style";
 
-export default function LoginPageUi() {
+export default function LoginUi() {
+  const { onChangeLoginInput, onClickLogin, onClickSignUp } =
+    useContext(Logincontext);
   return (
     <>
       <WrapperLoginPage>
         <HeadLoginPage></HeadLoginPage>
 
         <BodyLoginPage>
-          <LoginPageLogo></LoginPageLogo>
+          <LoginPageLogo src="/images/logo.png" />
 
           <LoginInputWrapper>
-            <LoginIdInput
+            <LoginText>이메일</LoginText>
+            <LoginInput
               type="text"
               placeholder="이메일을 입력해주세요."
               onChange={onChangeLoginInput}
             />
-            <LoginPasswordInput
+            <LoginText>비밀번호</LoginText>
+            <LoginInput
               type="password"
               placeholder="비밀번호를 입력해주세요."
               onChange={onChangeLoginInput}
@@ -38,7 +45,7 @@ export default function LoginPageUi() {
 
           <LoginState></LoginState>
           <Login onClick={onClickLogin}>로그인하기</Login>
-
+          <Bar />
           <FindWrapper>
             <FindEmail>이메일 찾기</FindEmail>
             <div>|</div>

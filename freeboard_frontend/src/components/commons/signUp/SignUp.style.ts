@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  background-image: url("/images/11.jpg");
+  background: url("/images/11.jpg") no-repeat 100% 100%;
+  background-size: cover;
+  background-position: center;
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,11 +12,12 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 80px;
 `;
+export const SignUpPageLogo = styled.img``;
 export const WrapperSignUp = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 `;
 export const SignUpTitle = styled.div`
   font-size: 28px;

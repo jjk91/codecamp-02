@@ -1,5 +1,6 @@
 import {
   Wrapper,
+  SignUpPageLogo,
   WrapperSignUp,
   SignUpTitle,
   SignUpText,
@@ -11,10 +12,12 @@ import { SignUpcontext } from "./SignUp.container";
 import { useContext } from "react";
 
 export default function SignUpUi() {
-  const { onChangeLoginInput, onClickSubmit } = useContext(SignUpcontext);
+  const { onChangeLoginInput, onClickSubmit, inputsErrors } =
+    useContext(SignUpcontext);
   return (
     <>
       <Wrapper>
+        <SignUpPageLogo src="/images/logo.png" />
         <SignUpTitle>회원가입</SignUpTitle>
         <WrapperSignUp>
           <SignUpText>이메일</SignUpText>
@@ -24,7 +27,7 @@ export default function SignUpUi() {
             placeholder="이메일을 입력해주세요."
             onChange={onChangeLoginInput}
           />
-          {/* <Error>{inputsErrors?.email}</Error> */}
+          <Error>{inputsErrors.email}</Error>
           <SignUpText>이름</SignUpText>
           <SignUpInput
             name="name"
@@ -32,7 +35,7 @@ export default function SignUpUi() {
             placeholder="이름을 입력해주세요."
             onChange={onChangeLoginInput}
           />
-          {/* <Error>{inputsErrors?.name}</Error> */}
+          <Error>{inputsErrors.name}</Error>
           <SignUpText>비밀번호</SignUpText>
           <SignUpInput
             name="password"
@@ -40,7 +43,7 @@ export default function SignUpUi() {
             placeholder="비밀번호를 입력해주세요."
             onChange={onChangeLoginInput}
           />
-          {/* <Error>{inputsErrors?.password}</Error> */}
+          <Error>{inputsErrors.password}</Error>
           <SignUpText>비밀번호 확인</SignUpText>
           <SignUpInput
             name="password"
@@ -48,7 +51,7 @@ export default function SignUpUi() {
             placeholder="비밀번호를 입력해주세요."
             onChange={onChangeLoginInput}
           />
-          {/* <Error>{props.inputsErrors?.password}</Error> */}
+          <Error>{inputsErrors.password}</Error>
           <SignUpSubmit onClick={onClickSubmit}>회원가입하기</SignUpSubmit>
         </WrapperSignUp>
       </Wrapper>
