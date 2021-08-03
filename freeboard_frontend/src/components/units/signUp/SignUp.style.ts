@@ -39,4 +39,6 @@ export const SignUpSubmit = styled.button`
   background-color: midnightblue;
   color: white;
 `;
-export const Error = styled.div``;
+export const Error = styled.div`
+  color: red;
+`;
