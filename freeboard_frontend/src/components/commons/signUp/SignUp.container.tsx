@@ -23,6 +23,13 @@ export default function SignUp() {
   const [inputsErrors, setInputsErrors] = useState(inputsInit);
   const [createUser] = useMutation(CREATE_USER);
 
+  const value = {
+    inputsErrors: inputsErrors,
+    setInputsErrors: setInputsErrors,
+    onClickSubmit: onClickSubmit,
+    onChangeLoginInput: onChangeLoginInput,
+  };
+
   function onChangeLoginInput(event: ChangeEvent<HTMLInputElement>) {
     const newInputs = {
       ...inputs,
@@ -33,13 +40,6 @@ export default function SignUp() {
     // console.log(inputs);
     setInputsErrors({ ...inputsErrors, [event.target.name]: "" });
   }
-
-  const value = {
-    inputsErrors: inputsErrors,
-    setInputsErrors: setInputsErrors,
-    onClickSubmit: createUser,
-    onChangeLoginInput: onChangeLoginInput,
-  };
 
   async function onClickSubmit() {
     const newInputsErrors = {
