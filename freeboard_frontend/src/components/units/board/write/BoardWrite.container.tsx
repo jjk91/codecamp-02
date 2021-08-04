@@ -194,7 +194,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       address={address}
       zipcode={zipcode}
       isOpen={isOpen}
-      files={files} // 이미지 업로드
+      // files={files} // 이미지 업로드
       onOk={onOk}
       onChangAddressDetail={onChangAddressDetail}
       onComplete={onComplete}

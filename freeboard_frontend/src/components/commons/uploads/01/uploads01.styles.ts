@@ -4,6 +4,7 @@ export const UploadImage = styled.img`
   width: 78px;
   height: 78px;
   cursor: pointer;
+  margin-right: 24px;
 `;
 
 export const UploadButton = styled.div`
@@ -17,6 +18,7 @@ export const UploadButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 24px;
 `;
 
 export const UploadImageRef = styled.input`

@@ -1,9 +1,10 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationCreateUserArgs,
 } from "../../src/commons/types/generated/types";
+import withAuth from "../../src/components/commons/layout/hocs/withAuth";
 
 const CREATE_USER = gql`
   mutation createUser($createUserInput: CreateUserInput!) {
@@ -13,7 +14,7 @@ const CREATE_USER = gql`
   }
 `;
 
-export default function SignUpPage() {
+function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -63,3 +64,5 @@ export default function SignUpPage() {
     </>
   );
 }
+
+export default withAuth(SignUpPage);

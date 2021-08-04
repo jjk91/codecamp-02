@@ -43,12 +43,12 @@ export default function SignUp() {
 
   async function onClickSubmit() {
     const newInputsErrors = {
-      email: /\w+@\w\.\w+/.test(inputs.email) ? "" : "이메일을 확인해주세요",
+      email: /\w+@\w+\.\w+/.test(inputs.email) ? "" : "이메일을 확인해주세요",
       password:
-        /^(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/.test(
-          inputs.password
-        )
-          ? ""
+        // /^(?=.*[a-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/.test(
+        inputs.password
+          ? // )
+            ""
           : "비밀번호를 확인해주세요",
       name: /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(inputs.name)
         ? ""
