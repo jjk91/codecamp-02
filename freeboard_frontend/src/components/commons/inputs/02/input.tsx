@@ -21,6 +21,10 @@ const Input = styled.textarea`
   padding-left: 16px;
   padding-top: 14px;
 `;
+const Error = styled.div`
+  color: red;
+  font-size: 16px;
+`;
 
 export default function Input02(props) {
   return (
@@ -31,6 +35,7 @@ export default function Input02(props) {
         name={props.name}
         onChange={props.onChangeInputs}
       />
+      <Error>{props.errorMessage}</Error>
     </InputWrapper>
   );
 }

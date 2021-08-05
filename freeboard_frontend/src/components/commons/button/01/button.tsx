@@ -11,12 +11,15 @@ const Button = styled.button`
   height: 52px;
   width: 179px;
   cursor: pointer;
+  background-color: ${(props) => (props.isActive ? "midnightblue" : "")};
 `;
 
 export default function Button01(props) {
   return (
     <ButtonWrapper>
-      <Button onClick={props.onClickItemSubmit}>{props.buttonText}</Button>
+      <Button type={props.type} isActive={props.isActive}>
+        {props.buttonText}
+      </Button>
     </ButtonWrapper>
   );
 }

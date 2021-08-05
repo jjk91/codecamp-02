@@ -28,49 +28,48 @@ import {
 
 export default function UsedMarketWriteUi(props) {
   return (
-    <form onSubmit={props.handleSubmit(props.onWriteSubmit)}>
+    <>
       <UsedMarketWriteWrapper>
         <UsedMarketWriteTitle>상품등록하기</UsedMarketWriteTitle>
         <Input01
-          inputTitle="상품명"
+          inputTitle={"상품명"}
           name="name"
           type="text"
           placeholder="상품명을 입력해주세요"
-          register={{ ...props.register("name") }}
-          errorMessage={props.errors.name?.message}
+          onChangeInputs={props.onChangeInputs}
         />
-
+        <Error>{props.setInputsErrors["name"]}</Error>
         <Input01
-          inputTitle="한줄요약"
+          inputTitle={"한줄요약"}
           name="remarks"
           type="text"
           placeholder="상품의 상태를 입력해주세요"
-          register={{ ...props.register("remarks") }}
-          errorMessage={props.errors.remarks?.message}
+          onChangeInputs={props.onChangeInputs}
         />
+        <Error>{props.setInputsErrors.remarks}</Error>
         <Input02
-          inputTitle="상품설명"
+          inputTitle={"상품설명"}
           name="contents"
           placeholder="상품에 대하여 입력해주세요."
-          register={{ ...props.register("contents") }}
-          errorMessage={props.errors.contents?.message}
+          onChangeInputs={props.onChangeInputs}
         />
+        <Error>{props.setInputsErrors.contents}</Error>
         <Input01
-          inputTitle="판매가격"
+          inputTitle={"판매가격"}
           name="price"
           type="text"
           placeholder="판매 가격을 입력해주세요"
-          register={{ ...props.register(Number("price")) }}
-          errorMessage={props.errors.price?.message}
+          onChangeInputs={props.onChangeInputs}
         />
+        <Error>{props.setInputsErrors.price}</Error>
         <Input01
-          inputTitle="태그입력"
+          inputTitle={"태그입력"}
           name="tags"
           type="text"
           placeholder="#태그 #태그 #태그"
-          register={{ ...props.register("tags") }}
-          errorMessage={props.errors.tags?.message}
+          onChangeInputs={props.onChangeInputs}
         />
+        <Error>{props.setInputsErrors.tags}</Error>
         <LocationWrapper>
           <LocationLeft>
             <LocationText>거래위치</LocationText>
@@ -115,11 +114,10 @@ export default function UsedMarketWriteUi(props) {
           </CheckBox>
         </MainImgSetting>
         <Button01
-          type="submit"
           buttonText={"등록하기"}
-          isActive={props.isActive}
+          onClickItemSubmit={props.onClickItemSubmit}
         />
       </UsedMarketWriteWrapper>
-    </form>
+    </>
   );
 }

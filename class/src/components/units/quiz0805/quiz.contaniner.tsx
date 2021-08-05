@@ -7,32 +7,32 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-export default function QuizPage() {
-  const schema = yup.object().shape({
-    writer: yup
-      .string()
-      .min(1)
-      .max(5, "5자 까지 가능합니다.")
-      .required("필수 입력값입니다."),
-    password: yup
-      .string()
-      // .matches(
-      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{1,8})/,
-      //   "8자 이하인 대,소문자,숫자,특수문자로 입력해야합니다"
-      // )
-      .required("필수 입력값입니다."),
-    title: yup
-      .string()
-      .min(1)
-      .max(100, "제목은 최대 100자 까지 입력 가능합니다.")
-      .required("필수 입력값입니다."),
-    contents: yup
-      .string()
-      .min(1)
-      .max(1000, "내용은 최대 1000자 까지 입력 가능합니다.")
-      .required("필수 입력값입니다."),
-  });
+const schema = yup.object().shape({
+  writer: yup
+    .string()
+    .min(1)
+    .max(5, "5자 까지 가능합니다.")
+    .required("필수 입력값입니다."),
+  password: yup
+    .string()
+    // .matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{1,8})/,
+    //   "8자 이하인 대,소문자,숫자,특수문자로 입력해야합니다"
+    // )
+    .required("필수 입력값입니다."),
+  title: yup
+    .string()
+    .min(1)
+    .max(100, "제목은 최대 100자 까지 입력 가능합니다.")
+    .required("필수 입력값입니다."),
+  contents: yup
+    .string()
+    .min(1)
+    .max(1000, "내용은 최대 1000자 까지 입력 가능합니다.")
+    .required("필수 입력값입니다."),
+});
 
+export default function QuizPage() {
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),

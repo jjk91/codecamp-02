@@ -19,6 +19,10 @@ const Input = styled.input`
   border-radius: 5px;
   padding-left: 16px;
 `;
+const Error = styled.div`
+  color: red;
+  font-size: 16px;
+`;
 
 export default function Input01(props) {
   return (
@@ -30,6 +34,7 @@ export default function Input01(props) {
         placeholder={props.placeholder}
         onChange={props.onChangeInputs}
       />
+      <Error>{props.errorMessage}</Error>
     </InputWrapper>
   );
 }
