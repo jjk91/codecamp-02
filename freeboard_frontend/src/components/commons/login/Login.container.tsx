@@ -53,7 +53,7 @@ export default function Login() {
       });
       console.log(result.data.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
-      alert("회원가입");
+      alert("로그인되었습니다.");
     } catch (error) {
       alert(error.message);
     }
