@@ -19,7 +19,11 @@ const Input = styled.input`
 export default function Input04(props) {
   return (
     <InputWrapper>
-      <Input type={props.type} name={props.name} />
+      <Input
+        type={props.type}
+        name={props.name}
+        onChange={props.onChangeInputs}
+      />
       <Text>{props.inputTitle}</Text>
     </InputWrapper>
   );

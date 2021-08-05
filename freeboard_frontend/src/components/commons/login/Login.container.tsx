@@ -1,7 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 import { createContext } from "react";
 import { ChangeEvent, useState } from "react";
+import { GlobalContext } from "../../../../pages/_app";
 import LoginUi from "./Login.presenter";
 import { LOGIN_USER } from "./Login.queries";
 
@@ -27,6 +29,7 @@ export default function Login() {
   const router = useRouter();
   const [inputs, setInputs] = useState(inputInit);
   const [inputsErrors, setInputsErrors] = useState(inputInit);
+  const { setAccessToken } = useContext(GlobalContext);
 
   const [loginUser] = useMutation(LOGIN_USER);
 
@@ -48,7 +51,9 @@ export default function Login() {
       const result = await loginUser({
         variables: { email: inputs.email, password: inputs.password },
       });
-      console.log(result.data.loginUserInput.accessToken);
+      console.log(result.data.loginUser.accessToken);
+      setAccessToken(result.data?.loginUser.accessToken);
+      alert("회원가입");
     } catch (error) {
       alert(error.message);
     }

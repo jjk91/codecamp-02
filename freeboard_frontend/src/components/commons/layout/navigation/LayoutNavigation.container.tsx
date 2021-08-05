@@ -1,5 +1,20 @@
+import { useRouter } from "next/router";
 import LayoutNavigationUi from "./LayoutNavigation.presenter";
 
 export default function LayoutNavigation() {
-  return <LayoutNavigationUi />;
+  const router = useRouter();
+
+  function onClickMoveBoard() {
+    router.push("/boards/list");
+  }
+  function onClickMoveMarket() {
+    router.push("/usedMarket/new");
+  }
+
+  return (
+    <LayoutNavigationUi
+      onClickMoveBoard={onClickMoveBoard}
+      onClickMoveMarket={onClickMoveMarket}
+    />
+  );
 }

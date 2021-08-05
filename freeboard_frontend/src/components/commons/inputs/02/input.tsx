@@ -26,7 +26,11 @@ export default function Input02(props) {
   return (
     <InputWrapper>
       <Text>{props.inputTitle}</Text>
-      <Input placeholder={props.placeholder} name={props.name} />
+      <Input
+        placeholder={props.placeholder}
+        name={props.name}
+        onChange={props.onChangeInputs}
+      />
     </InputWrapper>
   );
 }

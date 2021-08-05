@@ -32,12 +32,14 @@ export default function LoginUi() {
             <LoginText>이메일</LoginText>
             <LoginInput
               type="text"
+              name="email"
               placeholder="이메일을 입력해주세요."
               onChange={onChangeLoginInput}
             />
             <LoginText>비밀번호</LoginText>
             <LoginInput
               type="password"
+              name="password"
               placeholder="비밀번호를 입력해주세요."
               onChange={onChangeLoginInput}
             />

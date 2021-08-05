@@ -28,6 +28,7 @@ export default function Input01(props) {
         name={props.name}
         type={props.type}
         placeholder={props.placeholder}
+        onChange={props.onChangeInputs}
       />
     </InputWrapper>
   );

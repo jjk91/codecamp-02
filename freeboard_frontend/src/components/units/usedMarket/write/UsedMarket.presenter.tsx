@@ -33,25 +33,25 @@ export default function UsedMarketWriteUi(props) {
         <UsedMarketWriteTitle>상품등록하기</UsedMarketWriteTitle>
         <Input01
           inputTitle={"상품명"}
-          name="name1"
+          name="name"
           type="text"
           placeholder="상품명을 입력해주세요"
-          onChange={props.onChangeInputs}
+          onChangeInputs={props.onChangeInputs}
         />
-        <Error>{props.setInputsErrors.name1}</Error>
+        <Error>{props.setInputsErrors["name"]}</Error>
         <Input01
           inputTitle={"한줄요약"}
           name="remarks"
           type="text"
           placeholder="상품의 상태를 입력해주세요"
-          onChange={props.onChangeInputs}
+          onChangeInputs={props.onChangeInputs}
         />
         <Error>{props.setInputsErrors.remarks}</Error>
         <Input02
           inputTitle={"상품설명"}
           name="contents"
           placeholder="상품에 대하여 입력해주세요."
-          onChange={props.onChangeInputs}
+          onChangeInputs={props.onChangeInputs}
         />
         <Error>{props.setInputsErrors.contents}</Error>
         <Input01
@@ -59,7 +59,7 @@ export default function UsedMarketWriteUi(props) {
           name="price"
           type="text"
           placeholder="판매 가격을 입력해주세요"
-          onChange={props.onChangeInputs}
+          onChangeInputs={props.onChangeInputs}
         />
         <Error>{props.setInputsErrors.price}</Error>
         <Input01
@@ -67,7 +67,7 @@ export default function UsedMarketWriteUi(props) {
           name="tags"
           type="text"
           placeholder="#태그 #태그 #태그"
-          onChange={props.onChangeInputs}
+          onChangeInputs={props.onChangeInputs}
         />
         <Error>{props.setInputsErrors.tags}</Error>
         <LocationWrapper>

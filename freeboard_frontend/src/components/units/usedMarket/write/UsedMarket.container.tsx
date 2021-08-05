@@ -5,7 +5,7 @@ import { CREATE_USED_ITEM, UPLOAD_FILE } from "./UsedMarket.queries";
 import { Modal } from "antd";
 
 const InputInit = {
-  name1: "",
+  name: "",
   remarks: "",
   contents: "",
   price: "",
@@ -32,7 +32,7 @@ export default function UsedMarketWrite() {
 
   async function onClickItemSubmit() {
     const newInputsErrors = {
-      name: inputs.name1 ? "" : "이름을 입력해주세요",
+      name: inputs.name ? "" : "이름을 입력해주세요",
       remarks: inputs.remarks ? "" : " 상품의 상태를 입력해주세요",
       contents: inputs.contents ? "" : "상품 내용을 입력해주세요.",
       price: inputs.price ? "" : "판매 가격을 입력해주세요.",
@@ -48,8 +48,11 @@ export default function UsedMarketWrite() {
 
         const result = await createUseditem({
           variables: {
-            ...inputs,
-            images: resultFiles.map((el) => el.data.uploadFile.url),
+            createUseditemInput: {
+              ...inputs,
+              price: Number(inputs.price),
+              images: resultFiles.map((el) => el.data.uploadFile.url),
+            },
           },
         });
         alert("등록되었습니다.");
@@ -60,7 +63,7 @@ export default function UsedMarketWrite() {
         // });
         // alert(result);
       } catch (error) {
-        Modal.error(error.massage);
+        Modal.error(error);
       }
     }
   }

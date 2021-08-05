@@ -35,6 +35,7 @@ export default function SignUp() {
       ...inputs,
       [event.target.name]: event.target.value,
     };
+    console.log(newInputs);
     // console.log(newInputs);
     setInputs(newInputs);
     // console.log(inputs);
