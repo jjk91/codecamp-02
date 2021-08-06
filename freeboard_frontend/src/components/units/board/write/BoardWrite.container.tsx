@@ -44,7 +44,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
   // const [fileUrls, setFileUrls] = useState(["", "", ""]);
-  const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
+  const [files, setFiles] = useState("");
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [createboard] = useMutation(CREATE_BOARD);

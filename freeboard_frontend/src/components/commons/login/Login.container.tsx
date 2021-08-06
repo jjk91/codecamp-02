@@ -54,6 +54,7 @@ export default function Login() {
       console.log(result.data.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
       alert("로그인되었습니다.");
+      router.push("/usedMarket/new");
     } catch (error) {
       alert(error.message);
     }

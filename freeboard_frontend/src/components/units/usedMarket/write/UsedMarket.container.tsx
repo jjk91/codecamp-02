@@ -6,14 +6,17 @@ import { Modal } from "antd";
 
 import { useForm } from "react-hook-form";
 import withAuth from "../../../commons/hoc/wirhAuth";
+import { schema } from "./UsedMarket.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function UsedMarketWrite() {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
-  const [files, setFiles] = useState<(File | null)[]>([null, null]);
+  const [files, setFiles] = useState("");
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
+    resolver: yupResolver(schema),
   });
 
   async function onWriteSubmit(data) {
@@ -28,7 +31,7 @@ function UsedMarketWrite() {
             name: data.name,
             remarks: data.remarks,
             contents: data.contents,
-            price: Number(data.price),
+            price: data.price,
             tags: data.tags,
             images: resultFile.map((el) => el.data.uploadFile.url),
           },
