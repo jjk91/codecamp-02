@@ -7,6 +7,8 @@ export const Wrapper = styled.div`
   display: flex;
   border-bottom: 1px solid gray;
   margin: auto;
+  background-color: midnightblue;
+  color: white;
 `;
 
 export const CommentInfo = styled.div`
@@ -40,7 +42,7 @@ export const CommentWriter = styled.div`
 export const Rating = styled(Rate)`
   line-height: 16px;
   font-size: 16px;
-  color: aquamarine;
+  color: yellow;
 `;
 export const CommentContents = styled.div`
   font-size: 16px;

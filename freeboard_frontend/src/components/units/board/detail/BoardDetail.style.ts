@@ -3,6 +3,10 @@ import ReactPlayer from "react-player";
 import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
+export const FullWrapper = styled.div`
+  padding-top: 80px;
+`;
+
 export const Wrapper = styled.div`
   width: 1200px;
   padding: 20px 102px 80px 102px;

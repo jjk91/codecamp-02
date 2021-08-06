@@ -6,8 +6,6 @@ import { Modal } from "antd";
 
 import { useForm } from "react-hook-form";
 import withAuth from "../../../commons/hoc/wirhAuth";
-import { schema } from "./UsedMarket.validation";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 function UsedMarketWrite() {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
@@ -16,14 +14,17 @@ function UsedMarketWrite() {
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
-    resolver: yupResolver(schema),
   });
 
   async function onWriteSubmit(data) {
     try {
-      const resultFile = await Promise.all(
+      let resultFile = await Promise.all(
         files.map((data) => uploadFile({ variables: { file: data } }))
       );
+
+      resultFile = resultFile.filter((url) => url);
+
+      console.log(resultFile);
 
       const result = await createUseditem({
         variables: {
@@ -31,13 +32,13 @@ function UsedMarketWrite() {
             name: data.name,
             remarks: data.remarks,
             contents: data.contents,
-            price: data.price,
+            price: Number(data.price),
             tags: data.tags,
             images: resultFile.map((el) => el.data.uploadFile.url),
           },
         },
       });
-      console.log(result.data.createUseditemInput.accessToken);
+      console.log(result.data.createUseditem._id);
       Modal.success({ content: "상품이 등록되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });

@@ -33,6 +33,7 @@ export default function Input01(props) {
         type={props.type}
         placeholder={props.placeholder}
         onChange={props.onChangeInputs}
+        {...props.register}
       />
       <Error>{props.errorMessage}</Error>
     </InputWrapper>

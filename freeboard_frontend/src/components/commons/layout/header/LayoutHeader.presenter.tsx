@@ -1,22 +1,33 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../../../../pages/_app";
 import {
   Wrapper,
   InnerWrapper,
   InnerLogo,
-  InnerText,
   InnerButton,
+  UserWrapper,
+  UserImg,
+  UserInfo,
 } from "./LayoutHeader.styles";
 
 export default function LayoutHeaderUi(props) {
+  const { accessToken, userInfo } = useContext(GlobalContext);
   return (
     <>
       <Wrapper>
         <InnerWrapper>
           <InnerLogo src="/images/horizontal_on_white_by_logaster.png" />
-          {/* <InnerText>모 여</InnerText> */}
-          <div>
-            <InnerButton onClick={props.onClickLogin}>Login</InnerButton>
-            <InnerButton onClick={props.onClickSignUp}>Sign up</InnerButton>
-          </div>
+          {!accessToken ? (
+            <div>
+              <InnerButton onClick={props.onClickLogin}>Login</InnerButton>
+              <InnerButton onClick={props.onClickSignUp}>Sign up</InnerButton>
+            </div>
+          ) : (
+            <UserWrapper>
+              <UserImg src="/images/ic_profile-96px.png" />
+              <UserInfo>{userInfo.name}</UserInfo>
+            </UserWrapper>
+          )}
         </InnerWrapper>
       </Wrapper>
     </>

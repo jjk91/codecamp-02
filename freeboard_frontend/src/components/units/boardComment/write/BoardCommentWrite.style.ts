@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   width: 1200px;
   /* background-color: ${(props) => (props.isEdit ? "purple" : "skyblue")}; */
   margin: auto;
+  background-color: midnightblue;
 `;
 
 export const WrapperComment = styled.div`
@@ -25,6 +26,7 @@ export const CommentTop = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 40px;
+  color: white;
 `;
 
 export const CommentImg = styled.img`
@@ -85,8 +87,7 @@ export const CommentText = styled.div`
 export const CommentSubmit = styled.div`
   height: 52px;
   width: 91px;
-  background-color: ${(props) =>
-    props.isEdit ? "midnightblue" : "midnightblue"};
+  background-color: ${(props) => (props.isEdit ? "#FF8200	" : "#B9062F")};
   color: ${(props) => (props.isEdit ? "white" : "white")};
   font-size: 16px;
   line-height: 52px;

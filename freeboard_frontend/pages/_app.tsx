@@ -16,15 +16,22 @@ import { createContext, Dispatch, SetStateAction, useState } from "react";
 interface IContext {
   accessToken: string;
   setAccessToken: Dispatch<SetStateAction<string>>;
+  userInfo: any;
+  setUserInfo: any;
 }
 
 export const GlobalContext = createContext<IContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");
+
+  const [userInfo, setUserInfo] = useState({});
+
   const value = {
     accessToken: accessToken,
     setAccessToken: setAccessToken,
+    userInfo: userInfo,
+    setUserInfo: setUserInfo,
   };
 
   const uploadLink = createUploadLink({

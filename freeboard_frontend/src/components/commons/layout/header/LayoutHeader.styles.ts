@@ -33,3 +33,17 @@ export const InnerButton = styled.span`
   font-size: 15px;
   font-weight: bold;
 `;
+
+export const UserWrapper = styled.div``;
+
+export const UserImg = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+`;
+
+export const UserInfo = styled.span`
+  font-size: 16px;
+  color: white;
+  margin-right: 20px;
+`;

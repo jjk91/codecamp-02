@@ -60,7 +60,7 @@ export default function UsedMarketWriteUi(props) {
           name="price"
           type="text"
           placeholder="판매 가격을 입력해주세요"
-          register={{ ...props.register(Number("price")) }}
+          register={{ ...props.register("price") }}
           errorMessage={props.errors.price?.message}
         />
         <Input01

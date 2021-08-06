@@ -1,4 +1,5 @@
 import {
+  FullWrapper,
   Wrapper,
   HeadWrapper,
   WriterInfo,
@@ -45,7 +46,7 @@ interface IBoardDetailUIPresenterProps {
 
 export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
   return (
-    <>
+    <FullWrapper>
       <Wrapper>
         <HeadWrapper>
           <WriterInfo>
@@ -110,6 +111,6 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
           <Delete onClick={props.onClickDelete}>삭제하기</Delete>
         </Wrapper2ButtonList>
       </Wrapper2>
-    </>
+    </FullWrapper>
   );
 }

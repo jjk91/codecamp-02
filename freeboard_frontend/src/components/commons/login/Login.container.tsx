@@ -1,11 +1,11 @@
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { createContext } from "react";
 import { ChangeEvent, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 import LoginUi from "./Login.presenter";
-import { LOGIN_USER } from "./Login.queries";
+import { FETCH_USER_LOGGENT_IN, LOGIN_USER } from "./Login.queries";
 
 export const inputInit = {
   email: "",
@@ -29,8 +29,9 @@ export default function Login() {
   const router = useRouter();
   const [inputs, setInputs] = useState(inputInit);
   const [inputsErrors, setInputsErrors] = useState(inputInit);
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken, setUserInfo } = useContext(GlobalContext);
 
+  const clinet = useApolloClient();
   const [loginUser] = useMutation(LOGIN_USER);
 
   function onChangeLoginInput(event: ChangeEvent<HTMLInputElement>) {
@@ -51,6 +52,16 @@ export default function Login() {
       const result = await loginUser({
         variables: { email: inputs.email, password: inputs.password },
       });
+      const resultUser = await clinet.query({
+        query: FETCH_USER_LOGGENT_IN,
+        context: {
+          headers: {
+            authorization: `Bearer ${result.data?.loginUser.accessToken}`,
+          },
+        },
+      });
+      setUserInfo(resultUser.data.fetchUserLoggedIn);
+
       console.log(result.data.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
       alert("로그인되었습니다.");
