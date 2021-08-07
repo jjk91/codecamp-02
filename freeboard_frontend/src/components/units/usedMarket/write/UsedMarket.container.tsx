@@ -6,17 +6,25 @@ import { Modal } from "antd";
 
 import { useForm } from "react-hook-form";
 import withAuth from "../../../commons/hoc/wirhAuth";
+import { useRouter } from "next/router";
+import { schema } from "./UsedMarket.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
 
-function UsedMarketWrite() {
+const UsedMarketWrite = () => {
+  const { isEdit, data } = useContext(usedMarketEditPageContext);
+  const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [files, setFiles] = useState("");
 
   const { register, handleSubmit, formState } = useForm({
     mode: "onChange",
+    resolver: yupResolver(schema),
   });
 
-  async function onWriteSubmit(data) {
+  const onWriteSubmit = async (data) => {
     try {
       let resultFile = await Promise.all(
         files.map((data) => uploadFile({ variables: { file: data } }))
@@ -40,10 +48,11 @@ function UsedMarketWrite() {
       });
       console.log(result.data.createUseditem._id);
       Modal.success({ content: "상품이 등록되었습니다." });
+      router.push(`/usedMarket/${result.data.createUseditem._id}`);
     } catch (error) {
       Modal.error({ content: error.message });
     }
-  }
+  };
 
   function onChangeFile(file, index) {
     const newFiles = [...files];
@@ -63,5 +72,5 @@ function UsedMarketWrite() {
       />
     </>
   );
-}
+};
 export default withAuth(UsedMarketWrite);
