@@ -17,7 +17,11 @@ const Button = styled.button`
 export default function Button01(props) {
   return (
     <ButtonWrapper>
-      <Button type={props.type} isActive={props.isActive}>
+      <Button
+        type={props.type}
+        isActive={props.isActive}
+        onClick={props.onClick}
+      >
         {props.buttonText}
       </Button>
     </ButtonWrapper>

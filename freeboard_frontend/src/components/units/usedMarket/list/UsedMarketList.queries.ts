@@ -6,21 +6,26 @@ export const FETCH_USED_ITEM = gql`
       _id
       name
       remarks
+      constents
+      price
+    }
+  }
+`;
+
+export const FETCH_USED_ITEMS = gql`
+  query fetchUseditems($search: String, $page: Int) {
+    fetchUseditems(search: $search, page: $page) {
+      _id
+      name
+      remarks
       contents
       price
       tags
       images
-      createdAt
       seller {
         name
         picture
       }
     }
-  }
-`;
-
-export const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn {
-    fetchUserLoggedIn
   }
 `;

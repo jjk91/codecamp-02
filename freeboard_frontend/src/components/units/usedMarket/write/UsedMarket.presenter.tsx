@@ -25,10 +25,17 @@ import {
   CheckBox,
   Error,
 } from "./UsedMarket.style";
+import { useContext } from "react";
+import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
 
 export default function UsedMarketWriteUi(props) {
+  const { isEdit, data } = useContext(usedMarketEditPageContext);
   return (
-    <form onSubmit={props.handleSubmit(props.onWriteSubmit)}>
+    <form
+      onSubmit={props.handleSubmit(
+        isEdit ? props.onWriteUpdate : props.onWriteSubmit
+      )}
+    >
       <UsedMarketWriteWrapper>
         <UsedMarketWriteTitle>상품등록하기</UsedMarketWriteTitle>
         <Input01
@@ -36,6 +43,7 @@ export default function UsedMarketWriteUi(props) {
           name="name"
           type="text"
           placeholder="상품명을 입력해주세요"
+          // defaultValue={data?.fetchUseditem.name}
           register={{ ...props.register("name") }}
           errorMessage={props.errors.name?.message}
         />
@@ -45,6 +53,7 @@ export default function UsedMarketWriteUi(props) {
           name="remarks"
           type="text"
           placeholder="상품의 상태를 입력해주세요"
+          // defaultValue={data?.fetchUseditem.remarks}
           register={{ ...props.register("remarks") }}
           errorMessage={props.errors.remarks?.message}
         />
@@ -52,6 +61,7 @@ export default function UsedMarketWriteUi(props) {
           inputTitle="상품설명"
           name="contents"
           placeholder="상품에 대하여 입력해주세요."
+          // defaultValue={data?.fetchUseditem.contents}
           register={{ ...props.register("contents") }}
           errorMessage={props.errors.contents?.message}
         />
@@ -60,6 +70,7 @@ export default function UsedMarketWriteUi(props) {
           name="price"
           type="text"
           placeholder="판매 가격을 입력해주세요"
+          // defaultValue={data?.fetchUseditem.price}
           register={{ ...props.register("price") }}
           errorMessage={props.errors.price?.message}
         />
@@ -68,6 +79,7 @@ export default function UsedMarketWriteUi(props) {
           name="tags"
           type="text"
           placeholder="#태그 #태그 #태그"
+          // defaultValue={data?.fetchUseditem.tags}
           register={{ ...props.register("tags") }}
           errorMessage={props.errors.tags?.message}
         />
@@ -116,7 +128,7 @@ export default function UsedMarketWriteUi(props) {
         </MainImgSetting>
         <Button01
           type="submit"
-          buttonText={"등록하기"}
+          buttonText={isEdit ? "수정하기" : "등록하기"}
           isActive={props.isActive}
         />
       </UsedMarketWriteWrapper>

@@ -14,11 +14,11 @@ function UsedMarketDetail() {
   console.log(data);
 
   const onClickUpdate = () => {
-    Modal.success({
-      title: " 수정 완료",
-      content: "게시물 수정 완료!!",
-    });
-    // router.push(`/usedMarket/${router.data.useMarketId}/edit`);
+    // Modal.success({
+    //   title: " 수정 완료",
+    //   content: "게시물 수정 완료!!",
+    // });
+    router.push(`/usedMarket/${router.query.usedMarketId}/edit`);
   };
 
   // 리스트 아직 안만들었음 _ 0807

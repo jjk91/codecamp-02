@@ -8,7 +8,7 @@ export default function LayoutNavigation() {
     router.push("/boards/list");
   }
   function onClickMoveMarket() {
-    router.push("/usedMarket/new");
+    router.push("/usedMarket/list");
   }
 
   return (

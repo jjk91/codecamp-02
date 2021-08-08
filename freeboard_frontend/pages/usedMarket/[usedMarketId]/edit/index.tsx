@@ -1,6 +1,7 @@
 import UsedMarketWrite from "../../../../src/components/units/usedMarket/write/UsedMarket.container";
 import { gql, useQuery } from "@apollo/client";
 import { createContext } from "react";
+import { useRouter } from "next/router";
 
 const FETCH_USED_ITEM = gql`
   query fetchUseditem($useditemId: ID!) {
@@ -20,7 +21,10 @@ const FETCH_USED_ITEM = gql`
 export const usedMarketEditPageContext = createContext({});
 
 export default function usedMarketEdit() {
-  const { data } = useQuery(FETCH_USED_ITEM);
+  const router = useRouter();
+  const { data } = useQuery(FETCH_USED_ITEM, {
+    variables: { useditemId: router.query.usedMarketId },
+  });
   const value = {
     isEdit: true,
     data,

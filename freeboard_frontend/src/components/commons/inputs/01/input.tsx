@@ -31,6 +31,7 @@ export default function Input01(props) {
       <Input
         name={props.name}
         type={props.type}
+        defaultValue={props.defaultValue}
         placeholder={props.placeholder}
         onChange={props.onChangeInputs}
         {...props.register}

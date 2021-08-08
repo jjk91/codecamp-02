@@ -7,7 +7,7 @@ export const schema = yup.object().shape({
   price: yup
     .number()
     .transform((_value: string, originalValue: string) =>
-      Number(originalValue.replace(/,/, "."))
+      Number(originalValue.replace(/\B(?=(\d{3})+(?!\d))/g, ","))
     )
     .typeError("숫자를 입력해야합니다.")
     .required(),

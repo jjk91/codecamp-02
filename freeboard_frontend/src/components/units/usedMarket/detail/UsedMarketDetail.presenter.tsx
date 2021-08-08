@@ -44,7 +44,7 @@ export default function UsedMarketDetailUi(props) {
           <SellerInfoLeft>
             <SellerImg src="/images/ic_profile-96px.png" />
             <SellerData>
-              <SellerName>{userInfo.name}</SellerName>
+              <SellerName>{props.data?.fetchUseditem.seller.name}</SellerName>
               <WriterDate>
                 {getDate(props.data?.fetchUseditem.createdAt)}
               </WriterDate>
@@ -83,7 +83,11 @@ export default function UsedMarketDetailUi(props) {
               </ItemInfoBodyBottom>
               <ItemInfoFooter>
                 <Button01 type="button" buttonText="목록으로" />
-                <Button01 type="button" buttonText="수정하기" />
+                <Button01
+                  type="button"
+                  buttonText="수정하기"
+                  onClick={props.onClickUpdate}
+                />
               </ItemInfoFooter>
             </ItemInfoBody>
           </ItemsInfo>
