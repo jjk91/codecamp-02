@@ -6,6 +6,7 @@ import {
   ItemsList,
   ItemListLeft,
   ImgWrapper,
+  Img,
   ItemImg,
   ItemInfo,
   ItemInfoTop,
@@ -17,10 +18,22 @@ import {
   ItemPick,
   ItemListRigth,
   ItemPrice,
+  BestItemImg,
+  BestItemName,
+  BestItemInfo,
+  BestItemInfoLeft,
+  BestItemRemarks,
+  BestItemPrice,
+  BestItemInfoRight,
+  BestItemPick,
+  BestItemCount,
+  BestItem,
+  FooterWrapper,
 } from "./UsedMarketList.style";
 import { v4 as uuidv4 } from "uuid";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
+import Button01 from "../../../commons/button/01/button";
 
 export default function UsedMarketListUi(props) {
   const { userInfo } = useContext(GlobalContext);
@@ -29,7 +42,31 @@ export default function UsedMarketListUi(props) {
       <Wrapper>
         <ItemsOfTheBest>
           <ItemsOfTheBestTitle>베스트 상품</ItemsOfTheBestTitle>
-          <ItemsOfTheBestList>map돌릴곳</ItemsOfTheBestList>
+
+          <ItemsOfTheBestList>
+            {props.itemOfTheBest?.fetchUseditemsOfTheBest.map((data) => (
+              <BestItem>
+                <Img>
+                  <BestItemImg
+                    key={uuidv4()}
+                    src={`https://storage.googleapis.com/${data.images}`}
+                  />
+                </Img>
+                <BestItemName>{"이름"}</BestItemName>
+                <BestItemInfo>
+                  <BestItemInfoLeft>
+                    <BestItemRemarks>{"remarks"}</BestItemRemarks>
+                    <BestItemPrice>{"100"}</BestItemPrice>
+                  </BestItemInfoLeft>
+
+                  <BestItemInfoRight>
+                    <BestItemPick>{"★"}</BestItemPick>
+                    <BestItemCount>{"20"}</BestItemCount>
+                  </BestItemInfoRight>
+                </BestItemInfo>
+              </BestItem>
+            ))}
+          </ItemsOfTheBestList>
         </ItemsOfTheBest>
         {props.data?.fetchUseditems.map((data) => (
           <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(data._id)}>
@@ -50,7 +87,7 @@ export default function UsedMarketListUi(props) {
                 </ItemInfoTop>
                 <ItemInfoBottom>
                   <ItemSeller>{data.seller.name}</ItemSeller>
-                  <ItemPick>{"20"}</ItemPick>
+                  <ItemPick>{"★20"}</ItemPick>
                 </ItemInfoBottom>
               </ItemInfo>
             </ItemListLeft>
@@ -59,6 +96,13 @@ export default function UsedMarketListUi(props) {
             </ItemListRigth>
           </ItemsList>
         ))}
+        <FooterWrapper>
+          <Button01
+            type="button"
+            onClick={props.onClickMoveList}
+            buttonText="상품등록하기"
+          />
+        </FooterWrapper>
         {/* <FooterWrapper> </FooterWrapper> */}
         {/* <ItemsList key={uuidv4()}>
           <ItemListLeft>

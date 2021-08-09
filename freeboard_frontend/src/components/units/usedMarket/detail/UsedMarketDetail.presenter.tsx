@@ -82,7 +82,11 @@ export default function UsedMarketDetailUi(props) {
                 </UseditemAddress>
               </ItemInfoBodyBottom>
               <ItemInfoFooter>
-                <Button01 type="button" buttonText="목록으로" />
+                <Button01
+                  type="button"
+                  buttonText="목록으로"
+                  onClick={props.onClickList}
+                />
                 <Button01
                   type="button"
                   buttonText="수정하기"

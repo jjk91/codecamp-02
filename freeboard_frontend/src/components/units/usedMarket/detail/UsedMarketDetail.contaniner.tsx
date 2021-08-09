@@ -14,18 +14,23 @@ function UsedMarketDetail() {
   console.log(data);
 
   const onClickUpdate = () => {
-    // Modal.success({
-    //   title: " 수정 완료",
-    //   content: "게시물 수정 완료!!",
-    // });
     router.push(`/usedMarket/${router.query.usedMarketId}/edit`);
   };
 
+  const onClickList = () => {
+    router.push(`/usedMarket/list`);
+  };
   // 리스트 아직 안만들었음 _ 0807
   // const onClickMoveToList = () => {
   //   router.push(`/usedMarket/new`);
   // };
 
-  return <UsedMarketDetailUi data={data} onClickUpdate={onClickUpdate} />;
+  return (
+    <UsedMarketDetailUi
+      data={data}
+      onClickUpdate={onClickUpdate}
+      onClickList={onClickList}
+    />
+  );
 }
 export default withAuth(UsedMarketDetail);

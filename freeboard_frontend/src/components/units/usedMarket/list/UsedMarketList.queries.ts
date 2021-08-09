@@ -29,3 +29,13 @@ export const FETCH_USED_ITEMS = gql`
     }
   }
 `;
+
+export const FETCH_USED_ITEMS_OF_THE_BEST = gql`
+  query fetchUseditemsOfTheBest {
+    fetchUseditemsOfTheBest {
+      name
+      remarks
+      price
+    }
+  }
+`;

@@ -16,7 +16,7 @@ export const ItemsOfTheBestTitle = styled.div`
   font-size: 36px;
   text-align: center;
 `;
-export const ItemsOfTheBestList = styled.div``;
+
 export const ItemsList = styled.div`
   max-width: 1200px;
   width: 100%;
@@ -47,6 +47,7 @@ export const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 80%;
 `;
 export const ItemInfoTop = styled.div`
   background-color: coral;
@@ -81,3 +82,44 @@ export const ItemListRigth = styled.div`
 export const ItemPrice = styled.div`
   font-size: 24px;
 `;
+
+export const FooterWrapper = styled.div``;
+export const ItemsOfTheBestList = styled.div`
+  background-color: gold;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const BestItem = styled.div`
+  height: 391px;
+  width: 24%;
+  border: 1px solid yellowgreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const Img = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+export const BestItemImg = styled.img`
+  width: 242px;
+  height: 242px;
+  background-color: green;
+  display: flex;
+`;
+export const BestItemName = styled.div``;
+export const BestItemInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+`;
+export const BestItemInfoLeft = styled.div``;
+export const BestItemRemarks = styled.div``;
+export const BestItemPrice = styled.div``;
+export const BestItemInfoRight = styled.div``;
+export const BestItemPick = styled.div``;
+export const BestItemCount = styled.div``;
