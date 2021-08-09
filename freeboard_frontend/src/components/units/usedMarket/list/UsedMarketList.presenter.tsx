@@ -59,7 +59,7 @@ export default function UsedMarketListUi(props) {
             </ItemListRigth>
           </ItemsList>
         ))}
-        <FooterWrapper> </FooterWrapper>
+        {/* <FooterWrapper> </FooterWrapper> */}
         {/* <ItemsList key={uuidv4()}>
           <ItemListLeft>
             <ItemImg></ItemImg>

@@ -29,7 +29,7 @@ const UsedMarketWrite = () => {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-
+  console.log(router.pathname);
   useEffect(() => {
     if (!data) return;
     // _id
@@ -63,6 +63,7 @@ const UsedMarketWrite = () => {
           },
         },
       });
+      console.log(result.data.createUseditem._id);
       Modal.success({ content: "상품이 등록되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });
