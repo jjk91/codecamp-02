@@ -11,6 +11,8 @@ import {
 function UsedMarketList() {
   const router = useRouter();
   const [page, setPage] = useState(1);
+  const [baskets, setBaskets] = useState([]);
+
   const { data } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
   const { data: itemOfTheBest } = useQuery(FETCH_USED_ITEMS_OF_THE_BEST);
 
