@@ -20,9 +20,14 @@ function UsedMarketList() {
     router.push(`/usedMarket/${marketid}`);
   };
 
+  const onClickMoveList = () => {
+    router.push(`/usedMarket/new`);
+  };
+
   return (
     <UsedMarketListUi
       data={data}
+      onClickMoveList={onClickMoveList}
       ClickMoveDetail={ClickMoveDetail}
       itemOfTheBest={itemOfTheBest}
     />

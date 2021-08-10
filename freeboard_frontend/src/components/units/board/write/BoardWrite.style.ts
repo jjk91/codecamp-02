@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
 import { Button } from "antd";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -95,7 +99,7 @@ export const AddressDetail = styled.input`
   width: 996px;
 `;
 
-export const Input2 = styled.textarea`
+export const Input2 = styled(ReactQuill)`
   height: 480px;
   width: 996px;
   padding-top: 14px;

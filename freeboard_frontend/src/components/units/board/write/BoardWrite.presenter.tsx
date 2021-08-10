@@ -38,6 +38,11 @@ import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
 import Uploads01 from "../../../commons/uploads/01/uploads01.container";
 
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+
 export default function BoardWriteUi(props: IBoardWritePresenterProps) {
   return (
     <Wrapper>
@@ -83,9 +88,9 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
         <Body2>
           <Text>내용</Text>
           <Input2
-            name="contents"
+            // name="contents"
             placeholder="내용을 작성해주세요."
-            onChange={props.onChangeInputs}
+            onChange={props.onChangeContents}
             defaultValue={props.data?.fetchBoard?.contents}
           />
         </Body2>

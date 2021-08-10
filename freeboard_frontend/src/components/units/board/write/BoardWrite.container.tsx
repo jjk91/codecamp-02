@@ -44,7 +44,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
   // const [fileUrls, setFileUrls] = useState(["", "", ""]);
-  const [files, setFiles] = useState("");
+  const [files, setFiles] = useState([]);
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [createboard] = useMutation(CREATE_BOARD);
@@ -101,11 +101,20 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setInputs(newInputs);
     // if(newInputs.title || newInputs.contents) {
     setdisabled(checkInputs(newInputs));
+    console.log(newInputs);
     // }
 
     // if(Object.values(newInputs).every(data => data)){
     //   setdisabled(false)
     // }
+  }
+
+  function onChangeContents(value) {
+    const isBlank = "<p><br></p>";
+    const newInputs = { ...inputs, contents: value === isBlank ? "" : value };
+    setInputs(newInputs);
+    setdisabled(checkInputs(newInputs));
+    console.log(value);
   }
 
   async function onClickSubmit() {
@@ -114,7 +123,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
         const resultFile = await Promise.all(
           files.map((data) => uploadFile({ variables: { file: data } }))
         );
-
+        const newImages = resultFile.map((el) => el.data.uploadFile.url);
         // const images = resultFile.map((data) =>
         //   uploadFile({ variables: { file: data } })
         // );
@@ -122,12 +131,13 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
           variables: {
             createBoardInput: {
               ...inputs,
-              images: resultFile.map((el) => el.data.uploadFile.url),
               boardAddress: {
                 zipcode: zipcode,
                 address: address,
                 addressDetail: addressDetail,
               },
+              images: newImages,
+              //  resultFile.map((el) => el.data.uploadFile.url),
             },
           },
         });
@@ -138,7 +148,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
         });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        Modal.error(error.massage);
+        Modal.error({ content: error.message });
       }
     }
   }
@@ -163,7 +173,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
         });
         router.push(`/boards/${result.data.updateBoard._id}`);
       } catch (error) {
-        Modal.error(error.massage);
+        Modal.error({ content: error.massage });
       }
     }
   }
@@ -172,7 +182,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     try {
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      Modal.error(error.massage);
+      Modal.error({ content: error.massage });
     }
   }
 
@@ -205,6 +215,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       onClickSubmit={onClickSubmit}
       // onChangeFileUrls={onChangeFileUrls} // 이미지 업로드
       onChangeFile={onChangeFile}
+      onChangeContents={onChangeContents}
       disabled={disabled}
       isEdit={props.isEdit}
       data={data}
