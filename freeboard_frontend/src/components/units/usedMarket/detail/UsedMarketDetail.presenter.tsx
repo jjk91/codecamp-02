@@ -35,8 +35,6 @@ import {
 } from "./UsedMarketDetail.style";
 
 export default function UsedMarketDetailUi(props) {
-  const { userInfo } = useContext(GlobalContext);
-
   return (
     <>
       <Wrapper>

@@ -1,4 +1,5 @@
 import {
+  Contniner,
   Wrapper,
   ItemsOfTheBest,
   ItemsOfTheBestTitle,
@@ -34,68 +35,72 @@ import { v4 as uuidv4 } from "uuid";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import Button01 from "../../../commons/button/01/button";
+import SideListPageUi from "./sideItem/UsedMarketListSideList.presenter";
 
 export default function UsedMarketListUi(props) {
-  const { userInfo } = useContext(GlobalContext);
+  // const { userInfo } = useContext(GlobalContext);
   return (
-    <>
+    <Contniner>
       <Wrapper>
         <ItemsOfTheBest>
           <ItemsOfTheBestTitle>베스트 상품</ItemsOfTheBestTitle>
 
           <ItemsOfTheBestList>
             {props.itemOfTheBest?.fetchUseditemsOfTheBest.map((data) => (
-              <BestItem>
+              // <BestItem key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}>
+                <BestItem key={uuidv4()} id={data._id} onClick={props.ClickMoveDetail(data)}>
                 <Img>
                   <BestItemImg
                     key={uuidv4()}
-                    src={`https://storage.googleapis.com/${data.images}`}
+                    src={`https://storage.googleapis.com/${data.images.[0]}`}
                   />
                 </Img>
-                <BestItemName>{"이름"}</BestItemName>
+                <BestItemName>{data.name}</BestItemName>
                 <BestItemInfo>
                   <BestItemInfoLeft>
-                    <BestItemRemarks>{"remarks"}</BestItemRemarks>
-                    <BestItemPrice>{"100"}</BestItemPrice>
+                    <BestItemRemarks>{data.renarks}</BestItemRemarks>
+                    <BestItemPrice>{data.price}</BestItemPrice>
                   </BestItemInfoLeft>
 
                   <BestItemInfoRight>
-                    <BestItemPick>{"★"}</BestItemPick>
-                    <BestItemCount>{"20"}</BestItemCount>
+                    <BestItemPick onClick={props.onClickPick} />
+                    <BestItemCount>{data.pickedCount}</BestItemCount>
                   </BestItemInfoRight>
                 </BestItemInfo>
               </BestItem>
             ))}
           </ItemsOfTheBestList>
         </ItemsOfTheBest>
-        {props.data?.fetchUseditems.map((data) => (
-          <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(data._id)}>
-            <ItemListLeft>
-              <ImgWrapper>
-                {/* {props.data?.fetchUseditems.images?.map((data) => ( */}
-                <ItemImg
-                  key={data}
-                  src={`https://storage.googleapis.com/${data.images[0]}`}
-                />
-                {/* ))} */}
-              </ImgWrapper>
-              <ItemInfo>
-                <ItemInfoTop>
-                  <ItemName>{data.name}</ItemName>
-                  <ItemRemarks>{data.remarks}</ItemRemarks>
-                  <ItemTags>{data.tags}</ItemTags>
-                </ItemInfoTop>
-                <ItemInfoBottom>
-                  <ItemSeller>{data.seller.name}</ItemSeller>
-                  <ItemPick>{"★20"}</ItemPick>
-                </ItemInfoBottom>
-              </ItemInfo>
-            </ItemListLeft>
-            <ItemListRigth>
-              <ItemPrice>{data.price}</ItemPrice>
-            </ItemListRigth>
-          </ItemsList>
-        ))}
+          {props.data?.fetchUseditems.map((data) => (
+            <ItemsList key={uuidv4()} id={data._id} onClick={props.ClickMoveDetail(data)}>
+              {/* // <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}> */}
+              <ItemListLeft>
+                <ImgWrapper>
+                  {/* {props.data?.fetchUseditems.images?.map((data) => ( */}
+                  <ItemImg
+                    key={data}
+                    src={`https://storage.googleapis.com/${data.images[0]}`}
+                  />
+                  {/* ))} */}
+                </ImgWrapper>
+                <ItemInfo>
+                  <ItemInfoTop>
+                    <ItemName>{data.name}</ItemName>
+                    <ItemRemarks>{data.remarks}</ItemRemarks>
+                    <ItemTags>{data.tags}</ItemTags>
+                  </ItemInfoTop>
+                  <ItemInfoBottom>
+                    <ItemSeller>{data.seller.name}</ItemSeller>
+                    <ItemPick>{data.pickedCount}</ItemPick>
+                  </ItemInfoBottom>
+                </ItemInfo>
+              </ItemListLeft>
+              <ItemListRigth>
+                <ItemPrice>{data.price}</ItemPrice>
+              </ItemListRigth>
+            </ItemsList>
+          ))}
+        
         <FooterWrapper>
           <Button01
             type="button"
@@ -103,6 +108,7 @@ export default function UsedMarketListUi(props) {
             buttonText="상품등록하기"
           />
         </FooterWrapper>
+
         {/* <FooterWrapper> </FooterWrapper> */}
         {/* <ItemsList key={uuidv4()}>
           <ItemListLeft>
@@ -124,6 +130,7 @@ export default function UsedMarketListUi(props) {
           </ItemListRigth>
         </ItemsList> */}
       </Wrapper>
-    </>
+      <SideListPageUi baskets={props.baskets} />
+    </Contniner>
   );
 }

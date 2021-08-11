@@ -19,8 +19,8 @@ export const FETCH_USED_ITEM = gql`
   }
 `;
 
-// export const FETCH_USER_LOGGED_IN = gql`
-//   query fetchUserLoggedIn {
-//     fetchUserLoggedIn
-//   }
-// `;
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn
+  }
+`;

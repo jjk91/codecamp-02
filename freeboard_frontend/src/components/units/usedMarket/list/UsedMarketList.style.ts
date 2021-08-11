@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
+import { HeartFilled } from "@ant-design/icons";
 
+export const Contniner = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export const Wrapper = styled.div`
   margin: 80px 0;
   max-width: 1200px;
@@ -34,10 +39,13 @@ export const ItemListLeft = styled.div`
 `;
 
 export const ImgWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  background-color: yellow;
+  height: 160px;
+  width: 160px;
 `;
 export const ItemImg = styled.img`
+  max-width: 160px;
+  min-width: 160px;
   height: 160px;
   width: 160px;
   background-color: red;
@@ -92,6 +100,7 @@ export const ItemsOfTheBestList = styled.div`
   justify-content: space-between;
 `;
 export const BestItem = styled.div`
+  padding: 20px;
   height: 391px;
   width: 24%;
   border: 1px solid yellowgreen;
@@ -121,5 +130,7 @@ export const BestItemInfoLeft = styled.div``;
 export const BestItemRemarks = styled.div``;
 export const BestItemPrice = styled.div``;
 export const BestItemInfoRight = styled.div``;
-export const BestItemPick = styled.div``;
+export const BestItemPick = styled(HeartFilled)`
+  color: ;
+`;
 export const BestItemCount = styled.div``;
