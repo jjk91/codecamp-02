@@ -22,7 +22,9 @@ const CREATE_BOARD = gql`
 
 export default function WepEditorPage() {
   const router = useRouter();
-  const { handleSubmit, register, setValue } = useForm();
+  const { handleSubmit, register, setValue, trigger } = useForm({
+    mode: "onChange",
+  });
 
   const [createBoard] = useMutation(CREATE_BOARD);
 
@@ -45,7 +47,9 @@ export default function WepEditorPage() {
   };
 
   const onChangeContents = (value) => {
-    setValue("contents", value);
+    const isBlank = "<p><br></p>";
+    setValue("contents", value === isBlank ? "" : value);
+    trigger("contents");
   };
 
   return (
