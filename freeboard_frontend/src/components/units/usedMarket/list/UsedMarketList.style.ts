@@ -72,14 +72,28 @@ export const ItemTags = styled.div`
 export const ItemInfoBottom = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   background-color: yellow;
+  width: 145px;
 `;
-export const ItemSeller = styled.div`
+
+export const SellerInfo = styled.div`
+  display: flex;
+  flex-direction: row;
   font-size: 16px;
 `;
+
+export const SellerImg = styled.img``;
+export const SellerName = styled.div``;
 export const ItemPick = styled.div`
   font-size: 16px;
 `;
+export const ItemPickInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+export const ItemCount = styled.div``;
+
 export const ItemListRigth = styled.div`
   background-color: blue;
   width: 15%;
@@ -131,6 +145,6 @@ export const BestItemRemarks = styled.div``;
 export const BestItemPrice = styled.div``;
 export const BestItemInfoRight = styled.div``;
 export const BestItemPick = styled(HeartFilled)`
-  color: ;
+  color: red;
 `;
 export const BestItemCount = styled.div``;

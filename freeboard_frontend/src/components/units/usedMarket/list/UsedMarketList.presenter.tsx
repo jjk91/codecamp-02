@@ -15,8 +15,12 @@ import {
   ItemRemarks,
   ItemTags,
   ItemInfoBottom,
-  ItemSeller,
+  SellerInfo,
+  SellerImg,
+  SellerName,
   ItemPick,
+  ItemPickInfo,
+  ItemCount,
   ItemListRigth,
   ItemPrice,
   BestItemImg,
@@ -32,8 +36,6 @@ import {
   FooterWrapper,
 } from "./UsedMarketList.style";
 import { v4 as uuidv4 } from "uuid";
-import { useContext } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
 import Button01 from "../../../commons/button/01/button";
 import SideListPageUi from "./sideItem/UsedMarketListSideList.presenter";
 
@@ -90,8 +92,14 @@ export default function UsedMarketListUi(props) {
                     <ItemTags>{data.tags}</ItemTags>
                   </ItemInfoTop>
                   <ItemInfoBottom>
-                    <ItemSeller>{data.seller.name}</ItemSeller>
-                    <ItemPick>{data.pickedCount}</ItemPick>
+                    <SellerInfo>
+                      <SellerImg/>
+                      <SellerName>{data.seller.name}</SellerName>
+                    </SellerInfo>
+                    <ItemPickInfo>
+                      <ItemPick>{"★"}</ItemPick>
+                      <ItemCount>{data.pickedCount}</ItemCount>
+                    </ItemPickInfo>
                   </ItemInfoBottom>
                 </ItemInfo>
               </ItemListLeft>

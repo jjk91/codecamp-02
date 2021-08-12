@@ -84,14 +84,17 @@ export const ItemPrice = styled.div`
 export const ItemInfoHeadRigth = styled.div`
   width: 36px;
   height: 63px;
-  background-color: gainsboro;
+  background-color: green;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 export const ItemLike = styled.img``;
-export const ItemLikeCount = styled.div``;
+export const ItemLikeCount = styled.div`
+  font-size: 16px;
+  background-color: green;
+`;
 export const ItemInfoBody = styled.div``;
 export const ItemInfoBodyTop = styled.div`
   display: flex;

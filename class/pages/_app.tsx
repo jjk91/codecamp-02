@@ -11,7 +11,7 @@ import Layout from "../src/components/commons/layout";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { createUploadLink } from "apollo-upload-client";
-
+import Head from "next/head";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
@@ -66,6 +66,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
+        {/* <Head>
+          <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecc9f338d4140428f6915924ceaa0b69"
+          ></script>
+        </Head> */}
         <Layout>
           <Global styles={globalStyles} />
           <Component {...pageProps} />
