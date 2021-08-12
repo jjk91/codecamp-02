@@ -55,6 +55,14 @@ export default function Map1Page() {
       });
     };
   }, []);
+  // function panTo(map) {
+  //   // 이동할 위도 경도 위치를 생성합니다
+  //   const moveLatLon = new kakao.maps.LatLng(33.45058, 126.574942);
+
+  //   // 지도 중심을 부드럽게 이동시킵니다
+  //   // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+  //   map.panTo(moveLatLon);
+  // }
 
   return (
     <>
@@ -64,7 +72,9 @@ export default function Map1Page() {
           src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ecc9f338d4140428f6915924ceaa0b69"
         ></script> */}
       </Head>
-      <div id="map" style={{ width: "500px", height: "400px" }}></div>
+      <div id="map" style={{ width: "500px", height: "400px" }}>
+        {/* <button onClick={panTo()}></button> */}
+      </div>
     </>
   );
 }

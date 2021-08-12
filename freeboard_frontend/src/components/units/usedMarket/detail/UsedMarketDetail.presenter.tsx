@@ -61,7 +61,7 @@ export default function UsedMarketDetailUi(props) {
                 <ItemName>{props.data?.fetchUseditem.name}</ItemName>
               </ItemInfoHeadLeft>
               <ItemInfoHeadRigth>
-                <ItemLike src="/images/ic_thumb_up_off_alt-24px.png" />
+                <ItemLike onClick={props.onClickPick} />
                 <ItemLikeCount>
                   {props.data?.fetchUseditem.pickedCount}
                 </ItemLikeCount>

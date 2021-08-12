@@ -1,3 +1,4 @@
+import { HeartFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -90,7 +91,7 @@ export const ItemInfoHeadRigth = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const ItemLike = styled.img``;
+export const ItemLike = styled(HeartFilled)``;
 export const ItemLikeCount = styled.div`
   font-size: 16px;
   background-color: green;

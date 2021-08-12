@@ -65,7 +65,7 @@ export default function UsedMarketListUi(props) {
                   </BestItemInfoLeft>
 
                   <BestItemInfoRight>
-                    <BestItemPick onClick={props.onClickPick} />
+                    <BestItemPick/>
                     <BestItemCount>{data.pickedCount}</BestItemCount>
                   </BestItemInfoRight>
                 </BestItemInfo>

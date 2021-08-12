@@ -24,15 +24,15 @@ export default function UsedMarketList() {
   }, []);
 
   const ClickMoveDetail = (data) => () => {
+    onClickMoveBasket(data);
     router.push(`/usedMarket/${data._id}`);
-    onClickMoveBasket(data)();
   };
 
   const onClickMoveList = () => {
     router.push(`/usedMarket/new`);
   };
 
-  const onClickMoveBasket = (basketData) => () => {
+  const onClickMoveBasket = (basketData) => {
     const Baskets = JSON.parse(localStorage.getItem("todayBasekets") || "[]");
     let isExists = false;
     Baskets.forEach((data) => {
