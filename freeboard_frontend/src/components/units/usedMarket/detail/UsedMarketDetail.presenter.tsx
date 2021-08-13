@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
+import Slider from "@ant-design/react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { getDate } from "../../../../commons/libraries/utils";
 import Button01 from "../../../commons/button/01/button";
 import {
@@ -28,11 +29,14 @@ import {
   ItemInfoBodyBottom,
   UseditemAddress,
   ItemMap,
+  ItemImgWrapper,
   ItemImg,
   ItemContents,
   ItemTags,
   ItemInfoFooter,
+  settings,
 } from "./UsedMarketDetail.style";
+import { v4 as uuidv4 } from "uuid";
 
 export default function UsedMarketDetailUi(props) {
   return (
@@ -70,7 +74,11 @@ export default function UsedMarketDetailUi(props) {
             <ItemPrice>{props.data?.fetchUseditem.price}</ItemPrice>
             <ItemInfoBody>
               <ItemInfoBodyTop>
-                <ItemImg></ItemImg>
+                {props.data?.fetchUseditem.images.map((data) => (
+                  <Slider key={uuidv4()} {...settings}>
+                    <ItemImg src={`https://storage.googleapis.com/${data}`} />
+                  </Slider>
+                ))}
                 <ItemContents>
                   {props.data?.fetchUseditem.contents}
                 </ItemContents>

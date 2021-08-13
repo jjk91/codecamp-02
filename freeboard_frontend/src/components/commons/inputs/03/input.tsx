@@ -28,7 +28,7 @@ export default function Input03(props) {
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
-        onChange={props.onChangeInputs}
+        onChange={(props.onChangeInputs, props.onChange)}
       />
     </InputWrapper>
   );

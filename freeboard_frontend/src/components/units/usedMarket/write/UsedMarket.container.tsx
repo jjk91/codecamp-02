@@ -24,12 +24,14 @@ const UsedMarketWrite = () => {
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [files, setFiles] = useState("");
+  const [address, setAddress] = useState();
+  const [addressDetail, setAddressDetail] = useState();
 
   const { register, handleSubmit, formState, setValue } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-  console.log(router.pathname);
+
   useEffect(() => {
     if (!data) return;
     // _id
@@ -44,10 +46,8 @@ const UsedMarketWrite = () => {
     ["name", "remarks", "contents", "price"].forEach((key) => {
       setValue(key, String(data?.fetchUseditem[key]));
     });
-    console.log("asdfasdf1111");
     // ;
   }, [data]);
-  console.log("asdfasdf2222");
 
   const onWriteUpdate = async (data) => {
     try {
@@ -60,6 +60,10 @@ const UsedMarketWrite = () => {
             contents: data.contents,
             price: Number(data.price),
             tags: data.tags,
+            useditemAddress: {
+              address,
+              addressDetail,
+            },
           },
         },
       });
@@ -89,11 +93,17 @@ const UsedMarketWrite = () => {
             price: Number(data.price),
             tags: data.tags,
             images: resultFile.map((el) => el.data.uploadFile.url),
+            useditemAddress: {
+              address,
+              addressDetail,
+            },
           },
         },
       });
       console.log(result.data.createUseditem._id);
       Modal.success({ content: "상품이 등록되었습니다." });
+      console.log(result.data.createUseditem.useditemAddress, "등록하기 주소");
+
       // router.push(`/usedMarket/${result.data.createUseditem._id}`);
       router.push(`/usedMarket/list`);
     } catch (error) {
@@ -117,6 +127,8 @@ const UsedMarketWrite = () => {
         onChangeFile={onChangeFile}
         isActive={formState.isValid}
         errors={formState.errors}
+        setAddress={setAddress}
+        setAddressDetail={setAddressDetail}
       />
     </>
   );

@@ -20,9 +20,7 @@ export const LocationWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 40px;
 `;
-export const LocationLeft = styled.div`
-  margin-right: 24px;
-`;
+export const LocationLeft = styled.div``;
 export const LocationText = styled.div`
   margin-bottom: 16px;
 `;

@@ -27,6 +27,7 @@ import {
 } from "./UsedMarket.style";
 import { useContext } from "react";
 import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
+import KakaoMap from "../../../commons/kakaomap/kakaomap.contaniner";
 
 export default function UsedMarketWriteUi(props) {
   const { isEdit, data } = useContext(usedMarketEditPageContext);
@@ -37,7 +38,9 @@ export default function UsedMarketWriteUi(props) {
       )}
     >
       <UsedMarketWriteWrapper>
-        <UsedMarketWriteTitle>상품등록하기</UsedMarketWriteTitle>
+        <UsedMarketWriteTitle>
+          {isEdit ? "상품 수정하기" : "상품 등록하기"}
+        </UsedMarketWriteTitle>
         <Input01
           inputTitle="상품명"
           name="name"
@@ -86,18 +89,23 @@ export default function UsedMarketWriteUi(props) {
         <LocationWrapper>
           <LocationLeft>
             <LocationText>거래위치</LocationText>
-            <LocationMap />
+            <KakaoMap
+              setAddress={props.setAddress}
+              setAddressDetail={props.setAddressDetail}
+              name={props.name}
+              register={props.register}
+            />
           </LocationLeft>
-          <LocationRight>
-            <LocationRightTop>
-              <LocationText>GPS</LocationText>
+          {/* <LocationRight> */}
+          {/* <LocationRightTop> */}
+          {/* <LocationText>GPS</LocationText>
               <LocationGps>
                 <LocationButton>위도(LAT)</LocationButton>
                 <LocationIcon src="/images/ic_location_on-32px.png" />
                 <LocationButton>경도(LNG)</LocationButton>
-              </LocationGps>
-            </LocationRightTop>
-
+              </LocationGps> */}
+          {/* </LocationRightTop> */}
+          {/* 
             <LocationRightBottom>
               <Input03
                 name="useditemAddress"
@@ -105,13 +113,12 @@ export default function UsedMarketWriteUi(props) {
                 type="text"
                 placeholder=""
               />
-              <Input type="text" placeholder="" />
-            </LocationRightBottom>
-          </LocationRight>
+            </LocationRightBottom> */}
+          {/* </LocationRight> */}
         </LocationWrapper>
         <ItemUploadText>첨부</ItemUploadText>
         <UploadWrapper>
-          {new Array(2).fill(1).map((data, index) => (
+          {new Array(4).fill(1).map((data, index) => (
             <Uploads01
               key={`${data}_${index}`}
               index={index}

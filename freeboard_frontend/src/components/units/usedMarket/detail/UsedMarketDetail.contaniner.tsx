@@ -5,16 +5,13 @@ import {
   FETCH_USED_ITEM,
   TOGGLE_USED_ITEM_PICK,
 } from "./UsedMarketDetail.queries";
-import { useState } from "react";
 
 export default function UsedMarketDetail() {
-  const [pick, setPick] = useState(0);
   const router = useRouter();
 
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: router.query.usedMarketId },
   });
-  console.log(data);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   const onClickUpdate = () => {

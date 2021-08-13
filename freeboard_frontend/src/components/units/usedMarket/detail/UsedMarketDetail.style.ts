@@ -114,11 +114,25 @@ export const ItemMap = styled.div`
   height: 360px;
   background-color: hotpink;
 `;
-export const ItemImg = styled.div`
+
+export const ItemImgWrapper = styled.div``;
+export const ItemImg = styled.img`
   width: 482px;
   height: 504px;
   background-color: gray;
+  .slick-slider {
+    .slick-dots {
+    }
+  }
 `;
+export const settings = {
+  dots: true,
+  dotsClass: "slick-dots slick-thumb",
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
 export const ItemContents = styled.div``;
 export const ItemTags = styled.div`
   text-align: left;

@@ -16,6 +16,12 @@ export const FETCH_USED_ITEM = gql`
         picture
       }
       pickedCount
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+      }
     }
   }
 `;
