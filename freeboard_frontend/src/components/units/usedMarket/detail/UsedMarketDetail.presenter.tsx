@@ -1,6 +1,3 @@
-import Slider from "@ant-design/react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { getDate } from "../../../../commons/libraries/utils";
 import Button01 from "../../../commons/button/01/button";
 import {
@@ -29,16 +26,56 @@ import {
   ItemInfoBodyBottom,
   UseditemAddress,
   ItemMap,
-  ItemImgWrapper,
   ItemImg,
+  SliderImg,
   ItemContents,
   ItemTags,
   ItemInfoFooter,
-  settings,
+  ItemImgPagingWrapper,
+  ItemImgPaging,
+  ItemImgWrapper,
 } from "./UsedMarketDetail.style";
 import { v4 as uuidv4 } from "uuid";
 
 export default function UsedMarketDetailUi(props) {
+  const setting = {
+    customPaging: function (i) {
+      return (
+        <ItemImgPagingWrapper>
+          <ItemImgPaging
+            src={`https://storage.googleapis.com/${props.data.fetchUseditem.images[i]}`}
+          />
+        </ItemImgPagingWrapper>
+      );
+    },
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+    appendDots: (dots) => (
+      <div>
+        <ul
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            // margin: "none",
+          }}
+        >
+          {dots}
+          <li
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "78px",
+            }}
+          ></li>
+        </ul>
+      </div>
+    ),
+  };
   return (
     <>
       <Wrapper>
@@ -71,37 +108,43 @@ export default function UsedMarketDetailUi(props) {
                 </ItemLikeCount>
               </ItemInfoHeadRigth>
             </ItemInfoHead>
+
             <ItemPrice>{props.data?.fetchUseditem.price}</ItemPrice>
+
             <ItemInfoBody>
               <ItemInfoBodyTop>
-                {props.data?.fetchUseditem.images.map((data) => (
-                  <Slider key={uuidv4()} {...settings}>
-                    <ItemImg src={`https://storage.googleapis.com/${data}`} />
-                  </Slider>
-                ))}
-                <ItemContents>
-                  {props.data?.fetchUseditem.contents}
-                </ItemContents>
+                <SliderImg {...setting}>
+                  {props.data?.fetchUseditem.images.map((data) => (
+                    <ItemImgWrapper key={uuidv4()}>
+                      <ItemImg src={`https://storage.googleapis.com/${data}`} />
+                    </ItemImgWrapper>
+                  ))}
+                </SliderImg>
               </ItemInfoBodyTop>
+
+              <ItemContents>{props.data?.fetchUseditem.contents}</ItemContents>
+
               <ItemTags>{props.data?.fetchUseditem.tags}</ItemTags>
+
               <ItemInfoBodyBottom>
                 <UseditemAddress>
                   <ItemMap></ItemMap>
                 </UseditemAddress>
               </ItemInfoBodyBottom>
-              <ItemInfoFooter>
-                <Button01
-                  type="button"
-                  buttonText="목록으로"
-                  onClick={props.onClickList}
-                />
-                <Button01
-                  type="button"
-                  buttonText="수정하기"
-                  onClick={props.onClickUpdate}
-                />
-              </ItemInfoFooter>
             </ItemInfoBody>
+
+            <ItemInfoFooter>
+              <Button01
+                type="button"
+                buttonText="목록으로"
+                onClick={props.onClickList}
+              />
+              <Button01
+                type="button"
+                buttonText="수정하기"
+                onClick={props.onClickUpdate}
+              />
+            </ItemInfoFooter>
           </ItemsInfo>
         </WrapperBody>
       </Wrapper>

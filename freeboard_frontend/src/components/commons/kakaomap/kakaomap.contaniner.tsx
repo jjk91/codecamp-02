@@ -97,8 +97,6 @@ export default function KakaoMap(props) {
         kakaoAddress={kakaoAddress}
         onChangeSearch={onChangeSearch}
         onChangeAddressDetail={onChangeAddressDetail}
-        name={props.name}
-        register={props.register}
       />
     </>
   );

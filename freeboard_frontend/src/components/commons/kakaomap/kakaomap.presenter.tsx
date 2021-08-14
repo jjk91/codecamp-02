@@ -49,17 +49,11 @@ export default function KakaoMapUi(props) {
         <Map id="map"></Map>
         <InputWrapper>
           주소:
-          <Address
-            name="address"
-            defaultValue={props.kakaoAddress}
-            readOnly
-            {...props.register("address")}
-          />
+          <Address name="address" defaultValue={props.kakaoAddress} readOnly />
           <AddressDetail
             name="addressDetail"
             onChange={props.onChangeAddressDetail}
             placeholder="상세주소를 입력해주세요"
-            {...props.register("addressDetail")}
           />
         </InputWrapper>
       </WarpperMap>

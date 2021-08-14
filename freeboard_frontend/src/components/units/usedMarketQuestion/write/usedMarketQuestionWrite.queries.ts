@@ -1,57 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const CREATE_BOARD_COMMENT = gql`
-  mutation createBoardComment(
-    $createBoardCommentInput: CreateBoardCommentInput!
-    $boardId: ID!
-  ) {
-    createBoardComment(
-      createBoardCommentInput: $createBoardCommentInput
-      boardId: $boardId
-    ) {
-      _id
-      writer
-      contents
-      rating
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const FETCH_BOARD_COMMENTS = gql`
-  query fetchBoardComments($boardId: ID!) {
-    fetchBoardComments(boardId: $boardId) {
-      _id
-      writer
-      contents
-      rating
-      createdAt
-      updatedAt
-    }
-  }
-`;
-
-export const UPDATE_BOARD_COMMENT = gql`
-  mutation updateBoardComment(
-    $boardCommentId: ID!
-    $password: String
-    $updateBoardCommentInput: UpdateBoardCommentInput!
-  ) {
-    updateBoardComment(
-      boardCommentId: $boardCommentId
-      password: $password
-      updateBoardCommentInput: $updateBoardCommentInput
-    ) {
-      _id
-      writer
-      contents
-      rating
-      updatedAt
-    }
-  }
-`;
-
 export const FETCH_USED_ITEM_QUESTIONS = gql`
   query fetchUseditemQuestions($useditemId: ID!) {
     fetchUseditemQuestions(useditemId: $useditemId)
@@ -76,7 +24,11 @@ export const CREATE_USED_ITEM_QUESTION = gql`
       _id
       contents
       useditem
-      user
+      user {
+        email
+        name
+        picture
+      }
       createdAt
       updatedAt
     }
@@ -102,21 +54,69 @@ export const UPDATE_USED_ITEM_QUESTION = gql`
   }
 `;
 
-// export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
-//   mutation createUseditemQuestionAnswer(
-//     $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
-//     $useditemQuestionId: ID!
-//   ) {
-//     createUseditemQuestionAnswer(
-//       createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
-//       useditemQuestionId: $useditemQuestionId
-//     ) {
-//       _id
-//       contents
-//       useditemQuestion
-//       user
-//       createdAt
-//       updatedAt
-//     }
-//   }
-// `;
+export const FETCH_USED_ITEM_QUESTIONS_ANSWERS = gql`
+  query fetchUseditemQuestionAnswers($useditemQuestionId: ID!) {
+    fetchUseditemQuestionAnswers(useditemQuestionId: $useditemQuestionId) {
+      _id
+      contents
+      useditemQuestion {
+        _id
+        contents
+        useditem
+        user {
+          _id
+          email
+          name
+          pictuer
+        }
+      }
+    }
+  }
+`;
+
+export const CREATE_USED_ITEM_QUESTION_ANSWER = gql`
+  mutation createUseditemQuestionAnswer(
+    $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
+    $useditemQuestionId: ID!
+  ) {
+    createUseditemQuestionAnswer(
+      createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+      contents
+      useditemQuestion
+      user
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const UPDATE_USED_ITEM_QUESTION_ABSWER = gql`
+  mutation updateUseditemQuestionAnswer(
+    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+    $useditemQuestionAnswerId: ID!
+  ) {
+    updateUseditemQuestionAnswer(
+      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    ) {
+      _id
+      contents
+      useditemQuestion {
+        _id
+        contents
+        useditem
+        user {
+          _id
+          email
+          name
+          picture
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;

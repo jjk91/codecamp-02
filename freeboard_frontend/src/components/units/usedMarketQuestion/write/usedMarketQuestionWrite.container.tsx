@@ -1,67 +1,63 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../../../../../pages/_app";
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationCreateUseditemArgs,
+  IMutationCreateUseditemQuestionArgs,
 } from "../../../../commons/types/generated/types";
 import BoardCommentWriteUi from "./usedMarketQuestionWrite.presenter";
 import {
-  CREATE_BOARD_COMMENT,
-  FETCH_BOARD_COMMENTS,
-  UPDATE_BOARD_COMMENT,
+  FETCH_USED_ITEM_QUESTIONS,
+  CREATE_USED_ITEM_QUESTION,
+  UPDATE_USED_ITEM_QUESTION,
+  FETCH_USED_ITEM_QUESTIONS_ANSWERS,
+  CREATE_USED_ITEM_QUESTION_ANSWER,
+  UPDATE_USED_ITEM_QUESTION_ABSWER,
 } from "./usedMarketQuestionWrite.queries";
 
-const CommentInputInit = {
-  writer: "",
-  password: "",
-  contents: "",
-  rating: 0,
-};
 
-export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
+
+export default function BoardCommentWrite(props) {
+  const { userInfo } = useContext(GlobalContext);
   const router = useRouter();
-  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
-  const [commentInput, setCommentInput] = useState(CommentInputInit);
-  const [createBoardComment] = useMutation<
+  const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
+  const [questiontInput, setQuestionInput] = useState("");
+  const [createUseditemQuestion] = useMutation<
     IMutation,
-    IMutationCreateBoardCommentArgs
-  >(CREATE_BOARD_COMMENT);
+    IMutationCreateUseditemQuestionArgs
+  >(CREATE_USED_ITEM_QUESTION);
 
   function onChangeInputs(event) {
-    const newCommentInput = {
-      ...commentInput,
-      [event.target.name]: event.target.value,
-    };
-    setCommentInput(newCommentInput);
-    if (props.isEdit) {
-      newCommentInput.writer = props.data?.fetchBoardComment?.writer;
-    }
+       setQuestionInput(event.target.value,);
+    // if (props.isEdit) {
+    //   newCommentInput.contents = props.data?.fetchUseditemQuestions?.contents;
+    // }
   }
 
   async function onClickSumit() {
     try {
-      const result = await createBoardComment({
+      const result = await createUseditemQuestion({
         variables: {
-          boardId: String(router.query.boardId),
-          createBoardCommentInput: {
-            writer: commentInput.writer,
-            contents: commentInput.contents,
-            rating: commentInput.rating,
+          useditemId: String(router.query.useditemId),
+          createUseditemQuestionInput: {
+            contents
           },
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
+            query: FETCH_USED_ITEM_QUESTIONS,
             variables: {
-              boardId: router.query.boardId,
+              useditemId: router.query.useditemId,
             },
           },
         ],
       });
 
       alert("등록되었습니다.");
-      setCommentInput({ writer: "", contents: "", password: "" });
+      setQuestionInput( contents: "" );
       // router.push(`/boards/${router.query.boardId}`)
       // 윗줄을 쓸경우도 실행은 가능 하지만
       // BoardDetail 페이지를 전체적으로 새로고침 비효율적

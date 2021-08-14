@@ -1,5 +1,8 @@
 import { HeartFilled } from "@ant-design/icons";
 import styled from "@emotion/styled";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const Wrapper = styled.div`
   margin: 80px 0;
@@ -63,22 +66,16 @@ export const ItemInfoHead = styled.div`
 `;
 export const ItemInfoHeadLeft = styled.div``;
 export const ItemRemarks = styled.div`
-  /* width: 50px;
-  height: 27px; */
   background-color: beige;
   font-size: 18px;
   color: #bdbdbd;
 `;
 export const ItemName = styled.div`
-  /* width: 100px;
-  height: 36px; */
   background-color: green;
   font-size: 24px;
 `;
 
 export const ItemPrice = styled.div`
-  /* width: 200px;
-  height: 53px; */
   background-color: firebrick;
   font-size: 36px;
 `;
@@ -92,19 +89,47 @@ export const ItemInfoHeadRigth = styled.div`
   align-items: center;
 `;
 export const ItemLike = styled(HeartFilled)``;
+
 export const ItemLikeCount = styled.div`
   font-size: 16px;
   background-color: green;
 `;
 export const ItemInfoBody = styled.div``;
+
 export const ItemInfoBodyTop = styled.div`
+  /* padding-bottom: 40px; */
+  width: 100%;
+
+  padding: 50px 150px;
+`;
+
+export const SliderImg = styled(Slider)`
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 40px;
+  padding: 0 100px;
 `;
+
+export const ItemImgWrapper = styled.div``;
+
+export const ItemImg = styled.img`
+  width: 300px;
+  height: 300px;
+`;
+
+export const ItemImgPagingWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ItemImgPaging = styled.img`
+  width: 78px;
+  height: 78px;
+`;
+
 export const ItemInfoBodyBottom = styled.div``;
+
 export const UseditemAddress = styled.div`
   border-bottom: 1px solid yellow;
   padding: 80px 0;
@@ -115,27 +140,10 @@ export const ItemMap = styled.div`
   background-color: hotpink;
 `;
 
-export const ItemImgWrapper = styled.div``;
-export const ItemImg = styled.img`
-  width: 482px;
-  height: 504px;
-  background-color: gray;
-  .slick-slider {
-    .slick-dots {
-    }
-  }
-`;
-export const settings = {
-  dots: true,
-  dotsClass: "slick-dots slick-thumb",
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
 export const ItemContents = styled.div``;
+
 export const ItemTags = styled.div`
-  text-align: left;
+  /* text-align: left; */
   padding-bottom: 40px;
   border-bottom: 1px solid yellow;
 `;

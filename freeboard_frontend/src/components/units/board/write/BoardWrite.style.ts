@@ -102,8 +102,6 @@ export const AddressDetail = styled.input`
 export const Input2 = styled(ReactQuill)`
   height: 480px;
   width: 996px;
-  padding-top: 14px;
-  padding-left: 16px;
 `;
 
 export const PostInput = styled.input`
