@@ -18,15 +18,11 @@ export default function Layout(props: any) {
   const patName = router.pathname === "/boards/login";
   return (
     <>
-      {/* {patName && (
-        <> */}
       <LayoutHeader />
       <LayoutBanner />
       <LayoutNavigation />
       <Body>{props.children}</Body>
       <LayoutFooter />
-      {/* </>
-      )} */}
     </>
   );
 }

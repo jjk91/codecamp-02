@@ -34,6 +34,7 @@ import {
   ItemImgPagingWrapper,
   ItemImgPaging,
   ItemImgWrapper,
+  PagingUl,
 } from "./UsedMarketDetail.style";
 import { v4 as uuidv4 } from "uuid";
 
@@ -49,32 +50,12 @@ export default function UsedMarketDetailUi(props) {
       );
     },
     dots: true,
+    dotsClass: "slick-dots slick-thumb",
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    variableWidth: true,
-    appendDots: (dots) => (
-      <div>
-        <ul
-          style={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            // margin: "none",
-          }}
-        >
-          {dots}
-          <li
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "78px",
-            }}
-          ></li>
-        </ul>
-      </div>
-    ),
+    appendDots: (dots) => <PagingUl> {dots} </PagingUl>,
   };
   return (
     <>

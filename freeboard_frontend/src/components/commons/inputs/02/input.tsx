@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 996px;
   width: 100%;
+  margin-bottom: 80px;
 `;
 
 const Text = styled.div`
@@ -12,14 +17,11 @@ const Text = styled.div`
   margin-bottom: 16px;
 `;
 
-const Input = styled.textarea`
+const Input = styled(ReactQuill)`
   height: 320px;
-  width: 100%;
-  margin-bottom: 40px;
+  width: 996px;
   border-radius: 5px;
   resize: none;
-  padding-left: 16px;
-  padding-top: 14px;
 `;
 const Error = styled.div`
   color: red;

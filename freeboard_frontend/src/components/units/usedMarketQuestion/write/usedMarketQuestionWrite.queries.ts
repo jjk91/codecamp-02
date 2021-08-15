@@ -2,13 +2,16 @@ import { gql } from "@apollo/client";
 
 export const FETCH_USED_ITEM_QUESTIONS = gql`
   query fetchUseditemQuestions($useditemId: ID!) {
-    fetchUseditemQuestions(useditemId: $useditemId)
-    _id
-    constents
-    useditem
-    user
-    createdAt
-    updatedAt
+    fetchUseditemQuestions(useditemId: $useditemId) {
+      _id
+      contents
+      user {
+        _id
+        name
+      }
+      createdAt
+      updatedAt
+    }
   }
 `;
 
@@ -23,12 +26,6 @@ export const CREATE_USED_ITEM_QUESTION = gql`
     ) {
       _id
       contents
-      useditem
-      user {
-        email
-        name
-        picture
-      }
       createdAt
       updatedAt
     }
@@ -46,8 +43,10 @@ export const UPDATE_USED_ITEM_QUESTION = gql`
     ) {
       _id
       contents
-      useditem
-      user
+      user {
+        _id
+        name
+      }
       createdAt
       updatedAt
     }

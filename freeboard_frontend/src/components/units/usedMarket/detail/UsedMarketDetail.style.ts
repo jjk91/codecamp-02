@@ -78,6 +78,7 @@ export const ItemName = styled.div`
 export const ItemPrice = styled.div`
   background-color: firebrick;
   font-size: 36px;
+  margin-bottom: 30px;
 `;
 export const ItemInfoHeadRigth = styled.div`
   width: 36px;
@@ -96,38 +97,38 @@ export const ItemLikeCount = styled.div`
 `;
 export const ItemInfoBody = styled.div``;
 
+// ===================================================리엑트 슬릭==========================================
+
 export const ItemInfoBodyTop = styled.div`
-  /* padding-bottom: 40px; */
-  width: 100%;
-
-  padding: 50px 150px;
+  width: 600px;
+  height: 600px;
+  margin: auto;
 `;
 
-export const SliderImg = styled(Slider)`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 100px;
-`;
+export const SliderImg = styled(Slider)``;
 
 export const ItemImgWrapper = styled.div``;
 
 export const ItemImg = styled.img`
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  margin-bottom: 110px;
 `;
-
-export const ItemImgPagingWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+export const ItemImgPagingWrapper = styled.div``;
 
 export const ItemImgPaging = styled.img`
-  width: 78px;
-  height: 78px;
+  width: 100px;
+  height: 100px;
 `;
-
+export const PagingUl = styled.ul`
+  > li {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+  }
+`;
+// ===================================================리엑트 슬릭==========================================
 export const ItemInfoBodyBottom = styled.div``;
 
 export const UseditemAddress = styled.div`

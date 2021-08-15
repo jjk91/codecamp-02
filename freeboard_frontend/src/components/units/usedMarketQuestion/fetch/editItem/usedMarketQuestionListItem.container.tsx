@@ -1,27 +1,27 @@
 import { useMutation } from "@apollo/client";
-import CommentListItemUi from "./BoardCommentListItem.presnter";
+import CommentListItemUi from "./usedMarketQuestionListItem.presnter";
 import {
-  FETCH_BOARD_COMMENTS,
-  DELETE_BOARD_COMMENT,
-} from "../BoardCommentList.queries";
+  FETCH_USED_ITEM_QUESTIONS,
+  DELETE_USER_ITEM_QUESTION,
+} from "../usedMarketQuestionList.queries";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function CommentListItem(props) {
+export default function QuestionListItem(props) {
   const router = useRouter();
-  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
+  const [deleteUseditemQuestion] = useMutation(DELETE_USER_ITEM_QUESTION);
   const [isEdit, setIsEdit] = useState(false);
 
   async function onClickDelete(event) {
     try {
-      await deleteBoardComment({
+      await deleteUseditemQuestion({
         variables: {
-          boardCommentId: event.target.id,
+          useditemQuestionId: event.target.id,
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId },
+            query: FETCH_USED_ITEM_QUESTIONS,
+            variables: { useditemId: router.query.usedMarketId },
           },
         ],
       });
