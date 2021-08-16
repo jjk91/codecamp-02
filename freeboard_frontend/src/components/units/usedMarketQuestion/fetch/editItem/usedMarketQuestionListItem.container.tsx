@@ -11,12 +11,13 @@ export default function QuestionListItem(props) {
   const router = useRouter();
   const [deleteUseditemQuestion] = useMutation(DELETE_USER_ITEM_QUESTION);
   const [isEdit, setIsEdit] = useState(false);
+  const [answer, setAnswer] = useState(false);
 
-  async function onClickDelete(event) {
+  async function onClickDelete() {
     try {
       await deleteUseditemQuestion({
         variables: {
-          useditemQuestionId: event.target.id,
+          useditemQuestionId: router.query.usedMarketId,
         },
         refetchQueries: [
           {
@@ -42,6 +43,10 @@ export default function QuestionListItem(props) {
     console.log("클릭");
     setIsEdit(false);
   }
+
+  const onClickAnswer = () => {
+    setAnswer(true);
+  };
   return (
     <CommentListItemUi
       data={props.data}
@@ -49,7 +54,9 @@ export default function QuestionListItem(props) {
       handleUpdate={handleUpdate}
       onClickEdit={onClickEdit}
       onClickDelete={onClickDelete}
+      onClickAnswer={onClickAnswer}
       isEdit={isEdit}
+      answer={answer}
     />
   );
 }

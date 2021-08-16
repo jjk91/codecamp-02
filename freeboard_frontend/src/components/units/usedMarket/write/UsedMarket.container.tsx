@@ -18,7 +18,7 @@ import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[used
 import { useEffect } from "react";
 
 const UsedMarketWrite = () => {
-  const { isEdit, data } = useContext(usedMarketEditPageContext);
+  const { data } = useContext(usedMarketEditPageContext);
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
@@ -27,10 +27,11 @@ const UsedMarketWrite = () => {
   const [address, setAddress] = useState();
   const [addressDetail, setAddressDetail] = useState();
 
-  const { register, handleSubmit, formState, setValue } = useForm({
-    mode: "onChange",
-    resolver: yupResolver(schema),
-  });
+  const { register, handleSubmit, formState, setValue, trigger, watch } =
+    useForm({
+      mode: "onChange",
+      resolver: yupResolver(schema),
+    });
 
   useEffect(() => {
     if (!data) return;
@@ -49,6 +50,13 @@ const UsedMarketWrite = () => {
     // ;
   }, [data]);
 
+  const onChangeContents = (value) => {
+    const isBlank = "<p><br></p>";
+
+    setValue("contents", value === isBlank ? "" : value);
+    trigger("contents");
+  };
+
   const onWriteUpdate = async (data) => {
     try {
       const result = await updateUseditem({
@@ -57,7 +65,7 @@ const UsedMarketWrite = () => {
           updateUseditemInput: {
             name: data.name,
             remarks: data.remarks,
-            contents: data.contents,
+            contents: String(data.contents),
             price: Number(data.price),
             tags: data.tags,
             useditemAddress: {
@@ -89,7 +97,7 @@ const UsedMarketWrite = () => {
           createUseditemInput: {
             name: data.name,
             remarks: data.remarks,
-            contents: data.contents,
+            contents: watch("contents"),
             price: Number(data.price),
             tags: data.tags,
             images: resultFile.map((el) => el.data.uploadFile.url),
@@ -129,6 +137,7 @@ const UsedMarketWrite = () => {
         errors={formState.errors}
         setAddress={setAddress}
         setAddressDetail={setAddressDetail}
+        onChangeContents={onChangeContents}
       />
     </>
   );

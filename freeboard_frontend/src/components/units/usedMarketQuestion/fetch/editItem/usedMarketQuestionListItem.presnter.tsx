@@ -11,10 +11,13 @@ import {
   Update,
   Delet,
   QuestionMain,
+  Answer,
 } from "../usedMarketQuestionList.style";
 import { getDate } from "../../../../../commons/libraries/utils";
 
 import UsedMarketQuestion from "../../write/usedMarketQuestionWrite.container";
+import UesdMarketQuestionAnswer from "../../QuestionAnswer/write/QuestionAnswer.container";
+import AnswerList from "../../QuestionAnswer/fetch/QuestionAnswerList.container";
 
 export default function QuestionListItemUi(props) {
   // isEdit ===>  false
@@ -43,6 +46,11 @@ export default function QuestionListItemUi(props) {
                   onClick={props.onClickDelete}
                   src="/images/clear-24px 2.png"
                 />
+                <Answer
+                  id={props.data._id}
+                  onClick={props.onClickAnswer}
+                  src="/images/Answer.png"
+                />
               </QuestionIcon>
             </QuestionHead>
 
@@ -50,6 +58,7 @@ export default function QuestionListItemUi(props) {
 
             <QuestionCreateAt>{getDate(props.data.createdAt)}</QuestionCreateAt>
           </QuestionMain>
+          <AnswerList data={props.data} />
         </Wrapper>
       )}
       {props.isEdit && (
@@ -60,6 +69,7 @@ export default function QuestionListItemUi(props) {
           onClickClose={props.onClickClose}
         />
       )}
+      {props.answer && <UesdMarketQuestionAnswer data={props.data} />}
     </>
   );
 }

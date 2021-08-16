@@ -1,26 +1,29 @@
 import { useMutation } from "@apollo/client";
-import CommentListItemUi from "./usedMarketQuestionListItem.presnter";
-import {
-  FETCH_USED_ITEM_QUESTIONS,
-  DELETE_USER_ITEM_QUESTION,
-} from "../usedMarketQuestionList.queries";
+import CommentListItemUi from "./QuestionAnswerListItem.presnter";
+
 import { useState } from "react";
 import { useRouter } from "next/router";
+import {
+  DELETE_USER_ITEM_QUESTION_ANSWER,
+  FETCH_USED_ITEM_QUESTIONS_ANSWERS,
+} from "../QuestionAnswerList.queries";
 
-export default function QuestionListItem(props) {
+export default function AnswerListItem(props) {
   const router = useRouter();
-  const [deleteUseditemQuestion] = useMutation(DELETE_USER_ITEM_QUESTION);
+  const [deleteUseditemQuestion] = useMutation(
+    DELETE_USER_ITEM_QUESTION_ANSWER
+  );
   const [isEdit, setIsEdit] = useState(false);
 
-  async function onClickDelete(event) {
+  async function onClickDelete() {
     try {
       await deleteUseditemQuestion({
         variables: {
-          useditemQuestionId: event.target.id,
+          useditemQuestionId: props.data._id,
         },
         refetchQueries: [
           {
-            query: FETCH_USED_ITEM_QUESTIONS,
+            query: FETCH_USED_ITEM_QUESTIONS_ANSWERS,
             variables: { useditemId: router.query.usedMarketId },
           },
         ],

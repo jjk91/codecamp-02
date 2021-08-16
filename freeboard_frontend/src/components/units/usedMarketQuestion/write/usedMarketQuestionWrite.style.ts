@@ -66,7 +66,7 @@ export const QuestionEditClose = styled.img`
 `;
 
 export const QuestionContents = styled.textarea`
-  height: ${(props) => (props.isEdit ? "64px" : "108px")};
+  height: 108px;
   width: ${(props) => (props.isEdit ? "1200px" : "1140px")};
   resize: none;
 `;

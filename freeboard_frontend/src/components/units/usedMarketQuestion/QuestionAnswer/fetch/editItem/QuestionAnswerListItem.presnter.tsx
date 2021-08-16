@@ -11,12 +11,12 @@ import {
   Update,
   Delet,
   QuestionMain,
-} from "../usedMarketQuestionList.style";
-import { getDate } from "../../../../../commons/libraries/utils";
+} from "../QuestionAnswerList.style";
+import { getDate } from "../../../../../../commons/libraries/utils";
 
-import UsedMarketQuestion from "../../write/usedMarketQuestionWrite.container";
+import UsedMarketQuestion from "../../../write/usedMarketQuestionWrite.container";
 
-export default function QuestionListItemUi(props) {
+export default function AnswerListItemUi(props) {
   // isEdit ===>  false
 
   return (

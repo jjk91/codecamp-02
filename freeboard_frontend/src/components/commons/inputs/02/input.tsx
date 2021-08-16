@@ -34,10 +34,10 @@ export default function Input02(props) {
       <Text>{props.inputTitle}</Text>
       <Input
         placeholder={props.placeholder}
-        name={props.name}
-        defaultValue={props.defaultValue}
-        onChange={props.onChangeInputs}
-        {...props.register}
+        // name={props.name}
+        // defaultValue={props.defaultValue}
+        onChange={props.onChange}
+        // {...props.register}
       />
       <Error>{props.errorMessage}</Error>
     </InputWrapper>

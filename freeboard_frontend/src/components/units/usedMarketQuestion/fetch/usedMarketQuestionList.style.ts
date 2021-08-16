@@ -64,3 +64,8 @@ export const Delet = styled.img`
   height: 18px;
   width: 18px;
 `;
+
+export const Answer = styled.img`
+  height: 18px;
+  width: 18px;
+`;

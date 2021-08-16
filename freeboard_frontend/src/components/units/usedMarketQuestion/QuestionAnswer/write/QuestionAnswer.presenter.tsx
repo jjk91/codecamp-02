@@ -1,13 +1,8 @@
 import {
   Wrapper,
   WrapperAnswer,
-  WrapperHeadAnswer,
-  AnswerTop,
-  AnswerImg,
-  AnswerTitle,
-  AnswerMid,
-  AnswernEdit,
-  AnswerEditClose,
+  QuestionMoveAnswer,
+  MoveImg,
   WrapperGroup,
   AnswerWrapper,
   AnswerUserImg,
@@ -23,17 +18,9 @@ export default function UesdMarketQuestionAnswerUi(props) {
   return (
     <Wrapper isEdit={props.isEdit}>
       <WrapperAnswer>
-        <WrapperHeadAnswer>
-          <AnswerMid>
-            {props.isEdit && (
-              <AnswerEditClose
-                isEdit={false}
-                src="/images/clear-24px 2.png"
-                onClick={props.onClickClose}
-              />
-            )}
-          </AnswerMid>
-        </WrapperHeadAnswer>
+        <QuestionMoveAnswer>
+          <MoveImg src="/images/move.png" />
+        </QuestionMoveAnswer>
         <WrapperGroup>
           <AnswerWrapper>
             {props.isEdit && (
@@ -62,7 +49,7 @@ export default function UesdMarketQuestionAnswerUi(props) {
           <WrapperFooterAnswer>
             <AnswerText>0/100</AnswerText>
             {!props.isEdit && (
-              <AnswerSubmit onClick={props.onClickSumit} isEdit={false}>
+              <AnswerSubmit onClick={props.onClickSumbit} isEdit={false}>
                 등록하기
               </AnswerSubmit>
             )}

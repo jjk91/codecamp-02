@@ -18,7 +18,6 @@ import {
 } from "./usedMarketQuestionWrite.queries";
 
 export default function UsedMarketQuestion(props) {
-  const { userInfo } = useContext(GlobalContext);
   const router = useRouter();
   const [contents, setContents] = useState("");
   const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
@@ -61,7 +60,7 @@ export default function UsedMarketQuestion(props) {
     try {
       await updateUseditemQuestion({
         variables: {
-          useditemId: String(router.query.useditemId),
+          useditemId: String(router.query.usedMarketId),
           createUseditemQuestionInput: {
             contents: event.target.value,
           },

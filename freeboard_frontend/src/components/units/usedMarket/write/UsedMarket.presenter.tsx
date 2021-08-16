@@ -62,9 +62,9 @@ export default function UsedMarketWriteUi(props) {
         />
         <Input02
           inputTitle="상품설명"
-          name="contents"
           placeholder="상품에 대하여 입력해주세요."
           // defaultValue={data?.fetchUseditem.contents}
+          onChange={props.onChangeContents}
           register={{ ...props.register("contents") }}
           errorMessage={props.errors.contents?.message}
         />
