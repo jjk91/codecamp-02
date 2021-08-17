@@ -38,16 +38,8 @@ export const UPDATE_USED_ITEM_QUESTION_ANSWER = gql`
     ) {
       _id
       contents
-      useditemQuestion {
-        _id
-        contents
-        user {
-          _id
-          name
-        }
-        createdAt
-        updatedAt
-      }
+      createdAt
+      updatedAt
     }
   }
 `;

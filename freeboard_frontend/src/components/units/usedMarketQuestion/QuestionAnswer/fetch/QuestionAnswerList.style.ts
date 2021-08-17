@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -7,51 +6,66 @@ export const Wrapper = styled.div`
   display: flex;
   border-bottom: 1px solid gray;
   margin: auto;
-  background-color: midnightblue;
+  background-color: green;
   color: white;
+  padding-right: 10px;
+`;
+export const QuestionMoveAnswer = styled.div`
+  padding-left: 64px;
+  padding-right: 25px;
+  padding-top: 16px;
 `;
 
-export const QuestionInfo = styled.div`
+export const MoveImg = styled.img`
+  width: 15px;
+  height: 17px;
+`;
+
+export const AnswerInfo = styled.div`
   margin: 16px;
 `;
 
-export const QuestionImg = styled.img`
+export const AnswerImg = styled.img`
   height: 40px;
   width: 40px;
 `;
 
-export const QuestionMain = styled.div`
+export const AnswerMain = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 `;
 
-export const QuestionHead = styled.div`
+export const AnswerHead = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const QuestionDate = styled.div`
+export const AnswerDate = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
-export const QuestionUser = styled.div`
+export const AnswerUser = styled.div`
   font-size: 16px;
   margin-right: 20px;
 `;
 
-export const QuestionContents = styled.div`
+export const AnswerContents = styled.div`
   font-size: 16px;
 `;
 
-export const QuestionCreateAt = styled.div`
+export const AnswerCreateAt = styled.div`
   font-size: 12px;
 `;
 
-export const QuestionIcon = styled.div`
+export const AnswerIcon = styled.div`
+  width: 58px;
+  padding: 3px 3px;
+  display: flex;
+  justify-content: space-between;
   padding: 3px 3px;
 `;
 

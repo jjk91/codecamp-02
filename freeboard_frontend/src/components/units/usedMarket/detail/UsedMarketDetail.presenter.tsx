@@ -24,8 +24,6 @@ import {
   ItemInfoBody,
   ItemInfoBodyTop,
   ItemInfoBodyBottom,
-  UseditemAddress,
-  ItemMap,
   ItemImg,
   SliderImg,
   ItemContents,
@@ -35,8 +33,10 @@ import {
   ItemImgPaging,
   ItemImgWrapper,
   PagingUl,
+  MapWrapper,
 } from "./UsedMarketDetail.style";
 import { v4 as uuidv4 } from "uuid";
+import KakaoMapDetail from "../../../commons/kakaomapDetail/kakaomap.contaniner";
 
 export default function UsedMarketDetailUi(props) {
   const setting = {
@@ -108,9 +108,9 @@ export default function UsedMarketDetailUi(props) {
               <ItemTags>{props.data?.fetchUseditem.tags}</ItemTags>
 
               <ItemInfoBodyBottom>
-                <UseditemAddress>
-                  <ItemMap></ItemMap>
-                </UseditemAddress>
+                <MapWrapper>
+                  <KakaoMapDetail data={props.data?.fetchUseditem} />
+                </MapWrapper>
               </ItemInfoBodyBottom>
             </ItemInfoBody>
 

@@ -11,10 +11,10 @@ export const CREATE_USED_ITEM = gql`
       tags
       images
       useditemAddress {
-        _id
-        zipcode
         address
         addressDetail
+        lat
+        lng
       }
       seller {
         _id

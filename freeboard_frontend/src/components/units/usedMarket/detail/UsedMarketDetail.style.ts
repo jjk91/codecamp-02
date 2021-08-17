@@ -129,17 +129,13 @@ export const PagingUl = styled.ul`
   }
 `;
 // ===================================================리엑트 슬릭==========================================
-export const ItemInfoBodyBottom = styled.div``;
-
-export const UseditemAddress = styled.div`
-  border-bottom: 1px solid yellow;
-  padding: 80px 0;
+export const ItemInfoBodyBottom = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-export const ItemMap = styled.div`
-  width: 792px;
-  height: 360px;
-  background-color: hotpink;
-`;
+export const MapWrapper = styled.div``;
 
 export const ItemContents = styled.div``;
 

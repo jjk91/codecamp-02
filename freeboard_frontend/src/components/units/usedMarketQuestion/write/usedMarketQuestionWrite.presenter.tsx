@@ -70,8 +70,8 @@ export default function UsedMarketQuestionUi(props) {
               </QuestionDate>
             )}
           </QuestionWrapper>
-          <WrapperFooterQuestion>
-            <QuestionText>0/100</QuestionText>
+          <WrapperFooterQuestion isEdit={true}>
+            <QuestionText>1/100</QuestionText>
             {!props.isEdit && (
               <QuestionSubmit onClick={props.onClickSumit} isEdit={false}>
                 등록하기

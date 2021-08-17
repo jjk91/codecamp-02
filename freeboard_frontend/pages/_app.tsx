@@ -5,6 +5,7 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import { onError } from "@apollo/client/link/error";
 import "../styles/globals.css";
 import "antd/dist/antd.css";
 import Layout from "../src/components/commons/layout";
@@ -12,6 +13,8 @@ import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { createUploadLink } from "apollo-upload-client";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { useEffect } from "react";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 
 interface IContext {
   accessToken: string;
@@ -34,18 +37,36 @@ function MyApp({ Component, pageProps }: AppProps) {
     setUserInfo: setUserInfo,
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
+  }, []);
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authroization: `Bearer ${getAccessToken(setAccessToken)}`,
+            },
+          });
+          return forward(operation);
+        }
+      }
+    }
+  });
+
   const uploadLink = createUploadLink({
-    uri: "http://backend02.codebootcamp.co.kr/graphql",
+    uri: "https://backend02.codebootcamp.co.kr/graphql",
     headers: {
-      authorization: `Bearer ${
-        (typeof window !== "undefined" && localStorage.getItem("key")) || ""
-      }`,
+      authorization: `Bearer ${accessToken}`,
     },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
     // uri: "http://backend02.codebootcamp.co.kr/graphql",
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
 

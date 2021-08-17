@@ -1,16 +1,18 @@
 import {
   Wrapper,
-  QuestionHead,
-  QuestionInfo,
-  QuestionImg,
-  QuestionDate,
-  QuestionUser,
-  QuestionContents,
-  QuestionCreateAt,
-  QuestionIcon,
+  QuestionMoveAnswer,
+  MoveImg,
+  AnswerHead,
+  AnswerInfo,
+  AnswerImg,
+  AnswerDate,
+  AnswerUser,
+  AnswerContents,
+  AnswerCreateAt,
+  AnswerIcon,
   Update,
   Delet,
-  QuestionMain,
+  AnswerMain,
 } from "../QuestionAnswerList.style";
 import { getDate } from "../../../../../../commons/libraries/utils";
 
@@ -23,16 +25,19 @@ export default function AnswerListItemUi(props) {
     <>
       {!props.isEdit && (
         <Wrapper>
-          <QuestionInfo>
-            <QuestionImg src="/images/ic_profile-96px.png" />
-          </QuestionInfo>
-          <QuestionMain>
-            <QuestionHead>
-              <QuestionDate>
-                <QuestionUser>{props.data.user.name}</QuestionUser>
-              </QuestionDate>
+          <QuestionMoveAnswer>
+            <MoveImg src="/images/move.png" />
+          </QuestionMoveAnswer>
+          <AnswerInfo>
+            <AnswerImg src="/images/ic_profile-96px.png" />
+          </AnswerInfo>
+          <AnswerMain>
+            <AnswerHead>
+              <AnswerDate>
+                <AnswerUser>{props.data.user.name}</AnswerUser>
+              </AnswerDate>
 
-              <QuestionIcon>
+              <AnswerIcon>
                 <Update
                   id={props.data._id}
                   onClick={props.onClickEdit}
@@ -43,13 +48,13 @@ export default function AnswerListItemUi(props) {
                   onClick={props.onClickDelete}
                   src="/images/clear-24px 2.png"
                 />
-              </QuestionIcon>
-            </QuestionHead>
+              </AnswerIcon>
+            </AnswerHead>
 
-            <QuestionContents>{props.data.contents}</QuestionContents>
+            <AnswerContents>{props.data.contents}</AnswerContents>
 
-            <QuestionCreateAt>{getDate(props.data.createdAt)}</QuestionCreateAt>
-          </QuestionMain>
+            <AnswerCreateAt>{getDate(props.data.createdAt)}</AnswerCreateAt>
+          </AnswerMain>
         </Wrapper>
       )}
       {props.isEdit && (

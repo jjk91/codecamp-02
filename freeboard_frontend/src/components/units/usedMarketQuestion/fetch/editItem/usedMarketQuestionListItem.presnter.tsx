@@ -1,5 +1,7 @@
 import {
   Wrapper,
+  QuestionAnswer,
+  Question,
   QuestionHead,
   QuestionInfo,
   QuestionImg,
@@ -26,39 +28,45 @@ export default function QuestionListItemUi(props) {
     <>
       {!props.isEdit && (
         <Wrapper>
-          <QuestionInfo>
-            <QuestionImg src="/images/ic_profile-96px.png" />
-          </QuestionInfo>
-          <QuestionMain>
-            <QuestionHead>
-              <QuestionDate>
-                <QuestionUser>{props.data.user.name}</QuestionUser>
-              </QuestionDate>
+          <QuestionAnswer>
+            <Question>
+              <QuestionInfo>
+                <QuestionImg src="/images/ic_profile-96px.png" />
+              </QuestionInfo>
+              <QuestionMain>
+                <QuestionHead>
+                  <QuestionDate>
+                    <QuestionUser>{props.data.user.name}</QuestionUser>
+                  </QuestionDate>
 
-              <QuestionIcon>
-                <Update
-                  id={props.data._id}
-                  onClick={props.onClickEdit}
-                  src="/images/mode-24px.png"
-                />
-                <Delet
-                  id={props.data._id}
-                  onClick={props.onClickDelete}
-                  src="/images/clear-24px 2.png"
-                />
-                <Answer
-                  id={props.data._id}
-                  onClick={props.onClickAnswer}
-                  src="/images/Answer.png"
-                />
-              </QuestionIcon>
-            </QuestionHead>
+                  <QuestionIcon>
+                    <Answer
+                      id={props.data._id}
+                      onClick={props.onClickAnswer}
+                      src="/images/Answer.png"
+                    />
+                    <Update
+                      id={props.data._id}
+                      onClick={props.onClickEdit}
+                      src="/images/mode-24px.png"
+                    />
+                    <Delet
+                      id={props.data._id}
+                      onClick={props.onClickDelete}
+                      src="/images/clear-24px 2.png"
+                    />
+                  </QuestionIcon>
+                </QuestionHead>
 
-            <QuestionContents>{props.data.contents}</QuestionContents>
+                <QuestionContents>{props.data.contents}</QuestionContents>
 
-            <QuestionCreateAt>{getDate(props.data.createdAt)}</QuestionCreateAt>
-          </QuestionMain>
-          <AnswerList data={props.data} />
+                <QuestionCreateAt>
+                  {getDate(props.data.createdAt)}
+                </QuestionCreateAt>
+              </QuestionMain>
+            </Question>
+            <AnswerList data={props.data} />
+          </QuestionAnswer>
         </Wrapper>
       )}
       {props.isEdit && (

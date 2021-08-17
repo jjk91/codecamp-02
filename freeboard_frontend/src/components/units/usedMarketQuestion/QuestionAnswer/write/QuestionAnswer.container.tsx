@@ -37,7 +37,6 @@ export default function UesdMarketQuestionAnswer(props) {
   }
 
   async function onClickSumbit() {
-    alert(11);
     try {
       await createUseditemQuestionAnswer({
         variables: {
@@ -61,11 +60,11 @@ export default function UesdMarketQuestionAnswer(props) {
     }
   }
 
-  async function onClickUpdate() {
+  async function onClickUpdate(event) {
     try {
       await updateUseditemQuestionAnswer({
         variables: {
-          useditemQuestionId: props.data._id,
+          useditemQuestionAnswerId: event.target.id,
           createUseditemQuestionAnswerInput: {
             contents: answerContents,
           },

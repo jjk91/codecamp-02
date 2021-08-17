@@ -44,7 +44,6 @@ export const UPDATE_USED_ITEM_QUESTION = gql`
       _id
       contents
       user {
-        _id
         name
       }
       createdAt

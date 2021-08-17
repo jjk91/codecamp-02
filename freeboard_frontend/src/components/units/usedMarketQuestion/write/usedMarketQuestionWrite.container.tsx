@@ -33,7 +33,7 @@ export default function UsedMarketQuestion(props) {
 
   async function onClickSumit() {
     try {
-      const result = await createUseditemQuestion({
+      await createUseditemQuestion({
         variables: {
           useditemId: String(router.query.usedMarketId),
           createUseditemQuestionInput: {
@@ -60,16 +60,16 @@ export default function UsedMarketQuestion(props) {
     try {
       await updateUseditemQuestion({
         variables: {
-          useditemId: String(router.query.usedMarketId),
-          createUseditemQuestionInput: {
-            contents: event.target.value,
+          useditemQuestionId: event.target.id,
+          updateUseditemQuestionInput: {
+            contents,
           },
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTIONS,
             variables: {
-              useditemId: router.query.useditemId,
+              useditemId: String(router.query.usedMarketId),
             },
           },
         ],

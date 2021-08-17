@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   height: 230px;
   width: 1200px;
-  margin: auto;
+  /* margin: auto; */
   background-color: midnightblue;
 `;
 
@@ -16,6 +16,7 @@ export const WrapperAnswer = styled.div`
 export const QuestionMoveAnswer = styled.div`
   padding-left: 64px;
   padding-right: 25px;
+  padding-top: 16px;
 `;
 export const MoveImg = styled.img`
   width: 15px;
@@ -38,6 +39,7 @@ export const AnswerContents = styled.textarea`
   height: 108px;
   width: 1096px;
   resize: none;
+  color: ${(props) => (props.isEdit ? "white" : "black")};
 `;
 
 export const AnswerDate = styled.div``;

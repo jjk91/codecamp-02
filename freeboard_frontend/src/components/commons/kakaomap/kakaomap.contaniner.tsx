@@ -10,6 +10,7 @@ declare const window: typeof globalThis & {
 export default function KakaoMap(props) {
   const [search, setSearch] = useState("");
   const [kakaoAddress, setKakaoAddress] = useState("");
+
   // const [addressDetail, setAddressDetail] = useState("");
   const { register, handleSubmit, formState, setValue } = useForm({
     mode: "onChange",
@@ -82,8 +83,10 @@ export default function KakaoMap(props) {
               setKakaoAddress(place.place_name)
             );
             props.setAddress(place.place_name);
-
+            props.setLat(marker.getPosition().getLat());
+            props.setLng(marker.getPosition().getLng());
             infowindow.open(map, marker);
+            console.log(marker.getPosition());
           });
         }
       });

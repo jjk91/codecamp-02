@@ -24,6 +24,8 @@ const UsedMarketWrite = () => {
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [files, setFiles] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
   const [address, setAddress] = useState();
   const [addressDetail, setAddressDetail] = useState();
 
@@ -104,6 +106,8 @@ const UsedMarketWrite = () => {
             useditemAddress: {
               address,
               addressDetail,
+              lat,
+              lng,
             },
           },
         },
@@ -128,6 +132,8 @@ const UsedMarketWrite = () => {
   return (
     <>
       <UsedMarketWriteUi
+        setLat={setLat}
+        setLng={setLng}
         register={register}
         handleSubmit={handleSubmit}
         onWriteSubmit={onWriteSubmit}

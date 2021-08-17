@@ -69,6 +69,7 @@ export const QuestionContents = styled.textarea`
   height: 108px;
   width: ${(props) => (props.isEdit ? "1200px" : "1140px")};
   resize: none;
+  color: black;
 `;
 export const QuestionWrapper = styled.div`
   display: flex;
@@ -83,6 +84,8 @@ export const WrapperGroup = styled.div`
 export const WrapperFooterQuestion = styled.div`
   display: flex;
   justify-content: space-between;
+
+  padding-left: ${(props) => (props.isEdit ? "60px	" : "0")};
 `;
 
 export const QuestionText = styled.div`

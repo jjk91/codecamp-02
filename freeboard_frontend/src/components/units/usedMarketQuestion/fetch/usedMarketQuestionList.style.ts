@@ -1,14 +1,25 @@
 import styled from "@emotion/styled";
-import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  height: 120px;
+  /* height: 200px; */
   display: flex;
   border-bottom: 1px solid gray;
   margin: auto;
-  background-color: midnightblue;
+  background-color: red;
   color: white;
+  padding-right: 10px;
+`;
+
+export const QuestionAnswer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+export const Question = styled.div`
+  height: 130px;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const QuestionInfo = styled.div`
@@ -52,7 +63,10 @@ export const QuestionCreateAt = styled.div`
 `;
 
 export const QuestionIcon = styled.div`
+  width: 80px;
   padding: 3px 3px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Update = styled.img`

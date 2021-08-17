@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import CommentListItemUi from "./QuestionAnswerListItem.presnter";
+import AnswerListItemUi from "./QuestionAnswerListItem.presnter";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -46,7 +46,7 @@ export default function AnswerListItem(props) {
     setIsEdit(false);
   }
   return (
-    <CommentListItemUi
+    <AnswerListItemUi
       data={props.data}
       onClickClose={onClickClose}
       handleUpdate={handleUpdate}
