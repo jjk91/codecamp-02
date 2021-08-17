@@ -61,11 +61,12 @@ export default function LoginPage() {
       // });
       // console.log(result.data?.loginUser.accessToken);
       // alert(result.data?.loginUser.accessToken);
-      // setAccessToken(result.data?.loginUser.accessToken || "");
+      setAccessToken(result.data?.loginUser.accessToken || "");
+      localStorage.setItem("refreshToken", "true");
       // router.push("/22-login-success");
-      localStorage.getItem(result.data?.loginUser.accessToken || "");
+      // localStorage.getItem(result.data?.loginUser.accessToken || "");
 
-      router.push("/23-hoc");
+      router.push("/22-login-success");
     } catch (error) {
       alert(error.message);
     }
