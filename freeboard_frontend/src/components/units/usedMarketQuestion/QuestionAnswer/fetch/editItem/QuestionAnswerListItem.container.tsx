@@ -42,7 +42,6 @@ export default function AnswerListItem(props) {
   }
 
   function onClickClose() {
-    console.log("클릭");
     setIsEdit(false);
   }
   return (
@@ -53,6 +52,7 @@ export default function AnswerListItem(props) {
       onClickEdit={onClickEdit}
       onClickDelete={onClickDelete}
       isEdit={isEdit}
+      setIsEdit={setIsEdit}
     />
   );
 }

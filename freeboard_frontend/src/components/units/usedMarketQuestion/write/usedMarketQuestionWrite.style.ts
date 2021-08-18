@@ -1,17 +1,16 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  height: 230px;
   width: 1200px;
-  /* background-color: ${(props) => (props.isEdit ? "purple" : "skyblue")}; */
   margin: auto;
-  background-color: midnightblue;
-`;
-
-export const WrapperQuestion = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+// export const WrapperQuestion = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
 
 export const WrapperHeadQuestion = styled.div`
   display: flex;
@@ -22,7 +21,6 @@ export const QuestionTop = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 40px;
-  color: white;
 `;
 
 export const QuestionDate = styled.div`
@@ -33,7 +31,6 @@ export const QuestionDate = styled.div`
 export const QuestionUser = styled.div`
   font-size: 16px;
   margin-right: 20px;
-  color: white;
 `;
 
 export const QuestionUserImg = styled.img`
@@ -69,7 +66,9 @@ export const QuestionContents = styled.textarea`
   height: 108px;
   width: ${(props) => (props.isEdit ? "1200px" : "1140px")};
   resize: none;
-  color: black;
+  color: #bdbdbd;
+  border: 1px solid #bdbdbd;
+  border-bottom: none;
 `;
 export const QuestionWrapper = styled.div`
   display: flex;
@@ -84,8 +83,8 @@ export const WrapperGroup = styled.div`
 export const WrapperFooterQuestion = styled.div`
   display: flex;
   justify-content: space-between;
-
-  padding-left: ${(props) => (props.isEdit ? "60px	" : "0")};
+  border: 1px solid #bdbdbd;
+  padding-left: ${(props) => (props.isEdit ? "0	" : "60px")};
 `;
 
 export const QuestionText = styled.div`
@@ -97,7 +96,7 @@ export const QuestionSubmit = styled.div`
   height: 52px;
   width: 91px;
   background-color: ${(props) => (props.isEdit ? "#FF8200	" : "#B9062F")};
-  color: ${(props) => (props.isEdit ? "white" : "white")};
+  color: white;
   font-size: 16px;
   line-height: 52px;
   text-align: center;

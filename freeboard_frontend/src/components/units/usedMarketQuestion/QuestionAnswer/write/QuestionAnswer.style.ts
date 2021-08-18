@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  height: 230px;
   width: 1200px;
-  /* margin: auto; */
-  background-color: midnightblue;
 `;
 
 export const WrapperAnswer = styled.div`
@@ -39,7 +36,6 @@ export const AnswerContents = styled.textarea`
   height: 108px;
   width: 1096px;
   resize: none;
-  color: ${(props) => (props.isEdit ? "white" : "black")};
 `;
 
 export const AnswerDate = styled.div``;
@@ -62,7 +58,7 @@ export const AnswerSubmit = styled.button`
   height: 52px;
   width: 91px;
   background-color: ${(props) => (props.isEdit ? "#FF8200	" : "#B9062F")};
-  color: ${(props) => (props.isEdit ? "white" : "white")};
+  color: white;
   font-size: 16px;
   line-height: 52px;
   text-align: center;

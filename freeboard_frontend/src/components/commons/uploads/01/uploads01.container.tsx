@@ -5,6 +5,7 @@ import { CheckValidationFile } from "../../../../commons/libraries/validations";
 // import { UPLOAD_FILE } from "./uploads01.querise";
 
 export default function Uploads01(props) {
+  console.log(props);
   const fileRef = useRef<HTMLInputElement>(null);
 
   // const [uploadFile] = useMutation(UPLOAD_FILE);
@@ -40,6 +41,7 @@ export default function Uploads01(props) {
         fileRef={fileRef}
         onClickUpload={onClickUpload}
         onChangeFile={onChangeFile}
+        thumb={props.thumb}
       />
     </>
   );

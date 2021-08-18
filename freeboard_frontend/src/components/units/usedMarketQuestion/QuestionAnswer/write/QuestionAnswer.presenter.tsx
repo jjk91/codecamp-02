@@ -5,7 +5,6 @@ import {
   MoveImg,
   WrapperGroup,
   AnswerWrapper,
-  AnswerUserImg,
   AnswerContents,
   AnswerDate,
   AnswerUser,
@@ -16,16 +15,13 @@ import {
 
 export default function UesdMarketQuestionAnswerUi(props) {
   return (
-    <Wrapper isEdit={props.isEdit}>
+    <Wrapper>
       <WrapperAnswer>
         <QuestionMoveAnswer>
           <MoveImg src="/images/move.png" />
         </QuestionMoveAnswer>
         <WrapperGroup>
           <AnswerWrapper>
-            {props.isEdit && (
-              <AnswerUserImg src="/images/ic_profile-96px.png" />
-            )}
             {!props.isEdit && (
               <AnswerContents
                 onChange={props.onChangeInputs}
@@ -36,20 +32,17 @@ export default function UesdMarketQuestionAnswerUi(props) {
             )}
 
             {props.isEdit && (
-              <AnswerDate>
-                <AnswerUser>{props.data.user.name}</AnswerUser>
-                <AnswerContents
-                  onChange={props.onChangeInputs}
-                  name="contents"
-                  defaultValue={props.data?.contents}
-                />
-              </AnswerDate>
+              <AnswerContents
+                onChange={props.onChangeInputs}
+                name="contents"
+                defaultValue={props.data?.contents}
+              />
             )}
           </AnswerWrapper>
           <WrapperFooterAnswer>
             <AnswerText>0/100</AnswerText>
             {!props.isEdit && (
-              <AnswerSubmit onClick={props.onClickSumbit} isEdit={false}>
+              <AnswerSubmit onClick={props.onClickSumbit}>
                 등록하기
               </AnswerSubmit>
             )}

@@ -18,6 +18,7 @@ import {
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
+import { useEffect } from "react";
 
 interface InputTypes {
   writer?: string | null;
@@ -67,9 +68,18 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setAddressDetail(event.target.value);
   }
 
-  const { data } = useQuery<IQuery, IQueryFetchBoardArgs>(FETCH_BOARD, {
-    variables: { boardId: String(router.query.boardId) },
-  });
+  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+    FETCH_BOARD,
+    {
+      variables: { boardId: String(router.query.boardId) },
+    }
+  );
+
+  // useEffect(() => {
+  //   if (props.isEdit && data?.fetchBoard?.images) {
+  //     setFiles(data?.fetchBoard?.images);
+  //   }
+  // }, []);
 
   function checkInputs(newInputs: any) {
     let able = false;
@@ -158,13 +168,29 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     if (inputs.title) newInputs.title = inputs.title;
     if (inputs.contents) newInputs.contents = inputs.contents;
 
+    const newFiles: Array<File> = files.filter((data) => data !== undefined);
+
+    // console.log(files);
+    const resultFile = await Promise.all(
+      newFiles.map((data) => uploadFile({ variables: { file: data } }))
+
+      // files.map((data) => uploadFile({ variables: { file: data } }))
+    );
+    console.log(resultFile);
+    newInputs.images = resultFile;
+    console.log(newInputs);
+    const fetchBoardImages = data?.fetchBoard.images || [];
+    const newImages = resultFile.map((el) => el.data.uploadFile.url);
+
     if (Object.values(newInputs).every((data) => data)) {
       try {
         const result = await updateBoard({
           variables: {
             boardId: router.query.boardId, // router은 주소
             password: inputs.password, // inputs에 입력된 password
-            updateBoardInput: { ...newInputs },
+            updateBoardInput: {
+              images: [...fetchBoardImages, ...newImages],
+            },
           },
         });
         Modal.info({

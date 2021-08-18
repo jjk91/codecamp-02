@@ -10,7 +10,6 @@ export default function UsedMarketQuestionList() {
   const { data } = useQuery(FETCH_USED_ITEM_QUESTIONS, {
     variables: { useditemId: router.query.usedMarketId },
   });
-  console.log(data);
 
   return <UsedMarketQuestionListUi data={data} />;
 }

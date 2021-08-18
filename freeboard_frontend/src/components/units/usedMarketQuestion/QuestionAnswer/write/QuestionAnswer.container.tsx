@@ -6,7 +6,7 @@ import {
   UPDATE_USED_ITEM_QUESTION_ANSWER,
 } from "./QuestionAnswer.queries";
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationCreateUseditemQuestionAnswerArgs,
@@ -17,12 +17,8 @@ export default function UesdMarketQuestionAnswer(props) {
   const router = useRouter();
 
   const [isEdit, setIsEdit] = useState(false);
-  const [answerContents, setAnswerContents] = useState("");
-  const { data } = useQuery(FETCH_USED_ITEM_QUESTIONS_ANSWERS, {
-    variables: {
-      useditemQuestionId: props.data._id,
-    },
-  });
+  const [contents, setContents] = useState("");
+
   const [updateUseditemQuestionAnswer] = useMutation(
     UPDATE_USED_ITEM_QUESTION_ANSWER
   );
@@ -33,7 +29,7 @@ export default function UesdMarketQuestionAnswer(props) {
   >(CREATE_USED_ITEM_QUESTION_ANSWER);
 
   function onChangeInputs(event) {
-    setAnswerContents(event.target.value);
+    setContents(event.target.value);
   }
 
   async function onClickSumbit() {
@@ -42,7 +38,7 @@ export default function UesdMarketQuestionAnswer(props) {
         variables: {
           useditemQuestionId: props.data._id,
           createUseditemQuestionAnswerInput: {
-            contents: answerContents,
+            contents: contents,
           },
         },
         refetchQueries: [
@@ -60,25 +56,26 @@ export default function UesdMarketQuestionAnswer(props) {
     }
   }
 
-  async function onClickUpdate(event) {
+  async function onClickUpdate() {
     try {
       await updateUseditemQuestionAnswer({
         variables: {
-          useditemQuestionAnswerId: event.target.id,
-          createUseditemQuestionAnswerInput: {
-            contents: answerContents,
+          useditemQuestionAnswerId: props.data._id,
+          updateUseditemQuestionAnswerInput: {
+            contents: contents,
           },
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTIONS_ANSWERS,
             variables: {
-              useditemQuestionId: props.data._id,
+              useditemQuestionAnswerId: props.data._id,
             },
           },
         ],
       });
-      Modal.success({ content: "해당 댓글을 수정합니다." });
+      props.setIsEdit(false);
+      Modal.success({ content: "해당 댓글을 수정합니다!." });
     } catch (error) {
       Modal.error({ content: error.message });
     }
@@ -93,8 +90,8 @@ export default function UesdMarketQuestionAnswer(props) {
 
   return (
     <UesdMarketQuestionAnswerUi
-      data={data}
-      isEdit={isEdit}
+      data={props.data}
+      isEdit={props.isEdit}
       onClickUpdate={onClickUpdate}
       onClickSumbit={onClickSumbit}
       onClickEdit={onClickEdit}

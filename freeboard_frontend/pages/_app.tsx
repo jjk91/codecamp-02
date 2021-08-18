@@ -40,10 +40,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
   }, []);
+
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        if (err.extensions?.code === "UNAUTHENTICATED") {
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          // 2. 발급받은 accessToken 으로 방금 실패했던  쿼리 재실행하기
           operation.setContext({
             headers: {
               ...operation.getContext().headers,

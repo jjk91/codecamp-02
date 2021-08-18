@@ -62,8 +62,11 @@ export default function Login() {
       });
       setUserInfo(resultUser.data.fetchUserLoggedIn);
 
-      localStorage.setItem("key", result.data.loginUser.accessToken || "");
-
+      localStorage.setItem(
+        "refreshToken",
+        result.data.loginUser.accessToken || ""
+      );
+      // localStorage.setItem("refreshToken", "true");
       console.log(result.data.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
       alert("로그인되었습니다.");

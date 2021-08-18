@@ -10,7 +10,5 @@ export default function AnswerList(props) {
     variables: { useditemQuestionId: props.data._id },
   });
 
-  console.log(props.data._id);
-
   return <AnswerListUi data={data} />;
 }

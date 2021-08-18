@@ -16,7 +16,7 @@ import {
 } from "../QuestionAnswerList.style";
 import { getDate } from "../../../../../../commons/libraries/utils";
 
-import UsedMarketQuestion from "../../../write/usedMarketQuestionWrite.container";
+import UesdMarketQuestionAnswer from "../../write/QuestionAnswer.container";
 
 export default function AnswerListItemUi(props) {
   // isEdit ===>  false
@@ -58,11 +58,12 @@ export default function AnswerListItemUi(props) {
         </Wrapper>
       )}
       {props.isEdit && (
-        <UsedMarketQuestion
+        <UesdMarketQuestionAnswer
           isEdit={true}
           data={props.data}
           handleUpdate={props.handleUpdate}
           onClickClose={props.onClickClose}
+          setIsEdit={props.setIsEdit}
         />
       )}
     </>

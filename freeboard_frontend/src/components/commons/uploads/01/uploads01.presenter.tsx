@@ -3,8 +3,11 @@ import { UploadButton, UploadImage, UploadImageRef } from "./uploads01.styles";
 export default function Uploads01Ui(props) {
   return (
     <>
-      {props.file ? (
-        <UploadImage src={props.file} onClick={props.onClickUpload} />
+      {props.file || props.thumb ? (
+        <UploadImage
+          src={props.file || `https://storage.googleapis.com/${props.thumb} `}
+          onClick={props.onClickUpload}
+        />
       ) : (
         <UploadButton onClick={props.onClickUpload}>
           <div>+</div>

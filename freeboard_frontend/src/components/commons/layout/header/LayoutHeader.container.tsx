@@ -1,9 +1,15 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { useEffect } from "react";
 import LayoutHeaderUi from "./LayoutHeader.presenter";
 
 export default function LayoutHeader() {
   const router = useRouter();
+  const [token, setToken] = useState("");
 
+  useEffect(() => {
+    setToken(localStorage.getItem("refreshToken"));
+  }, []);
   function onClickLogin() {
     router.push("/boards/login");
   }
@@ -12,6 +18,10 @@ export default function LayoutHeader() {
   }
 
   return (
-    <LayoutHeaderUi onClickSignUp={onClickSignUp} onClickLogin={onClickLogin} />
+    <LayoutHeaderUi
+      onClickSignUp={onClickSignUp}
+      onClickLogin={onClickLogin}
+      token={token}
+    />
   );
 }
