@@ -10,5 +10,5 @@ export default function AnswerList(props) {
     variables: { useditemQuestionId: props.data._id },
   });
 
-  return <AnswerListUi data={data} />;
+  return <AnswerListUi data={data} dataId={props.data} />;
 }

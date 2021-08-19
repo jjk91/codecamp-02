@@ -4,10 +4,10 @@ export const Wrapper = styled.div`
   width: 1200px;
   height: 120px;
   display: flex;
-  border-bottom: 1px solid gray;
+  /* border-top: 1px solid #bdbdbd; */
+  border-bottom: 1px solid #bdbdbd;
   margin: auto;
-  background-color: green;
-  color: white;
+  /* color: white; */
   padding-right: 10px;
 `;
 export const QuestionMoveAnswer = styled.div`

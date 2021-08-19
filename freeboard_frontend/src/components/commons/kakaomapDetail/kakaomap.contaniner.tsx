@@ -8,8 +8,9 @@ declare const window: typeof globalThis & {
 };
 
 export default function KakaoMapDetail(props) {
+  console.log("11번쨰", props);
   useEffect(() => {
-    console.log(props.data);
+    console.log("useeffect", props);
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=ecc9f338d4140428f6915924ceaa0b69&autoload=false&libraries=services";
@@ -48,7 +49,7 @@ export default function KakaoMapDetail(props) {
         marker.setMap(map);
       });
     };
-  }, []);
+  }, [props.data]);
 
   return (
     <>

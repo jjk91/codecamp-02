@@ -18,7 +18,7 @@ export default function UesdMarketQuestionAnswerUi(props) {
     <Wrapper>
       <WrapperAnswer>
         <QuestionMoveAnswer>
-          <MoveImg src="/images/move.png" />
+          <MoveImg src="/images/move.svg" />
         </QuestionMoveAnswer>
         <WrapperGroup>
           <AnswerWrapper>

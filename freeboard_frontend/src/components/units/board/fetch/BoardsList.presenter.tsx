@@ -26,12 +26,6 @@ import Paginations01 from "../../../commons/paginations/01/paginations01.contain
 export default function BoardDetailUi(props: IBoardDetailUiProps) {
   return (
     <Wrapper>
-      <SearchPage
-        data={props.data}
-        refetch={props.refetch}
-        search={props.search}
-        setSearch={props.setSearch}
-      />
       <WrapperTitleList>
         <TitleNumber>번호</TitleNumber>
         <TitleTitle>제목</TitleTitle>
@@ -49,6 +43,12 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
         </WrapperList>
       ))}
       <WrapperFooter>
+        <SearchPage
+          data={props.data}
+          refetch={props.refetch}
+          search={props.search}
+          setSearch={props.setSearch}
+        />
         <Paginations01
           refetch={props.refetch}
           startPage={props.startPage}
@@ -81,7 +81,7 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
         </BoardPagination> */}
         <NewBoradWiter>
           <NewBoardSubmit onClick={props.onClickCreate}>
-            <NewBoardImg src="/images/mode-24px.png" />
+            <NewBoardImg src="/images/mode-24px.svg" />
             등록하기
           </NewBoardSubmit>
         </NewBoradWiter>

@@ -39,6 +39,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
+    if (localStorage.getItem("userInfoData"))
+      setUserInfo(JSON.parse(localStorage.getItem("userInfoData") || "{}"));
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {

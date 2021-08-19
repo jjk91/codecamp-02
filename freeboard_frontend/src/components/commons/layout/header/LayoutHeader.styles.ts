@@ -34,7 +34,11 @@ export const InnerButton = styled.span`
   font-weight: bold;
 `;
 
-export const UserWrapper = styled.div``;
+export const UserWrapper = styled.div`
+  background-color: red;
+  height: 100%;
+  width: 200px;
+`;
 
 export const UserImg = styled.img`
   width: 50px;
@@ -46,4 +50,14 @@ export const UserInfo = styled.span`
   font-size: 16px;
   color: white;
   margin-right: 20px;
+`;
+
+export const PaymentWarpper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+export const UserPoint = styled.div`
+  width: 50px;
+  background-color: yellow;
 `;

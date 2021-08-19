@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 
 export const SearchWrapper = styled.div`
-  width: 500px;
-  height: 60px;
-  border: black solid 1px;
+  width: 350px;
+  height: 52px;
+  border: #bdbdbd solid 1px;
   border-radius: 10px;
   /* padding: 20px; */
-  background-color: #f2f2f2;
+  background-color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,10 +17,10 @@ export const Search = styled.img`
   margin: 0px 15px;
 `;
 export const InputSearch = styled.input`
-  /* 
-  border-radius: 10px;
-  height: 52px; */
+  /* border-radius: 10px; */
+  height: 50px;
   border: none;
-  background-color: #f2f2f2;
+  border-radius: 10px;
+  background-color: white;
   width: 100%;
 `;

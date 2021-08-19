@@ -58,7 +58,7 @@ export const Bar = styled.div`
 export const FindWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   color: white;
 `;
 export const FindEmail = styled.div``;

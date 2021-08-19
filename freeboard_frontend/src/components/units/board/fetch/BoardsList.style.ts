@@ -64,8 +64,9 @@ export const ListDate = styled.div`
 export const WrapperFooter = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 50px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0;
 `;
 export const BoardPagination = styled.div`
   display: flex;

@@ -10,25 +10,26 @@ import {
 
 export default function AnswerListItem(props) {
   const router = useRouter();
-  const [deleteUseditemQuestion] = useMutation(
+  const [deleteUseditemQuestionAnswer] = useMutation(
     DELETE_USER_ITEM_QUESTION_ANSWER
   );
   const [isEdit, setIsEdit] = useState(false);
 
   async function onClickDelete() {
     try {
-      await deleteUseditemQuestion({
+      await deleteUseditemQuestionAnswer({
         variables: {
-          useditemQuestionId: props.data._id,
+          useditemQuestionAnswerId: props.data._id,
         },
         refetchQueries: [
           {
             query: FETCH_USED_ITEM_QUESTIONS_ANSWERS,
-            variables: { useditemId: router.query.usedMarketId },
+            variables: { useditemQuestionId: props.dataId._id },
           },
         ],
       });
-      alert("댓글이 삭제되었습니다.");
+      setIsEdit(false);
+      alert("대댓글이 삭제되었습니다.");
     } catch (error) {
       alert(error.message);
     }
@@ -47,6 +48,7 @@ export default function AnswerListItem(props) {
   return (
     <AnswerListItemUi
       data={props.data}
+      qustionData={props.qustionData}
       onClickClose={onClickClose}
       handleUpdate={handleUpdate}
       onClickEdit={onClickEdit}

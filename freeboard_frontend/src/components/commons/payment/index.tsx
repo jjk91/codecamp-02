@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Head from "next/head";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import { Modal, Button } from "antd";
 import styled from "@emotion/styled";
+import { GlobalContext } from "../../../../pages/_app";
 
 const CREATE_POING_TRANSACTION_OF_LOADING = gql`
   mutation createPointTransactionOfLoading($impUid: ID!) {
     createPointTransactionOfLoading(impUid: $impUid) {
       _id
+      amount
+      impUid
     }
+  }
+`;
+
+const FETCH_POING_TRANSACTIONS = gql`
+  query fetchPointTransactionsCountOfSelling {
+    fetchPointTransactionsCountOfSelling
   }
 `;
 const PointWrapper = styled.div``;
@@ -49,20 +58,15 @@ const PointText = styled.div`
 `;
 
 export default function Payment() {
+  const { setUserInfo, userInfo } = useContext(GlobalContext);
+
   const [amount, setAmount] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
   };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  const { data } = useQuery(FETCH_POING_TRANSACTIONS);
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POING_TRANSACTION_OF_LOADING
   );
@@ -88,14 +92,19 @@ export default function Payment() {
         buyer_addr: "서울특별시 강남구 신사동",
         buyer_postcode: "01181",
       },
-      (rsp) => {
+      async (rsp) => {
         // callback
         if (rsp.success) {
-          createPointTransactionOfLoading({
+          const result = await createPointTransactionOfLoading({
             variables: {
               impUid: rsp.imp_uid,
             },
           });
+          setUserInfo({
+            ...userInfo,
+            amount: result.data?.createPointTransactionOfLoading.amount,
+          });
+          console.log(result.data.createPointTransactionOfLoading.amount);
           alert("결제완료");
           // 결제 성공 시 로직,
         } else {

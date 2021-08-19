@@ -13,7 +13,6 @@ export default function UsedMarketDetail() {
     variables: { useditemId: router.query.usedMarketId },
   });
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
-  console.log(data?.fetchUseditem.useditemAddress.lat);
   const onClickUpdate = () => {
     router.push(`/usedMarket/${router.query.usedMarketId}/edit`);
   };

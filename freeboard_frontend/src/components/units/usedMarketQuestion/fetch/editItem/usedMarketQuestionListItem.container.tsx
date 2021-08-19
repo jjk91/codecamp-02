@@ -17,7 +17,7 @@ export default function QuestionListItem(props) {
     try {
       await deleteUseditemQuestion({
         variables: {
-          useditemQuestionId: router.query.usedMarketId,
+          useditemQuestionId: props.data._id,
         },
         refetchQueries: [
           {
@@ -40,7 +40,6 @@ export default function QuestionListItem(props) {
   }
 
   function onClickClose() {
-    console.log("클릭");
     setIsEdit(false);
   }
 
@@ -57,6 +56,8 @@ export default function QuestionListItem(props) {
       onClickAnswer={onClickAnswer}
       isEdit={isEdit}
       answer={answer}
+      setAnswer={setAnswer}
+      setIsEdit={setIsEdit}
     />
   );
 }

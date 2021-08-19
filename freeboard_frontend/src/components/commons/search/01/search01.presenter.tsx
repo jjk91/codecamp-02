@@ -4,7 +4,7 @@ export default function SearchPageUi(props) {
   return (
     <>
       <SearchWrapper>
-        <Search src="/images/ic-58-main-search-black@3x.png" />
+        <Search src="/images/ic-58-main-search-black.svg" />
         <InputSearch
           type="text"
           onChange={props.onChangeSearch}

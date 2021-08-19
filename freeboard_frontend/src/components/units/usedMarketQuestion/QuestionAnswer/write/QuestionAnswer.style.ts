@@ -58,7 +58,7 @@ export const AnswerSubmit = styled.button`
   height: 52px;
   width: 91px;
   background-color: ${(props) => (props.isEdit ? "#FF8200	" : "#B9062F")};
-  color: white;
+  color: midnightblue;
   font-size: 16px;
   line-height: 52px;
   text-align: center;

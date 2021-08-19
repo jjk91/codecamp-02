@@ -18,6 +18,10 @@ import "firebase/firestore";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
+Sentry.init({
+  dsn: "https://cf9edcb6b3be487997d91bcd47276513@o965499.ingest.sentry.io/5916343",
+});
 
 if (typeof window !== "undefined") {
   firebase.initializeApp({
@@ -51,6 +55,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
+    if (localStorage.getItem("userInfoData"))
+      setUserInfo(JSON.parse(localStorage.getItem("userInfoData") || "{}"));
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
@@ -72,7 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
     uri: "https://backend02.codebootcamp.co.kr/graphql",
     headers: {
-      authorization: `Bearer ${accessToken || null}`,
+      authorization: `Bearer ${accessToken}`,
     },
     credentials: "include",
   });
@@ -81,6 +87,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // uri: "http://backend02.codebootcamp.co.kr/graphql",
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
+    connectToDevTools: true,
   });
 
   return (

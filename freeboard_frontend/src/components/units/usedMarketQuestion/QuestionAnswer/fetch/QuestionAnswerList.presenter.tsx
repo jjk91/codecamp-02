@@ -4,7 +4,11 @@ export default function AnswerListUi(props: any) {
   return (
     <>
       {props.data?.fetchUseditemQuestionAnswers.map((data) => (
-        <AnswerListItem key={data._id} data={data} />
+        <AnswerListItem
+          key={data._id}
+          dataId={props.dataId}
+          data={data} // Answer_Data
+        />
       ))}
     </>
   );

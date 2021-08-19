@@ -66,6 +66,10 @@ export default function Login() {
         "refreshToken",
         result.data.loginUser.accessToken || ""
       );
+      localStorage.setItem(
+        "userInfoData",
+        JSON.stringify(resultUser.data.fetchUserLoggedIn)
+      );
       // localStorage.setItem("refreshToken", "true");
       console.log(result.data.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);

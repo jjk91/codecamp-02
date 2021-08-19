@@ -14,6 +14,9 @@ export const FETCH_USER_LOGGENT_IN = gql`
       _id
       email
       name
+      userPoint {
+        amount
+      }
     }
   }
 `;

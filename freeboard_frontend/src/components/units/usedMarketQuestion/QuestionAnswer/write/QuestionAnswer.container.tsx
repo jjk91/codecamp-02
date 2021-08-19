@@ -14,9 +14,6 @@ import {
 import { Modal } from "antd";
 
 export default function UesdMarketQuestionAnswer(props) {
-  const router = useRouter();
-
-  const [isEdit, setIsEdit] = useState(false);
   const [contents, setContents] = useState("");
 
   const [updateUseditemQuestionAnswer] = useMutation(
@@ -50,6 +47,10 @@ export default function UesdMarketQuestionAnswer(props) {
           },
         ],
       });
+      if (props.setAnswer) {
+        console.log("실행");
+        props.setAnswer(false);
+      }
       Modal.success({ content: "댓글 등록되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });
@@ -82,10 +83,10 @@ export default function UesdMarketQuestionAnswer(props) {
   }
 
   function onClickEdit() {
-    setIsEdit(true);
+    props.setIsEdit(true);
   }
   function handleUpdate() {
-    setIsEdit(false);
+    props.setIsEdit(false);
   }
 
   return (

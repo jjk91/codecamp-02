@@ -2,12 +2,10 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  /* height: 200px; */
   display: flex;
-  border-bottom: 1px solid gray;
+  justify-content: space-between;
+  border-bottom: 1px solid #bdbdbd;
   margin: auto;
-  background-color: red;
-  color: white;
   padding-right: 10px;
 `;
 
@@ -18,6 +16,7 @@ export const QuestionAnswer = styled.div`
 `;
 export const Question = styled.div`
   height: 130px;
+  width: 100%;
   display: flex;
   flex-direction: row;
 `;
