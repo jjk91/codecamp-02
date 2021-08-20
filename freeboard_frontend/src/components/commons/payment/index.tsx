@@ -21,6 +21,11 @@ const FETCH_POING_TRANSACTIONS = gql`
   }
 `;
 const PointWrapper = styled.div``;
+const PointChargeImg = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+`;
 const RechargeModal = styled(Modal)``;
 const RechargeWrapper = styled.div`
   display: flex;
@@ -35,8 +40,8 @@ const PointImg = styled.img`
   margin-bottom: 40px;
 `;
 const RechargeButton = styled.button`
-  background-color: midnightblue;
-  color: white;
+  /* background-color: midnightblue; */
+  /* color: white; */
   font-size: 16px;
   font-weight: bold;
   width: 384px;
@@ -57,7 +62,12 @@ const PointText = styled.div`
   margin-bottom: 40px;
 `;
 
-export default function Payment() {
+const PointButton = styled.div`
+  color: midnightblue;
+  border: none;
+`;
+
+export default function Payment(props) {
   const { setUserInfo, userInfo } = useContext(GlobalContext);
 
   const [amount, setAmount] = useState(0);
@@ -65,6 +75,7 @@ export default function Payment() {
 
   const showModal = () => {
     setIsModalVisible(true);
+    props.setIsOpen(false);
   };
   const { data } = useQuery(FETCH_POING_TRANSACTIONS);
   const [createPointTransactionOfLoading] = useMutation(
@@ -74,7 +85,9 @@ export default function Payment() {
   const onChangePay = (event) => {
     setAmount(event.target.value);
   };
-
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   const onClickPayment = () => {
     setIsModalVisible(false);
     IMP.init("imp49910675"); // 예: imp00000000
@@ -129,11 +142,14 @@ export default function Payment() {
         ></script>
       </Head>
       <PointWrapper>
-        <Button type="primary" onClick={showModal}>
-          포인트 충전
-        </Button>
+        <PointChargeImg src="/images/charger.svg" />
+        <PointButton onClick={showModal}>충전하기</PointButton>
       </PointWrapper>
-      <RechargeModal visible={isModalVisible} footer={null}>
+      <RechargeModal
+        visible={isModalVisible}
+        onCancel={handleCancel}
+        footer={null}
+      >
         <RechargeWrapper>
           <PointImg src="/images/0004.gif" />
           <PointText>{"충전하실 금액을 선택해주세요!"}</PointText>

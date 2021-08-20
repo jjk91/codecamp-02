@@ -10,10 +10,9 @@ export const Wrapper = styled.div`
   max-width: 1200px;
   width: 100%;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid #cfcff4;
 `;
 export const ItemsOfTheBest = styled.div`
-  background-color: royalblue;
   width: 1200px;
   height: 473px;
 `;
@@ -28,9 +27,8 @@ export const ItemsList = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: pink;
-  border-top: 2px solid red;
-  border-bottom: 2px solid red;
+  border-top: 2px solid #cfcff4;
+  /* border-bottom: 2px solid red; */
   padding: 20px 0;
 `;
 export const ItemListLeft = styled.div`
@@ -39,7 +37,6 @@ export const ItemListLeft = styled.div`
 `;
 
 export const ImgWrapper = styled.div`
-  background-color: yellow;
   height: 160px;
   width: 160px;
 `;
@@ -48,7 +45,6 @@ export const ItemImg = styled.img`
   min-width: 160px;
   height: 160px;
   width: 160px;
-  background-color: red;
 `;
 
 export const ItemInfo = styled.div`
@@ -57,9 +53,7 @@ export const ItemInfo = styled.div`
   justify-content: space-between;
   width: 80%;
 `;
-export const ItemInfoTop = styled.div`
-  background-color: coral;
-`;
+export const ItemInfoTop = styled.div``;
 export const ItemName = styled.div`
   font-size: 24px;
 `;
@@ -73,29 +67,39 @@ export const ItemInfoBottom = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: yellow;
-  width: 145px;
+  width: 200px;
+  height: 25px;
 `;
 
 export const SellerInfo = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
 `;
 
-export const SellerImg = styled.img``;
-export const SellerName = styled.div``;
-export const ItemPick = styled.div`
+export const SellerImg = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+`;
+export const SellerName = styled.div`
   font-size: 16px;
+  line-height: 25px;
 `;
 export const ItemPickInfo = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+export const ItemPick = styled(HeartFilled)`
+  color: #cfcff4;
 `;
 export const ItemCount = styled.div``;
 
 export const ItemListRigth = styled.div`
-  background-color: blue;
   width: 15%;
   display: flex;
   justify-content: center;
@@ -105,10 +109,11 @@ export const ItemPrice = styled.div`
   font-size: 24px;
 `;
 
-export const FooterWrapper = styled.div``;
+export const FooterWrapper = styled.div`
+  border-top: 1px solid #cfcff4;
+  padding: 10px 0;
+`;
 export const ItemsOfTheBestList = styled.div`
-  background-color: gold;
-  border: 1px solid black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -117,7 +122,7 @@ export const BestItem = styled.div`
   padding: 20px;
   height: 391px;
   width: 24%;
-  border: 1px solid yellowgreen;
+  border: 1px solid #cfcff4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -130,7 +135,6 @@ export const Img = styled.div`
 export const BestItemImg = styled.img`
   width: 242px;
   height: 242px;
-  background-color: green;
   display: flex;
 `;
 export const BestItemName = styled.div``;
@@ -145,6 +149,6 @@ export const BestItemRemarks = styled.div``;
 export const BestItemPrice = styled.div``;
 export const BestItemInfoRight = styled.div``;
 export const BestItemPick = styled(HeartFilled)`
-  color: red;
+  color: #cfcff4;
 `;
 export const BestItemCount = styled.div``;

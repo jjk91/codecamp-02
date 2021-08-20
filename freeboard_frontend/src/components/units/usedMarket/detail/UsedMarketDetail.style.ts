@@ -145,8 +145,8 @@ export const ItemTags = styled.div`
   border-bottom: 1px solid yellow;
 `;
 export const ItemInfoFooter = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   padding-top: 84px;
 `;

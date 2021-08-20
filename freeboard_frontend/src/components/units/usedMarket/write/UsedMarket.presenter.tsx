@@ -30,7 +30,7 @@ import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[used
 import KakaoMap from "../../../commons/kakaomap/kakaomap.contaniner";
 
 export default function UsedMarketWriteUi(props) {
-  const { isEdit, data } = useContext(usedMarketEditPageContext);
+  const { isEdit } = useContext(usedMarketEditPageContext);
   return (
     <form
       onSubmit={props.handleSubmit(
@@ -138,7 +138,7 @@ export default function UsedMarketWriteUi(props) {
         <Button01
           type="submit"
           buttonText={isEdit ? "수정하기" : "등록하기"}
-          isActive={props.isActive}
+          isActive={isEdit}
         />
       </UsedMarketWriteWrapper>
     </form>

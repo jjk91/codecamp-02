@@ -37,6 +37,7 @@ import {
 } from "./UsedMarketDetail.style";
 import { v4 as uuidv4 } from "uuid";
 import KakaoMapDetail from "../../../commons/kakaomapDetail/kakaomap.contaniner";
+import DOMPurify from "dompurify";
 
 export default function UsedMarketDetailUi(props) {
   const setting = {
@@ -90,7 +91,7 @@ export default function UsedMarketDetailUi(props) {
               </ItemInfoHeadRigth>
             </ItemInfoHead>
 
-            <ItemPrice>{props.data?.fetchUseditem.price}</ItemPrice>
+            <ItemPrice>{`${props.data?.fetchUseditem.price}원`}</ItemPrice>
 
             <ItemInfoBody>
               <ItemInfoBodyTop>
@@ -103,7 +104,17 @@ export default function UsedMarketDetailUi(props) {
                 </SliderImg>
               </ItemInfoBodyTop>
 
-              <ItemContents>{props.data?.fetchUseditem.contents}</ItemContents>
+              {typeof window !== "undefined" ? (
+                <ItemContents
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(
+                      props.data?.fetchUseditem.contents
+                    ),
+                  }}
+                ></ItemContents>
+              ) : (
+                <div></div>
+              )}
 
               <ItemTags>{props.data?.fetchUseditem.tags}</ItemTags>
 
@@ -122,8 +133,13 @@ export default function UsedMarketDetailUi(props) {
               />
               <Button01
                 type="button"
-                buttonText="수정하기"
-                onClick={props.onClickUpdate}
+                buttonText="수정"
+                onClick={props.onClickEdit}
+              />
+              <Button01
+                type="button"
+                buttonText="삭제"
+                onClick={props.onClickDelete}
               />
             </ItemInfoFooter>
           </ItemsInfo>

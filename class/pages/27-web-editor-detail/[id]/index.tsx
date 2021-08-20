@@ -19,7 +19,7 @@ export default function WepEditorDetailPage() {
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.id },
   });
-  if (typeof window === "undefined") return <></>;
+  // if (typeof window === "undefined") return <></>;
   return (
     <>
       <div>
@@ -32,11 +32,15 @@ export default function WepEditorDetailPage() {
           {data?.fetchBoard.title}
         </span>
         내용:{" "}
-        <span
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(data?.fetchBoard.contents),
-          }}
-        ></span>
+        {typeof window === "undefined" ? ( // 22번째 내용 수정
+          <div
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(data?.fetchBoard.contents),
+            }}
+          ></div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   );

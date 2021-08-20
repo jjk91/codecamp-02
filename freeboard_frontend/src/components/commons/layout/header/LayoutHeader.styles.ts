@@ -56,8 +56,10 @@ export const PaymentWarpper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 30px;
 `;
 export const UserPoint = styled.div`
   width: 50px;
   background-color: yellow;
+  line-height: 3px;
 `;

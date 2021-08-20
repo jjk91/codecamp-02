@@ -10,8 +10,12 @@ const ButtonWrapper = styled.div`
 const Button = styled.button`
   height: 52px;
   width: 179px;
+  border-radius: 10px;
+  border: 1px solid #bdbdbd;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? "midnightblue" : "")};
+  background-color: ${(props) =>
+    props.isActive ? "midnightblue" : " #cfcff4"};
+  color: white;
 `;
 
 export default function Button01(props) {

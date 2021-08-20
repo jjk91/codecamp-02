@@ -8,7 +8,7 @@ export default function LayoutHeader() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    setToken(localStorage.getItem("refreshToken"));
+    setToken(localStorage.getItem("refreshToken") || "[]");
   }, []);
   function onClickLogin() {
     router.push("/boards/login");

@@ -11,40 +11,46 @@ import {
 export default function UsedMarketList() {
   const router = useRouter();
   const [page, setPage] = useState(1);
-  const [baskets, setBaskets] = useState([]);
+  const [showItem, setShowItem] = useState([]);
 
   const { data } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
+
+  console.log("이거는 리스트 data", data);
   const { data: itemOfTheBest } = useQuery(FETCH_USED_ITEMS_OF_THE_BEST);
 
   useEffect(() => {
-    const Baskets = JSON.parse(localStorage.getItem("todayBasekets") || "[]");
-    setBaskets(Baskets);
+    const todayItem = JSON.parse(localStorage.getItem("todayBaskets") || "[]");
+    setShowItem(todayItem);
   }, []);
 
-  const ClickMoveDetail = (data) => () => {
-    onClickMoveBasket(data);
-    router.push(`/usedMarket/${data._id}`);
-  };
+  // const ClickMoveDetail = (data) => () => {
+  //   onClickMoveBasket(data);
+  //   router.push(`/usedMarket/${data._id}`);
+  // };
 
   const onClickMoveList = () => {
     router.push(`/usedMarket/new`);
   };
 
-  const onClickMoveBasket = (baskets) => {
-    const newbasket = [baskets];
-    const baskets = JSON.parse(
+  const onClickMoveBasket = (basketData: any) => () => {
+    const newbasket = [basketData];
+    const todayItem = JSON.parse(
       localStorage.getItem("todayBaskets") || "[]"
-    ).filter((el) => el._id !== basketData._id);
-    localStorage.setItem("todayBaskets", JSON.stringify(basketDate));
+    ).filter((item: any) => item._id !== basketData._id);
+    localStorage.setItem(
+      "todayBaskets",
+      JSON.stringify(newbasket.concat(todayItem))
+    );
+    router.push(`/usedMarket/${basketData._id}`);
   };
 
   return (
     <UsedMarketListUi
       data={data}
-      baskets={baskets}
+      showItem={showItem}
       onClickMoveBasket={onClickMoveBasket}
       onClickMoveList={onClickMoveList}
-      ClickMoveDetail={ClickMoveDetail}
+      // ClickMoveDetail={ClickMoveDetail}
       itemOfTheBest={itemOfTheBest}
     />
   );

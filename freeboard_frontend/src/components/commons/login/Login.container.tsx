@@ -31,7 +31,7 @@ export default function Login() {
   const [inputsErrors, setInputsErrors] = useState(inputInit);
   const { setAccessToken, setUserInfo } = useContext(GlobalContext);
 
-  const clinet = useApolloClient();
+  const client = useApolloClient();
   const [loginUser] = useMutation(LOGIN_USER);
 
   function onChangeLoginInput(event: ChangeEvent<HTMLInputElement>) {
@@ -52,7 +52,7 @@ export default function Login() {
       const result = await loginUser({
         variables: { email: inputs.email, password: inputs.password },
       });
-      const resultUser = await clinet.query({
+      const resultUser = await client.query({
         query: FETCH_USER_LOGGENT_IN,
         context: {
           headers: {

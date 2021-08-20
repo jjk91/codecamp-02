@@ -1,6 +1,7 @@
 
 import {
   Wrapper,
+  TestWrapper,
   TodayItems,
   ItemsWrapper,
   ItemPickInfo,
@@ -21,7 +22,8 @@ export default function SideListPageUi(props) {
     <>
       <Wrapper>
         <TodayItems>오늘 본 상품</TodayItems>
-        {props.baskets?.map((data) => (
+        <TestWrapper>
+        {props.showItem?.map((data) => (
             <ItemsWrapper>
               <ItemPickInfo>
                 <ItemPick>{"★"}</ItemPick>
@@ -39,6 +41,7 @@ export default function SideListPageUi(props) {
               </ItemInfo>
             </ItemsWrapper>
         ))}
+        </TestWrapper>
       </Wrapper>
     </>
   );
