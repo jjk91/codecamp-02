@@ -77,7 +77,7 @@ const UsedMarketWrite = () => {
           },
         },
       });
-      console.log(result.data.createUseditem._id);
+      console.log(result.data.createUseditem.id);
       Modal.success({ content: "상품이 등록되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });
