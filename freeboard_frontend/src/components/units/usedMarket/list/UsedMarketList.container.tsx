@@ -10,11 +10,12 @@ import {
 
 export default function UsedMarketList() {
   const router = useRouter();
+  const [search, setSearch] = useState('')
   const [page, setPage] = useState(0);
   const [showItem, setShowItem] = useState([]);
 
   const [hasMore, setHasMore] = useState(true)
-  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
+  const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
   const onLoadMore = () =>{
     if(!data) return
     fetchMore({
@@ -65,6 +66,9 @@ export default function UsedMarketList() {
       itemOfTheBest={itemOfTheBest}
       onLoadMore={onLoadMore}
       hasMore={hasMore}
+      refetch={refetch}
+      search={search}
+      setSearch = {setSearch}
     />
   );
 }

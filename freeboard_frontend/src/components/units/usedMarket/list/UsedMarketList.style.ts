@@ -22,6 +22,11 @@ export const ItemsOfTheBestTitle = styled.div`
   text-align: center;
 `;
 
+export const BodyWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
 
 
 

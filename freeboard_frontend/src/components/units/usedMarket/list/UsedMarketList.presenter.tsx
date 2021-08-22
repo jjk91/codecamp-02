@@ -4,6 +4,7 @@ import {
   ItemsOfTheBest,
   ItemsOfTheBestTitle,
   ItemsOfTheBestList,
+  BodyWrapper,
   ItemsList,
   ItemListLeft,
   ImgWrapper,
@@ -41,8 +42,9 @@ import SideListPageUi from "./sideItem/UsedMarketListSideList.presenter";
 import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
 import { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import SearchPage from "../../../commons/search/01/search01.container";
 
-export default function UsedMarketListUi(props) {
+export default function UsedMarketListUi(props : any) {
   const { isEdit } = useContext(usedMarketEditPageContext);
   // const { userInfo } = useContext(GlobalContext);
   return (
@@ -52,13 +54,13 @@ export default function UsedMarketListUi(props) {
           <ItemsOfTheBestTitle>베스트 상품</ItemsOfTheBestTitle>
 
           <ItemsOfTheBestList>
-            {props.itemOfTheBest?.fetchUseditemsOfTheBest.map((data) => (
+            {props.itemOfTheBest?.fetchUseditemsOfTheBest.map((data: any) => (
               // <BestItem key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}>
                 <BestItem key={uuidv4()} id={data._id} onClick={props.onClickMoveBasket(data)}>
                 <Img>
                   <BestItemImg
                     key={uuidv4()}
-                    src={`https://storage.googleapis.com/${data.images.[0]}`}
+                    src={`https://storage.googleapis.com/${data.images[0]}`}
                   />
                 </Img>
                 <BestItemName>{data.name}</BestItemName>
@@ -77,8 +79,15 @@ export default function UsedMarketListUi(props) {
             ))}
           </ItemsOfTheBestList>
         </ItemsOfTheBest>
-        <div>판매중 / 판매완료 라인</div>
-        
+        <BodyWrapper>
+          <div style={{fontSize:"18px"}}>판매중 / 판매완료 라인</div>
+          <SearchPage 
+            data = {props.data}
+            refetch = {props.refetch}
+            search = {props.search}
+            setSearch = {props.setSearch}
+          />
+        </BodyWrapper>
         <InfiniteScroll
         pageStart={0}
         loadMore={props.onLoadMore}
@@ -90,7 +99,7 @@ export default function UsedMarketListUi(props) {
         }
         useWindow={false}
         >
-          {props.data?.fetchUseditems.map((data) => (
+          {props.data?.fetchUseditems.map((data: any) => (
             <ItemsList key={uuidv4()} id={data._id} onClick={props.onClickMoveBasket(data)}>
               {/* // <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}> */}
               <ItemListLeft>
