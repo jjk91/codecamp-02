@@ -20,11 +20,14 @@ const FETCH_POING_TRANSACTIONS = gql`
     fetchPointTransactionsCountOfSelling
   }
 `;
-const PointWrapper = styled.div``;
+const PointWrapper = styled.div`
+  display: flex;
+  
+`;
 const PointChargeImg = styled.img`
   width: 20px;
   height: 20px;
-  margin-right: 10px;
+  margin-right: 25px;
 `;
 const RechargeModal = styled(Modal)``;
 const RechargeWrapper = styled.div`

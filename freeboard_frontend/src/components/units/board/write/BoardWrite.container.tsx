@@ -68,7 +68,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setAddressDetail(event.target.value);
   }
 
-  const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
+  const { data } = useQuery<Pick<IQuery, "fetchBoard"> , IQueryFetchBoardArgs>(
     FETCH_BOARD,
     {
       variables: { boardId: String(router.query.boardId) },
@@ -119,7 +119,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     // }
   }
 
-  function onChangeContents(value) {
+  function onChangeContents(value : any) {
     const isBlank = "<p><br></p>";
     const newInputs = { ...inputs, contents: value === isBlank ? "" : value };
     setInputs(newInputs);
@@ -177,10 +177,10 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       // files.map((data) => uploadFile({ variables: { file: data } }))
     );
     console.log(resultFile);
-    newInputs.images = resultFile;
+    // newInputs.images = resultFile;
     console.log(newInputs);
     const fetchBoardImages = data?.fetchBoard.images || [];
-    const newImages = resultFile.map((el) => el.data.uploadFile.url);
+    // const newImages = resultFile.map((el) => el.data.uploadFile.url);
 
     if (Object.values(newInputs).every((data) => data)) {
       try {
@@ -244,7 +244,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       onChangeContents={onChangeContents}
       disabled={disabled}
       isEdit={props.isEdit}
-      data={data}
+      data ={data}
     />
   );
 }

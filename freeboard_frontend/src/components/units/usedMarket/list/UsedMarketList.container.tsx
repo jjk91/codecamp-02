@@ -10,12 +10,23 @@ import {
 
 export default function UsedMarketList() {
   const router = useRouter();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [showItem, setShowItem] = useState([]);
 
-  const { data } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
-
-  console.log("이거는 리스트 data", data);
+  const [hasMore, setHasMore] = useState(true)
+  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
+  const onLoadMore = () =>{
+    if(!data) return
+    fetchMore({
+      variables:{page: Math.floor(data?.fetchUseditems.length/ 10) + 1},
+      updateQuery:(prev,{fetchMoreResult}) =>{
+        if (!fetchMoreResult.fetchUseditems.length) setHasMore(false)
+        return{
+          fetchUseditems:[...prev.fetchUseditems, ...fetchMoreResult.fetchUseditems]
+        }
+      }
+    })
+  }
   const { data: itemOfTheBest } = useQuery(FETCH_USED_ITEMS_OF_THE_BEST);
 
   useEffect(() => {
@@ -52,6 +63,8 @@ export default function UsedMarketList() {
       onClickMoveList={onClickMoveList}
       // ClickMoveDetail={ClickMoveDetail}
       itemOfTheBest={itemOfTheBest}
+      onLoadMore={onLoadMore}
+      hasMore={hasMore}
     />
   );
 }

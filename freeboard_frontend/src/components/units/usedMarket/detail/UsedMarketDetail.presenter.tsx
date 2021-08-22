@@ -38,8 +38,11 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import KakaoMapDetail from "../../../commons/kakaomapDetail/kakaomap.contaniner";
 import DOMPurify from "dompurify";
+import { useContext } from "react";
+import { GlobalContext } from "../../../../../pages/_app";
 
 export default function UsedMarketDetailUi(props) {
+  const { userInfo } = useContext(GlobalContext)
   const setting = {
     customPaging: function (i) {
       return (
@@ -125,10 +128,10 @@ export default function UsedMarketDetailUi(props) {
               </ItemInfoBodyBottom>
             </ItemInfoBody>
 
-            <ItemInfoFooter>
-              <Button01
+            {props.data?.fetchUseditem.seller._id ===  userInfo?._id &&<ItemInfoFooter>
+            <Button01
                 type="button"
-                buttonText="목록으로"
+                buttonText="목록"
                 onClick={props.onClickList}
               />
               <Button01
@@ -140,8 +143,21 @@ export default function UsedMarketDetailUi(props) {
                 type="button"
                 buttonText="삭제"
                 onClick={props.onClickDelete}
+                />
+            </ItemInfoFooter>}
+            {props.data?.fetchUseditem.seller._id !==  userInfo?._id &&<ItemInfoFooter>
+            <Button01
+                type="button"
+                buttonText="목록"
+                onClick={props.onClickList}
               />
-            </ItemInfoFooter>
+            
+              <Button01
+                type="button"
+                buttonText="구매"
+                onClick={props.onClickBuying}
+                />
+            </ItemInfoFooter>}
           </ItemsInfo>
         </WrapperBody>
       </Wrapper>

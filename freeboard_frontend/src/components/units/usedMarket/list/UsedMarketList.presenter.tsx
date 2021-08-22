@@ -40,6 +40,7 @@ import Button01 from "../../../commons/button/01/button";
 import SideListPageUi from "./sideItem/UsedMarketListSideList.presenter";
 import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
 import { useContext } from "react";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function UsedMarketListUi(props) {
   const { isEdit } = useContext(usedMarketEditPageContext);
@@ -76,6 +77,19 @@ export default function UsedMarketListUi(props) {
             ))}
           </ItemsOfTheBestList>
         </ItemsOfTheBest>
+        <div>판매중 / 판매완료 라인</div>
+        
+        <InfiniteScroll
+        pageStart={0}
+        loadMore={props.onLoadMore}
+        hasMore={props.hasMore}
+        loader={
+          <div className="loader" key={0}>
+            Loading ...
+          </div>
+        }
+        useWindow={false}
+        >
           {props.data?.fetchUseditems.map((data) => (
             <ItemsList key={uuidv4()} id={data._id} onClick={props.onClickMoveBasket(data)}>
               {/* // <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}> */}
@@ -111,6 +125,7 @@ export default function UsedMarketListUi(props) {
               </ItemListRigth>
             </ItemsList>
           ))}
+          </InfiniteScroll>
         
         <FooterWrapper>
           <Button01

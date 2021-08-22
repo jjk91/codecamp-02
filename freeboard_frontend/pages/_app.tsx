@@ -23,7 +23,7 @@ interface IContext {
   setUserInfo: any;
 }
 
-export const GlobalContext = createContext<SIContext>({});
+export const GlobalContext = createContext<IContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");

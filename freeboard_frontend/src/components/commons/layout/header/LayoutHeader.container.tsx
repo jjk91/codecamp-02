@@ -8,8 +8,11 @@ export default function LayoutHeader() {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    setToken(localStorage.getItem("refreshToken") || "[]");
+    setToken(localStorage.getItem("userInfoData") || "");
   }, []);
+
+  console.log("이것은 토큰이다",token)
+
   function onClickLogin() {
     router.push("/boards/login");
   }

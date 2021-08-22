@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { HeartFilled } from "@ant-design/icons";
+import InfiniteScroll from "react-infinite-scroller";
 
 export const Contniner = styled.div`
   display: flex;
@@ -20,6 +21,9 @@ export const ItemsOfTheBestTitle = styled.div`
   font-size: 36px;
   text-align: center;
 `;
+
+
+
 
 export const ItemsList = styled.div`
   max-width: 1200px;

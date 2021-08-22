@@ -86,7 +86,6 @@ export default function KakaoMap(props) {
             props.setLat(marker.getPosition().getLat());
             props.setLng(marker.getPosition().getLng());
             infowindow.open(map, marker);
-            console.log(marker.getPosition());
           });
         }
       });

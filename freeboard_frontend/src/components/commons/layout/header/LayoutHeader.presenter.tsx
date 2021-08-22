@@ -1,8 +1,4 @@
-import { useState } from "react";
-import { useContext } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
 import Dropdown01 from "../../dropdown/01/dropdown.contaniner";
-import Payment from "../../payment";
 import {
   Wrapper,
   InnerWrapper,
@@ -10,12 +6,11 @@ import {
   InnerButton,
   UserWrapper,
   UserImg,
-  UserInfo,
-  PaymentWarpper,
-  UserPoint,
 } from "./LayoutHeader.styles";
 
 export default function LayoutHeaderUi(props) {
+ 
+
   return (
     <>
       <Wrapper>

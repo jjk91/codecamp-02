@@ -35,9 +35,12 @@ export const InnerButton = styled.span`
 `;
 
 export const UserWrapper = styled.div`
-  background-color: red;
+  display: flex;
+  flex-direction: row;
+  // background-color: red;
   height: 100%;
-  width: 200px;
+  // width: 200px;
+  margin-right: 20px;
 `;
 
 export const UserImg = styled.img`
