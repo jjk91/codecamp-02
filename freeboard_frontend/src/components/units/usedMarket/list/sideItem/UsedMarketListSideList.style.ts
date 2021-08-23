@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
   align-items: center;
   position: sticky;
   border: 1px solid #bdbdbd;
+  border-radius: 10px;
 `;
 export const TestWrapper = styled.div`
   overflow: auto;
@@ -20,7 +21,7 @@ export const TestWrapper = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     background-color: midnightblue;
-    border-radius: 5px;
+    border-radius: 10px;
   }
   &::-webkit-scrollbar-track {
     background-color: #cfcff4;
@@ -37,6 +38,7 @@ export const ItemsWrapper = styled.div`
   height: 200px;
   width: 156px;
   padding: 10px;
+  border-radius: 10px;
 `;
 export const ItemPickInfo = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import { SearchWrapper, InputSearch, Search } from "./search01.styles";
 
-export default function SearchPageUi(props) {
+export default function SearchPageUi(props: any) {
   return (
     <>
       <SearchWrapper>

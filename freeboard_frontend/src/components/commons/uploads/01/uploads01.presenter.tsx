@@ -1,6 +1,6 @@
 import { UploadButton, UploadImage, UploadImageRef } from "./uploads01.styles";
 
-export default function Uploads01Ui(props) {
+export default function Uploads01Ui(props: any) {
   return (
     <>
       {props.file || props.thumb ? (

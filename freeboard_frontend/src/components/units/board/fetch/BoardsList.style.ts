@@ -80,9 +80,9 @@ export const BoardPagination = styled.div`
 export const Pagination = styled.div`
   font-size: 18px;
   margin: 10px;
-  color: ${(props) => (props.isActive ? "yellow" : "black")};
+  color: ${(props: any) => (props.isActive ? "yellow" : "black")};
 `;
-//midnightblue
+
 export const PagePrev = styled.img`
   margin: 10px;
   height: 12px;

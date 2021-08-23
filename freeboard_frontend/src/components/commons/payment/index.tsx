@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import Head from "next/head";
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { Modal, Button } from "antd";
+import { gql, useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import styled from "@emotion/styled";
 import { GlobalContext } from "../../../../pages/_app";
 
@@ -15,14 +15,13 @@ const CREATE_POING_TRANSACTION_OF_LOADING = gql`
   }
 `;
 
-const FETCH_POING_TRANSACTIONS = gql`
-  query fetchPointTransactionsCountOfSelling {
-    fetchPointTransactionsCountOfSelling
-  }
-`;
+// const FETCH_POING_TRANSACTIONS = gql`
+//   query fetchPointTransactionsCountOfSelling {
+//     fetchPointTransactionsCountOfSelling
+//   }
+// `;
 const PointWrapper = styled.div`
   display: flex;
-  
 `;
 const PointChargeImg = styled.img`
   width: 20px;
@@ -70,7 +69,7 @@ const PointButton = styled.div`
   border: none;
 `;
 
-export default function Payment(props) {
+export default function Payment(props: any) {
   const { setUserInfo, userInfo } = useContext(GlobalContext);
 
   const [amount, setAmount] = useState(0);
@@ -80,12 +79,12 @@ export default function Payment(props) {
     setIsModalVisible(true);
     props.setIsOpen(false);
   };
-  const { data } = useQuery(FETCH_POING_TRANSACTIONS);
+  // const { data } = useQuery(FETCH_POING_TRANSACTIONS);
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POING_TRANSACTION_OF_LOADING
   );
 
-  const onChangePay = (event) => {
+  const onChangePay = (event: any) => {
     setAmount(event.target.value);
   };
   const handleCancel = () => {
@@ -93,7 +92,11 @@ export default function Payment(props) {
   };
   const onClickPayment = () => {
     setIsModalVisible(false);
+    // @ts-ignore
+    // eslint-disable-next-line no-undef
     IMP.init("imp49910675"); // 예: imp00000000
+    // @ts-ignore
+    // eslint-disable-next-line no-undef
     IMP.request_pay(
       {
         // param
@@ -108,7 +111,7 @@ export default function Payment(props) {
         buyer_addr: "서울특별시 강남구 신사동",
         buyer_postcode: "01181",
       },
-      async (rsp) => {
+      async (rsp: any) => {
         // callback
         if (rsp.success) {
           const result = await createPointTransactionOfLoading({
@@ -120,12 +123,14 @@ export default function Payment(props) {
             ...userInfo,
             amount: result.data?.createPointTransactionOfLoading.amount,
           });
-          console.log(result.data.createPointTransactionOfLoading.amount);
+          // console.log(result.data.createPointTransactionOfLoading.amount);
+          Modal.success({ content: "결제완료" });
           alert("결제완료");
           // 결제 성공 시 로직,
         } else {
-          console.log("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
-          alert("결제실패");
+          Modal.error({
+            content: "결제에 실패하였습니다. 에러 내용: " + rsp.error_msg,
+          });
           // 결제 실패 시 로직,
         }
       }

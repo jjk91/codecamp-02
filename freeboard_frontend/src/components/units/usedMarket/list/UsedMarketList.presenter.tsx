@@ -5,6 +5,7 @@ import {
   ItemsOfTheBestTitle,
   ItemsOfTheBestList,
   BodyWrapper,
+  InfiniteScrollWrapper,
   ItemsList,
   ItemListLeft,
   ImgWrapper,
@@ -44,7 +45,8 @@ import { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroller";
 import SearchPage from "../../../commons/search/01/search01.container";
 
-export default function UsedMarketListUi(props : any) {
+export default function UsedMarketListUi(props: any) {
+  // @ts-ignore
   const { isEdit } = useContext(usedMarketEditPageContext);
   // const { userInfo } = useContext(GlobalContext);
   return (
@@ -56,7 +58,11 @@ export default function UsedMarketListUi(props : any) {
           <ItemsOfTheBestList>
             {props.itemOfTheBest?.fetchUseditemsOfTheBest.map((data: any) => (
               // <BestItem key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}>
-                <BestItem key={uuidv4()} id={data._id} onClick={props.onClickMoveBasket(data)}>
+              <BestItem
+                key={uuidv4()}
+                id={data._id}
+                onClick={props.onClickMoveBasket(data)}
+              >
                 <Img>
                   <BestItemImg
                     key={uuidv4()}
@@ -71,7 +77,7 @@ export default function UsedMarketListUi(props : any) {
                   </BestItemInfoLeft>
 
                   <BestItemInfoRight>
-                    <BestItemPick/>
+                    <BestItemPick />
                     <BestItemCount>{data.pickedCount}</BestItemCount>
                   </BestItemInfoRight>
                 </BestItemInfo>
@@ -80,62 +86,68 @@ export default function UsedMarketListUi(props : any) {
           </ItemsOfTheBestList>
         </ItemsOfTheBest>
         <BodyWrapper>
-          <div style={{fontSize:"18px"}}>판매중 / 판매완료 라인</div>
-          <SearchPage 
-            data = {props.data}
-            refetch = {props.refetch}
-            search = {props.search}
-            setSearch = {props.setSearch}
+          <div style={{ fontSize: "18px" }}>판매중 / 판매완료 라인</div>
+          <SearchPage
+            data={props.data}
+            refetch={props.refetch}
+            search={props.search}
+            setSearch={props.setSearch}
           />
         </BodyWrapper>
-        <InfiniteScroll
-        pageStart={0}
-        loadMore={props.onLoadMore}
-        hasMore={props.hasMore}
-        loader={
-          <div className="loader" key={0}>
-            Loading ...
-          </div>
-        }
-        useWindow={false}
-        >
-          {props.data?.fetchUseditems.map((data: any) => (
-            <ItemsList key={uuidv4()} id={data._id} onClick={props.onClickMoveBasket(data)}>
-              {/* // <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}> */}
-              <ItemListLeft>
-                <ImgWrapper>
-                  {/* {props.data?.fetchUseditems.images?.map((data) => ( */}
-                  <ItemImg
-                    key={data}
-                    src={`https://storage.googleapis.com/${data.images[0]}`}
-                  />
-                  {/* ))} */}
-                </ImgWrapper>
-                <ItemInfo>
-                  <ItemInfoTop>
-                    <ItemName>{data.name}</ItemName>
-                    <ItemRemarks>{data.remarks}</ItemRemarks>
-                    <ItemTags>{data.tags}</ItemTags>
-                  </ItemInfoTop>
-                  <ItemInfoBottom>
-                    <SellerInfo>
-                      <SellerImg src="/images/ic_profile-96px.svg"/>
-                      <SellerName>{data.seller.name}</SellerName>
-                    </SellerInfo>
-                    <ItemPickInfo>
-                      <ItemPick/>
-                      <ItemCount>{data.pickedCount}</ItemCount>
-                    </ItemPickInfo>
-                  </ItemInfoBottom>
-                </ItemInfo>
-              </ItemListLeft>
-              <ItemListRigth>
-                <ItemPrice>{data.price}</ItemPrice>
-              </ItemListRigth>
-            </ItemsList>
-          ))}
+        <InfiniteScrollWrapper>
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={props.onLoadMore}
+            hasMore={props.hasMore}
+            // loader={
+            //   <div className="loader" key={0}>
+            //     Loading ...
+            //   </div>
+            // }
+            useWindow={false}
+          >
+            {props.data?.fetchUseditems.map((data: any) => (
+              <ItemsList
+                key={uuidv4()}
+                id={data._id}
+                onClick={props.onClickMoveBasket(data)}
+              >
+                {/* // <ItemsList key={uuidv4()} onClick={props.ClickMoveDetail(props.onClickMoveBasket(data))}> */}
+                <ItemListLeft>
+                  <ImgWrapper>
+                    {/* {props.data?.fetchUseditems.images?.map((data) => ( */}
+                    <ItemImg
+                      key={data}
+                      src={`https://storage.googleapis.com/${data.images[0]}`}
+                    />
+                    {/* ))} */}
+                  </ImgWrapper>
+                  <ItemInfo>
+                    <ItemInfoTop>
+                      <ItemName>{data.name}</ItemName>
+                      <ItemRemarks>{data.remarks}</ItemRemarks>
+                      <ItemTags>{data.tags}</ItemTags>
+                    </ItemInfoTop>
+                    <ItemInfoBottom>
+                      <SellerInfo>
+                        <SellerImg src="/images/ic_profile-96px.svg" />
+                        <SellerName>{data.seller.name}</SellerName>
+                      </SellerInfo>
+                      <ItemPickInfo>
+                        <ItemPick />
+                        <ItemCount>{data.pickedCount}</ItemCount>
+                      </ItemPickInfo>
+                    </ItemInfoBottom>
+                  </ItemInfo>
+                </ItemListLeft>
+                <ItemListRigth>
+                  <ItemPrice>{data.price}</ItemPrice>
+                </ItemListRigth>
+              </ItemsList>
+            ))}
           </InfiniteScroll>
-        
+        </InfiniteScrollWrapper>
+
         <FooterWrapper>
           <Button01
             type="button"
@@ -144,7 +156,6 @@ export default function UsedMarketListUi(props : any) {
             isActive={isEdit}
           />
         </FooterWrapper>
-
       </Wrapper>
       <SideListPageUi showItem={props.showItem} />
     </Contniner>

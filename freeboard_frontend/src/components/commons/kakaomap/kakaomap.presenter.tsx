@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Input03 from "../inputs/03/input";
 
 const WarpperMap = styled.div`
   width: 100%;
@@ -41,7 +40,7 @@ const AddressDetail = styled.input`
   padding-left: 16px;
 `;
 
-export default function KakaoMapUi(props) {
+export default function KakaoMapUi(props: any) {
   return (
     <>
       <WarpperMap>

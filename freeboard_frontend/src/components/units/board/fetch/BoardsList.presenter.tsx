@@ -13,17 +13,13 @@ import {
   ListWriter,
   ListDate,
   WrapperFooter,
-  BoardPagination,
-  Pagination,
-  PagePrev,
-  PageNext,
   NewBoradWiter,
   NewBoardImg,
   NewBoardSubmit,
 } from "./BoardsList.style";
 import Paginations01 from "../../../commons/paginations/01/paginations01.container";
 
-export default function BoardDetailUi(props: IBoardDetailUiProps) {
+export default function BoardDetailUi(props: any) {
   return (
     <Wrapper>
       <WrapperTitleList>
@@ -32,8 +28,8 @@ export default function BoardDetailUi(props: IBoardDetailUiProps) {
         <TitleWriter>작성자</TitleWriter>
         <TitleDate>날짜</TitleDate>
       </WrapperTitleList>
-      {props.data?.fetchBoards.map((data, index) => (
-        <WrapperList>
+      {props.data?.fetchBoards.map((data: any, index: any) => (
+        <WrapperList key={data._id}>
           <ListNumber>{10 - index}</ListNumber>
           <ListTitle id={data._id} onClick={props.onClickBoardDetail}>
             {data.title}

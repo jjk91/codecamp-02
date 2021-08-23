@@ -5,7 +5,6 @@ import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
   UPDATE_USED_ITEM_QUESTION_ANSWER,
 } from "./QuestionAnswer.queries";
-import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 import {
   IMutation,
@@ -13,7 +12,7 @@ import {
 } from "../../../../../commons/types/generated/types";
 import { Modal } from "antd";
 
-export default function UesdMarketQuestionAnswer(props) {
+export default function UesdMarketQuestionAnswer(props: any) {
   const [contents, setContents] = useState("");
 
   const [updateUseditemQuestionAnswer] = useMutation(
@@ -25,7 +24,7 @@ export default function UesdMarketQuestionAnswer(props) {
     IMutationCreateUseditemQuestionAnswerArgs
   >(CREATE_USED_ITEM_QUESTION_ANSWER);
 
-  function onChangeInputs(event) {
+  function onChangeInputs(event: any) {
     setContents(event.target.value);
   }
 
@@ -48,7 +47,6 @@ export default function UesdMarketQuestionAnswer(props) {
         ],
       });
       if (props.setAnswer) {
-        console.log("실행");
         props.setAnswer(false);
       }
       Modal.success({ content: "댓글 등록되었습니다." });

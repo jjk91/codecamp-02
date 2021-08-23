@@ -12,6 +12,7 @@ import { SignUpcontext } from "./SignUp.container";
 import { useContext } from "react";
 
 export default function SignUpUi() {
+  // @ts-ignore
   const { onChangeLoginInput, onClickSubmit, inputsErrors } =
     useContext(SignUpcontext);
   return (

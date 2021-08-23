@@ -1,6 +1,5 @@
 import {
   Wrapper,
-  WrapperQuestion,
   WrapperHeadQuestion,
   QuestionTop,
   QuestionDate,
@@ -19,7 +18,7 @@ import {
   WrapperFooterQuestion,
 } from "./usedMarketQuestionWrite.style";
 
-export default function UsedMarketQuestionUi(props) {
+export default function UsedMarketQuestionUi(props: any) {
   return (
     <Wrapper>
       <WrapperHeadQuestion>
@@ -35,6 +34,7 @@ export default function UsedMarketQuestionUi(props) {
           <QuestionEdit></QuestionEdit>
           {props.isEdit && (
             <QuestionEditClose
+              // @ts-ignore
               isEdit={false}
               src="/images/clear-24px 2.png"
               onClick={props.onClickClose}
@@ -51,6 +51,7 @@ export default function UsedMarketQuestionUi(props) {
             <QuestionContents
               onChange={props.onChangeInputs}
               name="contents"
+              // @ts-ignore
               isEdit={true}
               // value={props.createUseditemQuestionInput.contents}
               placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
@@ -68,10 +69,18 @@ export default function UsedMarketQuestionUi(props) {
             </QuestionDate>
           )}
         </QuestionWrapper>
-        <WrapperFooterQuestion isEdit={true}>
+
+        <WrapperFooterQuestion
+          // @ts-ignore
+          isEdit={true}
+        >
           <QuestionText>1/100</QuestionText>
           {!props.isEdit && (
-            <QuestionSubmit onClick={props.onClickSumit} isEdit={false}>
+            <QuestionSubmit
+              onClick={props.onClickSumit}
+              // @ts-ignore
+              isEdit={false}
+            >
               등록하기
             </QuestionSubmit>
           )}
@@ -79,6 +88,7 @@ export default function UsedMarketQuestionUi(props) {
             <QuestionSubmit
               id={props.data?._id}
               onClick={props.onClickUpdate}
+              // @ts-ignore
               isEdit={true}
             >
               수정하기

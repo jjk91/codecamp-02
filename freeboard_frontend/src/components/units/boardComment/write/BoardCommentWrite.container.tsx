@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
@@ -19,7 +19,7 @@ const CommentInputInit = {
   rating: 0,
 };
 
-export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
+export default function BoardCommentWrite(props: any) {
   const router = useRouter();
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [commentInput, setCommentInput] = useState(CommentInputInit);
@@ -28,7 +28,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
 
-  function onChangeInputs(event) {
+  function onChangeInputs(event: any) {
     const newCommentInput = {
       ...commentInput,
       [event.target.name]: event.target.value,
@@ -41,7 +41,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
 
   async function onClickSumit() {
     try {
-      const result = await createBoardComment({
+      await createBoardComment({
         variables: {
           boardId: String(router.query.boardId),
           createBoardCommentInput: {
@@ -61,6 +61,7 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
       });
 
       alert("등록되었습니다.");
+      // @ts-ignore
       setCommentInput({ writer: "", contents: "", password: "" });
       // router.push(`/boards/${router.query.boardId}`)
       // 윗줄을 쓸경우도 실행은 가능 하지만
@@ -70,13 +71,15 @@ export default function BoardCommentWrite(props: IBoardCommentWriteProps) {
     }
   }
 
-  async function onClickUpdate(event) {
+  async function onClickUpdate(event: any) {
     const newCommentInputs = {};
+    // @ts-ignore
     if (commentInput.writer) newCommentInputs.writer = commentInput.writer;
     if (commentInput.contents)
+      // @ts-ignore
       newCommentInputs.contents = commentInput.contents;
+    // @ts-ignore
     if (commentInput.rating) newCommentInputs.rating = commentInput.rating;
-    console.log(newCommentInputs);
     if (Object.values(newCommentInputs).every((data) => data)) {
       try {
         await updateBoardComment({

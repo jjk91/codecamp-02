@@ -15,10 +15,11 @@ export default function UsedMarketDetail() {
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: router.query.usedMarketId },
   });
-  console.log("gggg",data)
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
   const [deleteUseditem] = useMutation(DELETE_USED_ITEM);
-  const [createPointTransactionOfBuyingAndSelling]=useMutation(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING)
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
   const onClickEdit = () => {
     router.push(`/usedMarket/${router.query.usedMarketId}/edit`);
   };
@@ -50,18 +51,15 @@ export default function UsedMarketDetail() {
     }
   };
 
-  const onClickBuying = async() =>{
+  const onClickBuying = async () => {
     try {
-    
       await createPointTransactionOfBuyingAndSelling({
-        variables:{useritemId: router.query.usedMarketId }
-      })
+        variables: { useritemId: router.query.usedMarketId },
+      });
     } catch (error) {
-      Modal.error({content: error.message})
+      Modal.error({ content: error.message });
     }
-    
-
-  }
+  };
 
   return (
     <UsedMarketDetailUi

@@ -1,30 +1,26 @@
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown } from "antd";
 import styled from "@emotion/styled";
-import { GlobalContext } from "../../../../../pages/_app";
-import { useContext } from "react";
 import Dropdown01Ui from "./dropdown.presenter";
 import { useState } from "react";
-import {gql, useMutation, useQuery} from '@apollo/client'
+import { gql, useQuery } from "@apollo/client";
 
-const LOGOUT_USER= gql`
-  mutation logoutUser{
-    logoutUser
-  }
-`
+// const LOGOUT_USER = gql`
+//   mutation logoutUser {
+//     logoutUser
+//   }
+// `;
 
 const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn{
-    fetchUserLoggedIn{
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
       _id
       name
-      userPoint{
+      userPoint {
         amount
       }
-      
     }
-    
   }
-`
+`;
 const WrapperDropdown = styled(Dropdown)`
   background-color: transparent;
   border: none;
@@ -38,8 +34,8 @@ const UserMenu = styled(Menu)`
 const ButtonImg = styled.img``;
 
 export default function Dropdown01() {
-  const {data} = useQuery(FETCH_USER_LOGGED_IN)
-  const [logoutUser] = useMutation(LOGOUT_USER)
+  const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  // const [logoutUser] = useMutation(LOGOUT_USER);
 
   const onClickOpen = () => {
     setIsOpen((prev) => !prev);
@@ -53,7 +49,7 @@ export default function Dropdown01() {
   const [isOpen, setIsOpen] = useState(false);
   const menu = (
     <UserMenu>
-      <Dropdown01Ui setIsOpen={setIsOpen} data={data}/>
+      <Dropdown01Ui setIsOpen={setIsOpen} data={data} />
     </UserMenu>
   );
 

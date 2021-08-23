@@ -12,6 +12,8 @@ export interface IBoardWritePresenterProps {
   onChangAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onComplete: (data: any) => void;
   onClickModal: () => void;
+  onChangeContents: () => void;
+  onChangeFile: () => void;
   readOnly?: any;
   data?: IQuery;
   isEdit?: boolean;

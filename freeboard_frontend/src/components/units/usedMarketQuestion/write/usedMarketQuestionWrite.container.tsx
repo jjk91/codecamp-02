@@ -1,7 +1,6 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
+import { useState } from "react";
 import { Modal } from "antd";
 import {
   IMutation,
@@ -14,7 +13,7 @@ import {
   UPDATE_USED_ITEM_QUESTION,
 } from "./usedMarketQuestionWrite.queries";
 
-export default function UsedMarketQuestion(props) {
+export default function UsedMarketQuestion(props: any) {
   const router = useRouter();
   const [contents, setContents] = useState("");
   const [updateUseditemQuestion] = useMutation(UPDATE_USED_ITEM_QUESTION);
@@ -24,7 +23,7 @@ export default function UsedMarketQuestion(props) {
   >(CREATE_USED_ITEM_QUESTION);
   // console.log(router.query.usedMarketId);
   // console.log(userInfo._id);
-  function onChangeInputs(event) {
+  function onChangeInputs(event: any) {
     setContents(event.target.value);
   }
 
@@ -53,7 +52,7 @@ export default function UsedMarketQuestion(props) {
     }
   }
 
-  async function onClickUpdate(event) {
+  async function onClickUpdate(event: any) {
     try {
       await updateUseditemQuestion({
         variables: {

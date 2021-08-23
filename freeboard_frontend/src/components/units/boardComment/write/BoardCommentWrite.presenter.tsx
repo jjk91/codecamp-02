@@ -18,8 +18,9 @@ import {
   WrapperFooterComment,
 } from "./BoardCommentWrite.style";
 
-export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
+export default function BoardCommentWriteUi(props: any) {
   return (
+    // @ts-ignore
     <Wrapper isEdit={props.isEdit}>
       <WrapperComment>
         <WrapperHeadComment>
@@ -66,6 +67,7 @@ export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
             </CommentEdit>
             {props.isEdit && (
               <CommentEditClose
+                // @ts-ignore
                 isEdit={false}
                 src="/images/clear-24px 2.png"
                 onClick={props.onClickClose}
@@ -96,6 +98,7 @@ export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
           <WrapperFooterComment>
             <CommentText>0/100</CommentText>
             {!props.isEdit && (
+              // @ts-ignore
               <CommentSubmit onClick={props.onClickSumit} isEdit={false}>
                 등록하기
               </CommentSubmit>
@@ -104,6 +107,7 @@ export default function BoardCommentWriteUi(props: IBoardCommentWriterProps) {
               <CommentSubmit
                 id={props.data?._id}
                 onClick={props.onClickUpdate}
+                // @ts-ignore
                 isEdit={true}
               >
                 수정하기

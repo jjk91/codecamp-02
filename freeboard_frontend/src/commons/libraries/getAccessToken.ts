@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { Modal } from "antd";
 import { GraphQLClient } from "graphql-request";
 
 const RESTORE_ACCESS_TOKEN = gql`
@@ -10,7 +11,7 @@ const RESTORE_ACCESS_TOKEN = gql`
 `;
 
 // 1. refreshToken으로 새로운 accessToken 을 발급받기
-export const getAccessToken = async (setAccessToken) => {
+export const getAccessToken = async (setAccessToken: any) => {
   try {
     const graphQLClient = new GraphQLClient(
       "https://backend02.codebootcamp.co.kr/graphql",
@@ -23,6 +24,6 @@ export const getAccessToken = async (setAccessToken) => {
     setAccessToken(newAccessToken);
     return newAccessToken;
   } catch (error) {
-    console.log(error.message);
+    Modal.error({ content: error.message });
   }
 };

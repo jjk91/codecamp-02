@@ -12,8 +12,7 @@ import Layout from "../src/components/commons/layout";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import { createUploadLink } from "apollo-upload-client";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
-import { useEffect } from "react";
+import { createContext, Dispatch, SetStateAction, useState, useEffect } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 
 interface IContext {
@@ -23,6 +22,7 @@ interface IContext {
   setUserInfo: any;
 }
 
+// @ts-ignore
 export const GlobalContext = createContext<IContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        if (err.extensions.code === "UNAUTHENTICATED") {
+        if (err.extensions?.code === "UNAUTHENTICATED") {
           // 2. 발급받은 accessToken 으로 방금 실패했던  쿼리 재실행하기
           operation.setContext({
             headers: {

@@ -33,18 +33,7 @@ import {
 import { getDate } from "../../../../commons/libraries/utils";
 import { Tooltip } from "antd";
 
-interface IBoardDetailUIPresenterProps {
-  onClickDelete: () => void;
-  onClickUpdate: () => void;
-  onClickList: () => void;
-  onClickLikeCount: () => void;
-  onClickDislikeCount: () => void;
-  gql: any;
-  data: string;
-  fetchBoard: any;
-}
-
-export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
+export default function BoardDetailUi(props: any) {
   return (
     <FullWrapper>
       <Wrapper>
@@ -73,7 +62,7 @@ export default function BoardDetailUi(props: IBoardDetailUIPresenterProps) {
           <Title>{props.data?.fetchBoard.title}</Title>
           <Contents>
             <ContentsImg>
-              {props.data?.fetchBoard.images?.map((data) => (
+              {props.data?.fetchBoard.images?.map((data: any) => (
                 <Img
                   src={`https://storage.googleapis.com/${data}`}
                   key={data}

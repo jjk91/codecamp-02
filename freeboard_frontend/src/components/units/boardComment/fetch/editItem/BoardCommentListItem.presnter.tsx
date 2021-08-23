@@ -17,7 +17,7 @@ import { getDate } from "../../../../../commons/libraries/utils";
 
 import BoardCommentWrite from "../../write/BoardCommentWrite.container";
 
-export default function CommentListItemUi(props) {
+export default function CommentListItemUi(props: any) {
   // isEdit ===>  false
 
   return (

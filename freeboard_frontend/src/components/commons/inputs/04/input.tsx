@@ -16,7 +16,7 @@ const Input = styled.input`
   margin-right: 10px;
 `;
 
-export default function Input04(props) {
+export default function Input04(props: any) {
   return (
     <InputWrapper>
       <Input

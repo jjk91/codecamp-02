@@ -57,7 +57,6 @@ export default function BoardDetail() {
   }
 
   function onClickDislikeCount() {
-    console.log(router.query.boardId);
     dislikeBoard({
       variables: { boardId: router.query.boardId },
       refetchQueries: [

@@ -2,14 +2,12 @@ import { useMutation } from "@apollo/client";
 import AnswerListItemUi from "./QuestionAnswerListItem.presnter";
 
 import { useState } from "react";
-import { useRouter } from "next/router";
 import {
   DELETE_USER_ITEM_QUESTION_ANSWER,
   FETCH_USED_ITEM_QUESTIONS_ANSWERS,
 } from "../QuestionAnswerList.queries";
 
-export default function AnswerListItem(props) {
-  const router = useRouter();
+export default function AnswerListItem(props: any) {
   const [deleteUseditemQuestionAnswer] = useMutation(
     DELETE_USER_ITEM_QUESTION_ANSWER
   );

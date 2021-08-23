@@ -1,6 +1,5 @@
 import Input01 from "../../../commons/inputs/01/input";
 import Input02 from "../../../commons/inputs/02/input";
-import Input03 from "../../../commons/inputs/03/input";
 import Input04 from "../../../commons/inputs/04/input";
 import Uploads01 from "../../../commons/uploads/01/uploads01.container";
 import Button01 from "../../../commons/button/01/button";
@@ -10,26 +9,18 @@ import {
   LocationWrapper,
   LocationLeft,
   LocationText,
-  LocationMap,
-  LocationRight,
-  LocationRightTop,
-  LocationGps,
-  LocationButton,
-  Input,
-  LocationIcon,
-  LocationRightBottom,
   ItemUploadText,
   UploadWrapper,
   MainImgSetting,
   ImgText,
   CheckBox,
-  Error,
 } from "./UsedMarket.style";
 import { useContext } from "react";
 import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
 import KakaoMap from "../../../commons/kakaomap/kakaomap.contaniner";
 
-export default function UsedMarketWriteUi(props) {
+export default function UsedMarketWriteUi(props: any) {
+  // @ts-ignore
   const { isEdit } = useContext(usedMarketEditPageContext);
   return (
     <form

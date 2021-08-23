@@ -6,14 +6,12 @@ import {
   WrapperGroup,
   AnswerWrapper,
   AnswerContents,
-  AnswerDate,
-  AnswerUser,
   WrapperFooterAnswer,
   AnswerText,
   AnswerSubmit,
 } from "./QuestionAnswer.style";
 
-export default function UesdMarketQuestionAnswerUi(props) {
+export default function UesdMarketQuestionAnswerUi(props: any) {
   return (
     <Wrapper>
       <WrapperAnswer>
@@ -50,6 +48,7 @@ export default function UesdMarketQuestionAnswerUi(props) {
               <AnswerSubmit
                 id={props.data?._id}
                 onClick={props.onClickUpdate}
+                // @ts-ignore
                 isEdit={true}
               >
                 수정하기

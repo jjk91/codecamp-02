@@ -1,8 +1,6 @@
-import { useApolloClient, useMutation, useQuery } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useContext } from "react";
-import { createContext } from "react";
-import { ChangeEvent, useState } from "react";
+import { useContext, createContext, ChangeEvent, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
 import LoginUi from "./Login.presenter";
 import { FETCH_USER_LOGGENT_IN, LOGIN_USER } from "./Login.queries";
@@ -71,7 +69,7 @@ export default function Login() {
         JSON.stringify(resultUser.data.fetchUserLoggedIn)
       );
       // localStorage.setItem("refreshToken", "true");
-      console.log(result.data.loginUser.accessToken);
+      // console.log(result.data.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
       alert("로그인되었습니다.");
       router.push("/usedMarket/new");

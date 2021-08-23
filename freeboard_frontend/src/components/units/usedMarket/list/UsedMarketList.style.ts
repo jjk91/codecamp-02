@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { HeartFilled } from "@ant-design/icons";
-import InfiniteScroll from "react-infinite-scroller";
 
 export const Contniner = styled.div`
   display: flex;
@@ -12,6 +11,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   border: 1px solid #cfcff4;
+  border-radius: 10px;
 `;
 export const ItemsOfTheBest = styled.div`
   width: 1200px;
@@ -26,9 +26,23 @@ export const BodyWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`
-
-
+  padding: 20px 0;
+`;
+export const InfiniteScrollWrapper = styled.div`
+  height: 1000px;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 0px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: midnightblue;
+    border-radius: 15px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #cfcff4;
+  }
+`;
 
 export const ItemsList = styled.div`
   max-width: 1200px;
@@ -37,6 +51,7 @@ export const ItemsList = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border-top: 2px solid #cfcff4;
+  border-radius: 10px;
   /* border-bottom: 2px solid red; */
   padding: 20px 0;
 `;
@@ -135,6 +150,7 @@ export const BestItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 10px;
 `;
 
 export const Img = styled.div`

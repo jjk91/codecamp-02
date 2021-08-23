@@ -8,9 +8,7 @@ import {
   UserImg,
 } from "./LayoutHeader.styles";
 
-export default function LayoutHeaderUi(props) {
- 
-
+export default function LayoutHeaderUi(props: any) {
   return (
     <>
       <Wrapper>

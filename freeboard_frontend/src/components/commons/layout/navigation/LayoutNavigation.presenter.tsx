@@ -6,7 +6,7 @@ import {
   Mypage,
 } from "./LayoutNavigation.styles";
 
-export default function LayoutNavigationUi(props) {
+export default function LayoutNavigationUi(props: any) {
   return (
     <Wrapper>
       <NavigationList>
@@ -14,7 +14,7 @@ export default function LayoutNavigationUi(props) {
         <div>|</div>
         <Marktet onClick={props.onClickMoveMarket}>중고마켓</Marktet>
         <div>|</div>
-        <Mypage>마이페이지</Mypage>
+        <Mypage onClick={props.onClickMoveMyPage}>마이페이지</Mypage>
       </NavigationList>
     </Wrapper>
   );

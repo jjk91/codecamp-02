@@ -1,5 +1,4 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
 import UsedMarketWriteUi from "./UsedMarket.presenter";
 import {
   CREATE_USED_ITEM,
@@ -13,11 +12,11 @@ import withAuth from "../../../commons/hoc/wirhAuth";
 import { useRouter } from "next/router";
 import { schema } from "./UsedMarket.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
-import { useEffect } from "react";
 
 const UsedMarketWrite = () => {
+  // @ts-ignore
   const { data } = useContext(usedMarketEditPageContext);
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
@@ -52,16 +51,16 @@ const UsedMarketWrite = () => {
     // ;
   }, [data]);
 
-  const onChangeContents = (value) => {
+  const onChangeContents = (value: any) => {
     const isBlank = "<p><br></p>";
 
     setValue("contents", value === isBlank ? "" : value);
     trigger("contents");
   };
 
-  const onWriteUpdate = async (data) => {
+  const onWriteUpdate = async (data: any) => {
     try {
-      const result = await updateUseditem({
+      await updateUseditem({
         variables: {
           useditemId: router.query.usedMarketId,
           updateUseditemInput: {
@@ -77,24 +76,22 @@ const UsedMarketWrite = () => {
           },
         },
       });
-      console.log(result.data.createUseditem.id);
       Modal.success({ content: "상품이 등록되었습니다." });
     } catch (error) {
       Modal.error({ content: error.message });
     }
   };
 
-  const onWriteSubmit = async (data) => {
+  const onWriteSubmit = async (data: any) => {
     try {
       let resultFile = await Promise.all(
-        files.map((data) => uploadFile({ variables: { file: data } }))
+        // @ts-ignore
+        files.map((data: any) => uploadFile({ variables: { file: data } }))
       );
-
+      // @ts-ignore
       resultFile = resultFile.filter((url) => url);
 
-      console.log(resultFile);
-
-      const result = await createUseditem({
+      await createUseditem({
         variables: {
           createUseditemInput: {
             name: data.name,
@@ -102,7 +99,7 @@ const UsedMarketWrite = () => {
             contents: watch("contents"),
             price: Number(data.price),
             tags: data.tags,
-            images: resultFile.map((el) => el.data.uploadFile.url),
+            images: resultFile.map((el: any) => el.data.uploadFile.url),
             useditemAddress: {
               address,
               addressDetail,
@@ -112,20 +109,19 @@ const UsedMarketWrite = () => {
           },
         },
       });
-      console.log(result.data.createUseditem._id);
       Modal.success({ content: "상품이 등록되었습니다." });
-      console.log(result.data.createUseditem.useditemAddress, "등록하기 주소");
 
-      // router.push(`/usedMarket/${result.data.createUseditem._id}`);
       router.push(`/usedMarket/list`);
     } catch (error) {
       Modal.error({ content: error.message });
     }
   };
 
-  function onChangeFile(file, index) {
+  function onChangeFile(file: string, index: number) {
+    // @ts-ignore
     const newFiles = [...files];
     newFiles[index] = file;
+    // @ts-ignore
     setFiles(newFiles);
   }
 

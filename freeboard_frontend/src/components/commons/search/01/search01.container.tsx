@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 import SearchPageUi from "./search01.presenter";
 import _ from "lodash";
 
-export default function SearchPage(props) {
+export default function SearchPage(props: any) {
   const getDebounce = _.debounce((data) => {
     props.refetch({ search: data });
     props.setSearch(data);

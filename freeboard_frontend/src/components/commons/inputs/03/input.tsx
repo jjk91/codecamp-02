@@ -20,7 +20,7 @@ const Input = styled.input`
   padding-left: 16px;
 `;
 
-export default function Input03(props) {
+export default function Input03(props: any) {
   return (
     <InputWrapper>
       <Text>{props.inputTitle}</Text>

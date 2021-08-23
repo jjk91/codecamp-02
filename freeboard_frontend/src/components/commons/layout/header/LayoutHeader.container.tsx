@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import LayoutHeaderUi from "./LayoutHeader.presenter";
 
 export default function LayoutHeader() {
@@ -10,8 +9,6 @@ export default function LayoutHeader() {
   useEffect(() => {
     setToken(localStorage.getItem("userInfoData") || "");
   }, []);
-
-  console.log("이것은 토큰이다",token)
 
   function onClickLogin() {
     router.push("/boards/login");

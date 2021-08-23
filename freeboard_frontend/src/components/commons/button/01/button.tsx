@@ -13,16 +13,17 @@ const Button = styled.button`
   border-radius: 10px;
   border: 1px solid #bdbdbd;
   cursor: pointer;
-  background-color: ${(props) =>
+  background-color: ${(props: any) =>
     props.isActive ? "midnightblue" : " #cfcff4"};
   color: white;
 `;
 
-export default function Button01(props) {
+export default function Button01(props: any) {
   return (
     <ButtonWrapper>
       <Button
         type={props.type}
+        // @ts-ignore
         isActive={props.isActive}
         onClick={props.onClick}
       >

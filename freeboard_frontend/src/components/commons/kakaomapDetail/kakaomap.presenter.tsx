@@ -13,7 +13,7 @@ const Map = styled.div`
   margin-bottom: 16px;
 `;
 
-export default function KakaoMapDetailUi(props) {
+export default function KakaoMapDetailUi() {
   return (
     <>
       <WarpperMap>

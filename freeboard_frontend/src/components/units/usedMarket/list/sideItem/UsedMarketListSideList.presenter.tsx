@@ -1,4 +1,3 @@
-
 import {
   Wrapper,
   TestWrapper,
@@ -17,21 +16,23 @@ import {
 } from "./UsedMarketListSideList.style";
 import { v4 as uuidv4 } from "uuid";
 
-export default function SideListPageUi(props) {
+export default function SideListPageUi(props: any) {
   return (
     <>
       <Wrapper>
         <TodayItems>오늘 본 상품</TodayItems>
         <TestWrapper>
-        {props.showItem?.map((data) => (
-            <ItemsWrapper>
+          {props.showItem?.map((data: any) => (
+            <ItemsWrapper key={uuidv4()}>
               <ItemPickInfo>
                 <ItemPick>{"★"}</ItemPick>
                 <ItemCoutn>{"20"}</ItemCoutn>
               </ItemPickInfo>
               <ItemPhoto>
-                <Photo key={uuidv4()} 
-                 src={`https://storage.googleapis.com/${data.images.[0]}`}/>
+                <Photo
+                  key={uuidv4()}
+                  src={`https://storage.googleapis.com/${data.images[0]}`}
+                />
               </ItemPhoto>
               <ItemInfo>
                 <ItemName>{data.name}</ItemName>
@@ -40,7 +41,7 @@ export default function SideListPageUi(props) {
                 <ItemTags>{data.tags}</ItemTags>
               </ItemInfo>
             </ItemsWrapper>
-        ))}
+          ))}
         </TestWrapper>
       </Wrapper>
     </>

@@ -64,7 +64,7 @@ export const QuestionEditClose = styled.img`
 
 export const QuestionContents = styled.textarea`
   height: 108px;
-  width: ${(props) => (props.isEdit ? "1200px" : "1140px")};
+  width: ${(props: any) => (props.isEdit ? "1200px" : "1140px")};
   resize: none;
   color: #bdbdbd;
   border: 1px solid #bdbdbd;
@@ -84,7 +84,7 @@ export const WrapperFooterQuestion = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid #bdbdbd;
-  padding-left: ${(props) => (props.isEdit ? "0	" : "60px")};
+  padding-left: ${(props: any) => (props.isEdit ? "0	" : "60px")};
 `;
 
 export const QuestionText = styled.div`
@@ -95,7 +95,7 @@ export const QuestionText = styled.div`
 export const QuestionSubmit = styled.div`
   height: 52px;
   width: 91px;
-  background-color: ${(props) => (props.isEdit ? "#FF8200	" : "#B9062F")};
+  background-color: ${(props: any) => (props.isEdit ? "#FF8200	" : "#B9062F")};
   color: white;
   font-size: 16px;
   line-height: 52px;

@@ -18,7 +18,7 @@ import { getDate } from "../../../../../../commons/libraries/utils";
 
 import UesdMarketQuestionAnswer from "../../write/QuestionAnswer.container";
 
-export default function AnswerListItemUi(props) {
+export default function AnswerListItemUi(props: any) {
   // isEdit ===>  false
 
   return (

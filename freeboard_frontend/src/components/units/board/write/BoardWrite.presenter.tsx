@@ -22,10 +22,6 @@ import {
   PostSerch,
   Footer1,
   UploadWrapper,
-  Upload,
-  Photo,
-  PhotoWrapper,
-  PhotoInPut,
   Footer2,
   Input4,
   CheckBox,
@@ -37,11 +33,6 @@ import {
 import DaumPostcode from "react-daum-postcode";
 import { Modal } from "antd";
 import Uploads01 from "../../../commons/uploads/01/uploads01.container";
-
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.snow.css";
-
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 export default function BoardWriteUi(props: IBoardWritePresenterProps) {
   return (
@@ -61,6 +52,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
               placeholder="이름을 적어주세요."
               onChange={props.onChangeInputs}
               defaultValue={props.data?.fetchBoard?.writer || ""}
+              readOnly
             />
           </HeadText>
           <HeadText>
@@ -128,6 +120,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
             type="text"
             placeholder="링크를 복사해주세요."
             onChange={props.onChangeInputs}
+            // @ts-ignore
             defaultValue={props.data?.fetchBoard?.youtubeUrl}
           />
         </Body4>
@@ -140,6 +133,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                 key={`${_data}_${index}`}
                 index={index}
                 onChangeFile={props.onChangeFile}
+                // @ts-ignore
                 thumb={props.data?.fetchBoard?.images[index]}
                 // fileUrl={data}
                 // onChangeFileUrls={props.onChangeFileUrls}

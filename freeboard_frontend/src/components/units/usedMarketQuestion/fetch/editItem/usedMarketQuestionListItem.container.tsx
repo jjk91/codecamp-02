@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function QuestionListItem(props) {
+export default function QuestionListItem(props: any) {
   const router = useRouter();
   const [deleteUseditemQuestion] = useMutation(DELETE_USER_ITEM_QUESTION);
   const [isEdit, setIsEdit] = useState(false);

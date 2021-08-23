@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { GlobalContext } from "../../../../../pages/_app";
 import Payment from "../../payment";
 import {
   UserWrapper,
@@ -14,8 +12,7 @@ import {
   LogoutText,
 } from "./dropdown.styles";
 
-export default function Dropdown01Ui(props) {
-  const { userInfo } = useContext(GlobalContext);
+export default function Dropdown01Ui(props: any) {
   return (
     <>
       <UserWrapper>
@@ -23,7 +20,9 @@ export default function Dropdown01Ui(props) {
           <UserImg src="/images/ic_profile-96px.svg" />
           <UserInfo>
             <Username>{props.data?.fetchUserLoggedIn.name}</Username>
-            <UserPoint>{props.data?.fetchUserLoggedIn.userPoint?.amount}원</UserPoint>
+            <UserPoint>
+              {props.data?.fetchUserLoggedIn.userPoint?.amount}원
+            </UserPoint>
           </UserInfo>
         </UserData>
       </UserWrapper>
@@ -32,7 +31,7 @@ export default function Dropdown01Ui(props) {
       </PaymentWrapper>
       <LogoutWrapper>
         <LogoutImg src="/images/logout.svg" />
-        <LogoutText >로그아웃</LogoutText>
+        <LogoutText>로그아웃</LogoutText>
       </LogoutWrapper>
     </>
   );

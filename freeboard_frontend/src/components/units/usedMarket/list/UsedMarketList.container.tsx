@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import withAuth from "../../../commons/hoc/wirhAuth";
 import UsedMarketListUi from "./UsedMarketList.presenter";
 import {
   FETCH_USED_ITEMS,
@@ -10,24 +9,29 @@ import {
 
 export default function UsedMarketList() {
   const router = useRouter();
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [showItem, setShowItem] = useState([]);
 
-  const [hasMore, setHasMore] = useState(true)
-  const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS, { variables: { page: page } });
-  const onLoadMore = () =>{
-    if(!data) return
+  const [hasMore, setHasMore] = useState(true);
+  const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS, {
+    variables: { page: page },
+  });
+  const onLoadMore = () => {
+    if (!data) return;
     fetchMore({
-      variables:{page: Math.floor(data?.fetchUseditems.length/ 10) + 1},
-      updateQuery:(prev,{fetchMoreResult}) =>{
-        if (!fetchMoreResult.fetchUseditems.length) setHasMore(false)
-        return{
-          fetchUseditems:[...prev.fetchUseditems, ...fetchMoreResult.fetchUseditems]
-        }
-      }
-    })
-  }
+      variables: { page: Math.floor(data?.fetchUseditems.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult.fetchUseditems.length) setHasMore(false);
+        return {
+          fetchUseditems: [
+            ...prev.fetchUseditems,
+            ...fetchMoreResult.fetchUseditems,
+          ],
+        };
+      },
+    });
+  };
   const { data: itemOfTheBest } = useQuery(FETCH_USED_ITEMS_OF_THE_BEST);
 
   useEffect(() => {
@@ -68,7 +72,8 @@ export default function UsedMarketList() {
       hasMore={hasMore}
       refetch={refetch}
       search={search}
-      setSearch = {setSearch}
+      setSearch={setSearch}
+      setPage={setPage}
     />
   );
 }

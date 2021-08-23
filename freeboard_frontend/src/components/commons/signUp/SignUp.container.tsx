@@ -1,8 +1,9 @@
 import { useMutation } from "@apollo/client";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, useState, createContext } from "react";
 import SignUpUi from "./SignUp.presenter";
 import { CREATE_USER } from "./SignUp.queries";
-import { createContext } from "react";
+import { Modal } from "antd";
+
 import { useRouter } from "next/router";
 
 export const inputsInit = {
@@ -35,10 +36,7 @@ export default function SignUp() {
       ...inputs,
       [event.target.name]: event.target.value,
     };
-    console.log(newInputs);
-    // console.log(newInputs);
     setInputs(newInputs);
-    // console.log(inputs);
     setInputsErrors({ ...inputsErrors, [event.target.name]: "" });
   }
 
@@ -59,18 +57,17 @@ export default function SignUp() {
 
     if (Object.values(newInputsErrors).every((data) => !data)) {
       try {
-        const result = await createUser({
+        await createUser({
           variables: {
             createUserInput: {
               ...inputs,
             },
           },
         });
-        console.log(result);
-        alert("회원가입을 축하합니다!");
+        Modal.success({ content: "회원가입을 축하합니다." });
         router.push("/boards/login");
       } catch (error) {
-        alert(error.message);
+        Modal.error({ content: error.message });
       }
     }
   }

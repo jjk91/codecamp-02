@@ -7,12 +7,12 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function CommentListItem(props) {
+export default function CommentListItem(props: any) {
   const router = useRouter();
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
   const [isEdit, setIsEdit] = useState(false);
 
-  async function onClickDelete(event) {
+  async function onClickDelete(event: any) {
     try {
       await deleteBoardComment({
         variables: {
@@ -39,7 +39,6 @@ export default function CommentListItem(props) {
   }
 
   function onClickClose() {
-    console.log("클릭");
     setIsEdit(false);
   }
   return (

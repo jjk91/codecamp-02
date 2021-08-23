@@ -1,6 +1,6 @@
 import { Paginations, PageMove, Page } from "./paginations01.styles";
 
-export default function Paginations01Ui(props) {
+export default function Paginations01Ui(props: any) {
   return (
     <Paginations>
       <PageMove onClick={props.onClickPrevPage}>{"<"}</PageMove>

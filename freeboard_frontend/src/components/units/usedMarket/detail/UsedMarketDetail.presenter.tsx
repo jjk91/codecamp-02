@@ -41,10 +41,10 @@ import DOMPurify from "dompurify";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 
-export default function UsedMarketDetailUi(props) {
-  const { userInfo } = useContext(GlobalContext)
+export default function UsedMarketDetailUi(props: any) {
+  const { userInfo } = useContext(GlobalContext);
   const setting = {
-    customPaging: function (i) {
+    customPaging: function (i: any) {
       return (
         <ItemImgPagingWrapper>
           <ItemImgPaging
@@ -59,7 +59,7 @@ export default function UsedMarketDetailUi(props) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    appendDots: (dots) => <PagingUl> {dots} </PagingUl>,
+    appendDots: (dots: any) => <PagingUl> {dots} </PagingUl>,
   };
   return (
     <>
@@ -99,7 +99,7 @@ export default function UsedMarketDetailUi(props) {
             <ItemInfoBody>
               <ItemInfoBodyTop>
                 <SliderImg {...setting}>
-                  {props.data?.fetchUseditem.images.map((data) => (
+                  {props.data?.fetchUseditem.images.map((data: any) => (
                     <ItemImgWrapper key={uuidv4()}>
                       <ItemImg src={`https://storage.googleapis.com/${data}`} />
                     </ItemImgWrapper>
@@ -128,36 +128,40 @@ export default function UsedMarketDetailUi(props) {
               </ItemInfoBodyBottom>
             </ItemInfoBody>
 
-            {props.data?.fetchUseditem.seller._id ===  userInfo?._id &&<ItemInfoFooter>
-            <Button01
-                type="button"
-                buttonText="목록"
-                onClick={props.onClickList}
-              />
-              <Button01
-                type="button"
-                buttonText="수정"
-                onClick={props.onClickEdit}
-              />
-              <Button01
-                type="button"
-                buttonText="삭제"
-                onClick={props.onClickDelete}
+            {props.data?.fetchUseditem.seller._id === userInfo?._id && (
+              <ItemInfoFooter>
+                <Button01
+                  type="button"
+                  buttonText="목록"
+                  onClick={props.onClickList}
                 />
-            </ItemInfoFooter>}
-            {props.data?.fetchUseditem.seller._id !==  userInfo?._id &&<ItemInfoFooter>
-            <Button01
-                type="button"
-                buttonText="목록"
-                onClick={props.onClickList}
-              />
-            
-              <Button01
-                type="button"
-                buttonText="구매"
-                onClick={props.onClickBuying}
+                <Button01
+                  type="button"
+                  buttonText="수정"
+                  onClick={props.onClickEdit}
                 />
-            </ItemInfoFooter>}
+                <Button01
+                  type="button"
+                  buttonText="삭제"
+                  onClick={props.onClickDelete}
+                />
+              </ItemInfoFooter>
+            )}
+            {props.data?.fetchUseditem.seller._id !== userInfo?._id && (
+              <ItemInfoFooter>
+                <Button01
+                  type="button"
+                  buttonText="목록"
+                  onClick={props.onClickList}
+                />
+
+                <Button01
+                  type="button"
+                  buttonText="구매"
+                  onClick={props.onClickBuying}
+                />
+              </ItemInfoFooter>
+            )}
           </ItemsInfo>
         </WrapperBody>
       </Wrapper>

@@ -1,6 +1,5 @@
 import {
   Wrapper,
-  QuestionAnswer,
   Question,
   QuestionHead,
   QuestionInfo,
@@ -21,7 +20,7 @@ import UsedMarketQuestion from "../../write/usedMarketQuestionWrite.container";
 import UesdMarketQuestionAnswer from "../../QuestionAnswer/write/QuestionAnswer.container";
 import AnswerList from "../../QuestionAnswer/fetch/QuestionAnswerList.container";
 
-export default function QuestionListItemUi(props) {
+export default function QuestionListItemUi(props: any) {
   // isEdit ===>  false
 
   return (

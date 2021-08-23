@@ -24,7 +24,7 @@ const Error = styled.div`
   font-size: 16px;
 `;
 
-export default function Input01(props) {
+export default function Input01(props: any) {
   return (
     <InputWrapper>
       <Text>{props.inputTitle}</Text>
