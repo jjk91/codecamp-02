@@ -35,15 +35,15 @@ export default function MyPageDataUi(props: any) {
           </UserAmountWrapper>
         </UserWrapper>
         <MyPageList>
-          <MyItemsWarpper>
+          <MyItemsWarpper onClick={props.onClickMoveMyItems} >
             <MyItemImg src="/images/market.svg" />
             <MyItems>{"내 장터"}</MyItems>
           </MyItemsWarpper>
-          <MyAmountWrapper>
+          <MyAmountWrapper onClick={props.onClickMoveMyAmount}>
             <MyAmountImg src="/images/charger.svg" />
             <MyAmount>{"내 포인트"}</MyAmount>
           </MyAmountWrapper>
-          <MyProfileWrapper>
+          <MyProfileWrapper onClick={props.onClickMoveMyProfile}>
             <MyProfileImg src="/images/ic_profile-96px.svg" />
             <MyProfile>{"내 프로필"}</MyProfile>
           </MyProfileWrapper>

@@ -44,7 +44,11 @@ export default function KakaoMapUi(props: any) {
   return (
     <>
       <WarpperMap>
-        검색: <Search onChange={props.onChangeSearch} />
+        검색:
+        <Search
+          onChange={props.onChangeSearch}
+          placeholder="거래 위치를 검색해주세요"
+        />
         <Map id="map"></Map>
         <InputWrapper>
           주소:

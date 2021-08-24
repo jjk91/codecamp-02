@@ -46,25 +46,15 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
         <Head2>
           <HeadText>
             <Text>작성자*</Text>
-            {!props.isEdit && (
-              <Input
-                name="writer"
-                type="text"
-                placeholder="이름을 적어주세요."
-                onChange={props.onChangeInputs}
-                defaultValue={props.data?.fetchBoard?.writer || ""}
-              />
-            )}
-            {props.isEdit && (
-              <Input
-                name="writer"
-                type="text"
-                placeholder="이름을 적어주세요."
-                onChange={props.onChangeInputs}
-                defaultValue={props.data?.fetchBoard?.writer || ""}
-                readOnly
-              />
-            )}
+
+            <Input
+              name="writer"
+              type="text"
+              placeholder="이름을 적어주세요."
+              onChange={props.onChangeInputs}
+              defaultValue={props.data?.fetchBoard?.writer || ""}
+              readOnly={props.isEdit}
+            />
           </HeadText>
           <HeadText>
             <Text>비밀번호</Text>
@@ -94,7 +84,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
             // name="contents"
             placeholder="내용을 작성해주세요."
             onChange={props.onChangeContents}
-            defaultValue={props.data?.fetchBoard?.contents}
+            value={props.contents}
           />
         </Body2>
 
@@ -141,11 +131,12 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
           <UploadWrapper>
             {new Array(3).fill(1).map((_data: string, index: number) => (
               <Uploads01
+                limit={props.data?.fetchBoard?.images?.length}
                 key={`${_data}_${index}`}
                 index={index}
                 onChangeFile={props.onChangeFile}
                 // @ts-ignore
-                thumb={props.data?.fetchBoard?.images[index]}
+                thumb={props.data?.fetchBoard?.images?.[index]}
                 // fileUrl={data}
                 // onChangeFileUrls={props.onChangeFileUrls}
               />

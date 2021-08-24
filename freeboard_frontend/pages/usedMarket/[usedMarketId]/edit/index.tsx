@@ -14,6 +14,12 @@ const FETCH_USED_ITEM = gql`
       tags
       images
       createdAt
+      useditemAddress {
+        address
+        addressDetail
+        lat
+        lng
+      }
     }
   }
 `;
@@ -25,6 +31,7 @@ export default function usedMarketEdit() {
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: router.query.usedMarketId },
   });
+  console.log(data);
   const value = {
     isEdit: true,
     data,

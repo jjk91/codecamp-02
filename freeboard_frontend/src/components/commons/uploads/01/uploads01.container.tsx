@@ -12,6 +12,8 @@ export default function Uploads01(props: any) {
   async function onChangeFile(event: any) {
     const file = event.target.files?.[0];
 
+    // if (props.limit > 3) return;
+
     // if (CheckValidationFile(file)) return;
 
     const fileReader = new FileReader();

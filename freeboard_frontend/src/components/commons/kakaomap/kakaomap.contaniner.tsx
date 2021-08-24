@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { usedMarketEditPageContext } from "../../../../pages/usedMarket/[usedMarketId]/edit";
 import KakaoMapUi from "./kakaomap.presenter";
 
 declare const window: typeof globalThis & {
@@ -6,6 +7,7 @@ declare const window: typeof globalThis & {
 };
 
 export default function KakaoMap(props: any) {
+  const { isEdit } = useContext(usedMarketEditPageContext);
   const [search, setSearch] = useState("");
   const [kakaoAddress, setKakaoAddress] = useState("");
 
@@ -22,6 +24,7 @@ export default function KakaoMap(props: any) {
   };
 
   useEffect(() => {
+    console.log(props.lat, props.lng);
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=ecc9f338d4140428f6915924ceaa0b69&autoload=false&libraries=services";
@@ -34,12 +37,27 @@ export default function KakaoMap(props: any) {
         // v3가 모두 로드된 후, 이 콜백 함수가 실행됩니다.
         const mapContainer = document.getElementById("map"); // 지도를 표시할 div
         const mapOption = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          center: new window.kakao.maps.LatLng(
+            isEdit ? props.lat : 33.450701,
+            isEdit ? props.lng : 126.570667
+          ), // 지도의 중심좌표
           level: 3, // 지도의 확대 레벨
         };
 
         // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
         const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+        if (isEdit) {
+          const markerPosition = new window.kakao.maps.LatLng(
+            props.lat,
+            props.lng
+          );
+          const marker = new window.kakao.maps.Marker({
+            position: markerPosition,
+          });
+          marker.setMap(map);
+        }
+
         // 장소 검색 객체를 생성합니다
         const ps = new window.kakao.maps.services.Places();
 
@@ -80,15 +98,16 @@ export default function KakaoMap(props: any) {
                 "</div>",
               setKakaoAddress(place.place_name)
             );
-            props.setAddress(place.place_name);
+            props.setAddress(place.place_name === props.address);
             props.setLat(marker.getPosition().getLat());
             props.setLng(marker.getPosition().getLng());
+            // props.setLatLng(marker.getPosition());
             infowindow.open(map, marker);
           });
         }
       });
     };
-  }, [search]);
+  }, [search, props.lat, props.lng]);
 
   return (
     <>

@@ -23,8 +23,8 @@ const UsedMarketWrite = () => {
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
   const [files, setFiles] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
   const [address, setAddress] = useState();
   const [addressDetail, setAddressDetail] = useState();
 
@@ -36,51 +36,14 @@ const UsedMarketWrite = () => {
 
   useEffect(() => {
     if (!data) return;
-    // _id
-    // name
-    // remarks
-    // contents
-    // price
-    // tags
-    // images
-    // createdAt
 
     ["name", "remarks", "contents", "price"].forEach((key) => {
       setValue(key, String(data?.fetchUseditem[key]));
     });
-    // ;
+
+    setLat(data?.fetchUseditem.useditemAddress.lat);
+    setLng(data?.fetchUseditem.useditemAddress.lng);
   }, [data]);
-
-  const onChangeContents = (value: any) => {
-    const isBlank = "<p><br></p>";
-
-    setValue("contents", value === isBlank ? "" : value);
-    trigger("contents");
-  };
-
-  const onWriteUpdate = async (data: any) => {
-    try {
-      await updateUseditem({
-        variables: {
-          useditemId: router.query.usedMarketId,
-          updateUseditemInput: {
-            name: data.name,
-            remarks: data.remarks,
-            contents: String(data.contents),
-            price: Number(data.price),
-            tags: data.tags,
-            useditemAddress: {
-              address,
-              addressDetail,
-            },
-          },
-        },
-      });
-      Modal.success({ content: "상품이 등록되었습니다." });
-    } catch (error) {
-      Modal.error({ content: error.message });
-    }
-  };
 
   const onWriteSubmit = async (data: any) => {
     try {
@@ -101,16 +64,49 @@ const UsedMarketWrite = () => {
             tags: data.tags,
             images: resultFile.map((el: any) => el.data.uploadFile.url),
             useditemAddress: {
-              address,
-              addressDetail,
-              lat,
-              lng,
+              address: address,
+              addressDetail: addressDetail,
+              lat: lat,
+              lng: lng,
             },
           },
         },
       });
       Modal.success({ content: "상품이 등록되었습니다." });
+      router.push(`/usedMarket/list`);
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
+  };
 
+  const onChangeContents = (value: any) => {
+    const isBlank = "<p><br></p>";
+
+    setValue("contents", value === isBlank ? "" : value);
+    trigger("contents");
+  };
+
+  const onWriteUpdate = async (data: any) => {
+    try {
+      await updateUseditem({
+        variables: {
+          useditemId: router.query.usedMarketId,
+          updateUseditemInput: {
+            name: data.name,
+            remarks: data.remarks,
+            contents: String(data.contents),
+            price: Number(data.price),
+            tags: data.tags,
+            useditemAddress: {
+              address: address,
+              addressDetail: addressDetail,
+              lat: lat,
+              lng: lng,
+            },
+          },
+        },
+      });
+      Modal.success({ content: "상품이 수정되었습니다." });
       router.push(`/usedMarket/list`);
     } catch (error) {
       Modal.error({ content: error.message });
@@ -128,6 +124,8 @@ const UsedMarketWrite = () => {
   return (
     <>
       <UsedMarketWriteUi
+        lat={lat}
+        lng={lng}
         setLat={setLat}
         setLng={setLng}
         register={register}
@@ -137,7 +135,9 @@ const UsedMarketWrite = () => {
         onChangeFile={onChangeFile}
         isActive={formState.isValid}
         errors={formState.errors}
+        address={address}
         setAddress={setAddress}
+        addresssDetail={addressDetail}
         setAddressDetail={setAddressDetail}
         onChangeContents={onChangeContents}
       />

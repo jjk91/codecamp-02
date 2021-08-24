@@ -84,9 +84,12 @@ export default function UsedMarketWriteUi(props: any) {
               setAddress={props.setAddress}
               setAddressDetail={props.setAddressDetail}
               name={props.name}
-              register={props.register}
+              lat={props.lat}
+              lng={props.lng}
               setLat={props.setLat}
               setLng={props.setLng}
+              // address={props.address}
+              // addresssDetail={props.addressDetail}
             />
           </LocationLeft>
           {/* <LocationRight> */}

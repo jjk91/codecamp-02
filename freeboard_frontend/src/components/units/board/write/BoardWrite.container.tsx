@@ -15,6 +15,7 @@ import {
 } from "./BoardWrite.types";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { Modal } from "antd";
+import { useEffect } from "react";
 
 interface InputTypes {
   writer?: string | null;
@@ -41,7 +42,6 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   const [addressDetail, setAddressDetail] = useState("");
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
-  // const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [files, setFiles] = useState([]);
 
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -70,6 +70,19 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       variables: { boardId: String(router.query.boardId) },
     }
   );
+
+  useEffect(() => {
+    if (data?.fetchBoard) {
+      // @ts-ignore
+      setFiles(data?.fetchBoard?.images);
+
+      setInputs({
+        ...inputs,
+        // eslint-disable-next-line no-useless-computed-key
+        ["contents"]: data?.fetchBoard?.contents,
+      });
+    }
+  }, [data]);
 
   // useEffect(() => {
   //   if (props.isEdit && data?.fetchBoard?.images) {
@@ -120,6 +133,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
   function onChangeContents(value: any) {
     const isBlank = "<p><br></p>";
     const newInputs = { ...inputs, contents: value === isBlank ? "" : value };
+
     setInputs(newInputs);
     setdisabled(checkInputs(newInputs));
   }
@@ -164,15 +178,24 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     if (inputs.title) newInputs.title = inputs.title;
     if (inputs.contents) newInputs.contents = inputs.contents;
 
-    const newFiles: Array<File> = files.filter((data) => data !== undefined);
+    console.log(files);
+    // const newFiles: Array<File> = files.filter((data) => data !== undefined);
+    // console.log(newFiles, "이거봐봐"); // 새로 업로드 되는 파일
+    // console.log(files); // 3개의 사진중 추가 업로드 할경우 나머지 값은 empty
 
-    // console.log(files);
     const resultFile = await Promise.all(
-      newFiles.map((data) => uploadFile({ variables: { file: data } }))
+      files.map((data) =>
+        typeof data !== "string"
+          ? uploadFile({ variables: { file: data } })
+          : data
+      )
     );
-    const fetchBoardImages = data?.fetchBoard.images || [];
+    console.log(resultFile);
 
-    const newImages = resultFile.map((el) => el.data.uploadFile.url);
+    const uploadData = resultFile.map((el) => {
+      return el.data?.uploadFile?.url ? el.data?.uploadFile?.url : el;
+    });
+    // console.log(uploadData);
 
     if (Object.values(newInputs).every((data) => data)) {
       try {
@@ -182,19 +205,20 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
             password: inputs.password, // inputs에 입력된 password
             updateBoardInput: {
               ...newInputs,
-              images: [...fetchBoardImages, ...newImages],
+              images: uploadData,
+              // images: [...fetchBoardImages, ...newImages],
             },
           },
         });
-        console.log(fetchBoardImages, "fetchboardImage");
-        console.log(newImages, "....");
+        // console.log(fetchBoardImages, "fetchboardImage");
+        console.log(resultFile, "파일결과");
         Modal.info({
           title: "수정확인",
           content: "게시물을 수정 합니다.",
         });
         router.push(`/boards/${result.data.updateBoard._id}`);
       } catch (error) {
-        Modal.error({ content: error.massage });
+        Modal.error({ content: error.message });
       }
     }
   }
@@ -215,6 +239,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
 
   function onChangeFile(file: string, index: number) {
     const newFiles = [...files];
+
     // @ts-ignore
     newFiles[index] = file;
     setFiles(newFiles);
@@ -243,6 +268,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       isEdit={props.isEdit}
       // @ts-ignore
       data={data}
+      contents={inputs.contents}
     />
   );
 }
