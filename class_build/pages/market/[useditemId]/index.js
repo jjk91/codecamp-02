@@ -1,15 +1,15 @@
-import { request, gql } from "graphql-request";
-import Head from "next/head";
+// import { request, gql } from "graphql-request";
+// import Head from "next/head";
 
-const FETCH_USEDITEM = gql`
-  query fetchUseditem($useditemId: ID!) {
-    fetchUseditem(useditemId: $useditemId) {
-      name
-      remarks
-      images
-    }
-  }
-`;
+// const FETCH_USEDITEM = gql`
+//   query fetchUseditem($useditemId: ID!) {
+//     fetchUseditem(useditemId: $useditemId) {
+//       name
+//       remarks
+//       images
+//     }
+//   }
+// `;
 
 export default function MarketPage(props) {
   return (
