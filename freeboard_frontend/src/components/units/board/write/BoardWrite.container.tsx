@@ -109,7 +109,7 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     setInputs(newInputs);
     // if(newInputs.title || newInputs.contents) {
     setdisabled(checkInputs(newInputs));
-    console.log(newInputs);
+    // console.log(newInputs);
     // }
 
     // if(Object.values(newInputs).every(data => data)){
@@ -167,10 +167,12 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     const newFiles: Array<File> = files.filter((data) => data !== undefined);
 
     // console.log(files);
-    await Promise.all(
+    const resultFile = await Promise.all(
       newFiles.map((data) => uploadFile({ variables: { file: data } }))
     );
     const fetchBoardImages = data?.fetchBoard.images || [];
+
+    const newImages = resultFile.map((el) => el.data.uploadFile.url);
 
     if (Object.values(newInputs).every((data) => data)) {
       try {
@@ -180,10 +182,12 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
             password: inputs.password, // inputs에 입력된 password
             updateBoardInput: {
               ...newInputs,
-              images: [...fetchBoardImages],
+              images: [...fetchBoardImages, ...newImages],
             },
           },
         });
+        console.log(fetchBoardImages, "fetchboardImage");
+        console.log(newImages, "....");
         Modal.info({
           title: "수정확인",
           content: "게시물을 수정 합니다.",

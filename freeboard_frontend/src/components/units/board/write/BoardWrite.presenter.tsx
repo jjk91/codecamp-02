@@ -46,14 +46,25 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
         <Head2>
           <HeadText>
             <Text>작성자*</Text>
-            <Input
-              name="writer"
-              type="text"
-              placeholder="이름을 적어주세요."
-              onChange={props.onChangeInputs}
-              defaultValue={props.data?.fetchBoard?.writer || ""}
-              readOnly
-            />
+            {!props.isEdit && (
+              <Input
+                name="writer"
+                type="text"
+                placeholder="이름을 적어주세요."
+                onChange={props.onChangeInputs}
+                defaultValue={props.data?.fetchBoard?.writer || ""}
+              />
+            )}
+            {props.isEdit && (
+              <Input
+                name="writer"
+                type="text"
+                placeholder="이름을 적어주세요."
+                onChange={props.onChangeInputs}
+                defaultValue={props.data?.fetchBoard?.writer || ""}
+                readOnly
+              />
+            )}
           </HeadText>
           <HeadText>
             <Text>비밀번호</Text>
