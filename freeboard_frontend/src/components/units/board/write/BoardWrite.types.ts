@@ -2,6 +2,7 @@ import { ChangeEvent, MouseEvent } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardWritePresenterProps {
+  addressDetail: string | number | readonly string[] | undefined;
   onChangeInputs?: (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;

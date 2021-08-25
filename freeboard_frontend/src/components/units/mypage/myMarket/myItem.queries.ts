@@ -23,6 +23,28 @@ export const FETCH_USED_ITEMS_ISOLD = gql`
       remarks
       contents
       price
+      buyer {
+        _id
+      }
+      soldAt
+      createdAt
+    }
+  }
+`;
+
+// 내가 찜한 상품
+export const FETCH_USED_ITEMS_IPICKED = gql`
+  query fetchUseditemsIPicked {
+    fetchUseditemsIPicked {
+      _id
+      name
+      remarks
+      contents
+      price
+      pickedCount
+      buyer {
+        _id
+      }
       soldAt
       createdAt
     }

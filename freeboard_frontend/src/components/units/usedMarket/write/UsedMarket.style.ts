@@ -82,3 +82,8 @@ export const CheckBox = styled.div`
 export const Error = styled.div`
   color: red;
 `;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;

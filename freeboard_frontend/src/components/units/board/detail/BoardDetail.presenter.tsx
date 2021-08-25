@@ -32,6 +32,7 @@ import {
 } from "./BoardDetail.style";
 import { getDate } from "../../../../commons/libraries/utils";
 import { Tooltip } from "antd";
+import DOMPurify from "dompurify";
 
 export default function BoardDetailUi(props: any) {
   return (
@@ -69,7 +70,15 @@ export default function BoardDetailUi(props: any) {
                 />
               ))}
             </ContentsImg>
-            <ContentsText>{props.data?.fetchBoard.contents}</ContentsText>
+            {typeof window !== "undefined" ? (
+              <ContentsText
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(props.data?.fetchBoard.contents),
+                }}
+              ></ContentsText>
+            ) : (
+              <div></div>
+            )}
             <ContentsUrl
               url={props.data?.fetchBoard.youtubeUrl}
               width="480px"

@@ -36,11 +36,11 @@ const UsedMarketWrite = () => {
 
   useEffect(() => {
     if (!data) return;
-
-    ["name", "remarks", "contents", "price", "tag"].forEach((key) => {
+    ["name", "remarks", "contents", "price", "tags"].forEach((key) => {
       setValue(key, String(data?.fetchUseditem[key]));
     });
-
+    setAddress(data?.fetchUseditem.useditemAddress.address);
+    setAddressDetail(data?.fetchUseditem.useditemAddress.addressDetail);
     setLat(data?.fetchUseditem.useditemAddress.lat);
     setLng(data?.fetchUseditem.useditemAddress.lng);
   }, [data]);
@@ -88,6 +88,19 @@ const UsedMarketWrite = () => {
 
   const onWriteUpdate = async (data: any) => {
     try {
+      const result = await Promise.all(
+        // @ts-ignore
+        files.map((data: any) =>
+          typeof data !== "string"
+            ? uploadFile({ variables: { file: data } })
+            : data
+        )
+      );
+
+      const resultFile = result.map((el: any) =>
+        el.data.uploadFile.url ? el.data.uploadFile.url : el
+      );
+
       await updateUseditem({
         variables: {
           useditemId: router.query.usedMarketId,
@@ -97,6 +110,7 @@ const UsedMarketWrite = () => {
             contents: String(data.contents),
             price: Number(data.price),
             tags: data.tags,
+            images: resultFile,
             useditemAddress: {
               address: address,
               addressDetail: addressDetail,
@@ -121,9 +135,14 @@ const UsedMarketWrite = () => {
     setFiles(newFiles);
   }
 
+  const onClickCancle = () => {
+    router.push(`/usedMarket/list`);
+  };
+
   return (
     <>
       <UsedMarketWriteUi
+        data={data}
         lat={lat}
         lng={lng}
         setLat={setLat}
@@ -140,6 +159,7 @@ const UsedMarketWrite = () => {
         addresssDetail={addressDetail}
         setAddressDetail={setAddressDetail}
         onChangeContents={onChangeContents}
+        onClickCancle={onClickCancle}
       />
     </>
   );

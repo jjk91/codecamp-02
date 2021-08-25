@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  class_build:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./pages:/class_build/pasges
+      - ./src:/class_build/src
+      - ./public:/class_build/public
+      # node 밖( 내 컴퓨터 ): node 안
+      # 여기에 들어가는 것은 자주 변경되는 것만 하는 것이 좋다
+      # node_moduless  제외 하며, 배포 할 때는 없어야 한다.
+      
+
+    ports:
+      - 3000:3000

@@ -1,13 +1,17 @@
 import { useState } from "react";
-import Paginations01Ui from "./paginations01.presenter";
+import Paginations01Ui from "./paginations02.presenter";
 
-export default function Paginations01(props: any) {
+export default function Paginations02(props: any) {
   const [activePage, setActivePage] = useState(1);
-  const lastPage = Math.ceil(props.dataBoardsCount / 10);
-  console.log(props);
+  const lastPage = Math.ceil(props.dataCount?.length / 10);
+
+  // console.log(props);
+
   function onClickPage(event: any) {
+    // props.refetch();
+
     setActivePage(Number(event.target.id));
-    props.refetch({ page: Number(event.target.id) });
+    props.setStartPage(Number(event.target.id));
   }
 
   function onClickPrevPage() {
@@ -17,7 +21,7 @@ export default function Paginations01(props: any) {
   }
 
   function onClickNextPage() {
-    if (props.startPage + 5 > lastPage) return;
+    if (props.startPage + 10 > lastPage) return;
     props.setStartPage((prev: any) => prev + 10);
     setActivePage(props.startPage + 10);
   }

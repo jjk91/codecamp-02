@@ -14,6 +14,7 @@ import {
   MainImgSetting,
   ImgText,
   CheckBox,
+  ButtonWrapper,
 } from "./UsedMarket.style";
 import { useContext } from "react";
 import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[usedMarketId]/edit";
@@ -21,7 +22,7 @@ import KakaoMap from "../../../commons/kakaomap/kakaomap.contaniner";
 
 export default function UsedMarketWriteUi(props: any) {
   // @ts-ignore
-  const { isEdit } = useContext(usedMarketEditPageContext);
+  const { isEdit, data: ImageData } = useContext(usedMarketEditPageContext);
   return (
     <form
       onSubmit={props.handleSubmit(
@@ -119,6 +120,7 @@ export default function UsedMarketWriteUi(props: any) {
               key={`${data}_${index}`}
               index={index}
               onChangeFile={props.onChangeFile}
+              thumb={ImageData?.fetchUseditem?.images?.[index]}
             />
           ))}
         </UploadWrapper>
@@ -129,11 +131,20 @@ export default function UsedMarketWriteUi(props: any) {
             <Input04 inputTitle={"사진2"} type="radio" />
           </CheckBox>
         </MainImgSetting>
-        <Button01
-          type="submit"
-          buttonText={isEdit ? "수정하기" : "등록하기"}
-          isActive={isEdit}
-        />
+        <ButtonWrapper>
+          {isEdit && (
+            <Button01
+              type="button"
+              buttonText="취소"
+              onClic={props.onClickCancle}
+            />
+          )}
+          <Button01
+            type="submit"
+            buttonText={isEdit ? "수정하기" : "등록하기"}
+            isActive={isEdit}
+          />
+        </ButtonWrapper>
       </UsedMarketWriteWrapper>
     </form>
   );

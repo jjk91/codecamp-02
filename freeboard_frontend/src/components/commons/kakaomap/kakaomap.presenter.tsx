@@ -56,6 +56,7 @@ export default function KakaoMapUi(props: any) {
           <AddressDetail
             name="addressDetail"
             onChange={props.onChangeAddressDetail}
+            value={props.addressDetail}
             placeholder="상세주소를 입력해주세요"
           />
         </InputWrapper>

@@ -7,6 +7,7 @@ declare const window: typeof globalThis & {
 };
 
 export default function KakaoMap(props: any) {
+  // @ts-ignore
   const { isEdit } = useContext(usedMarketEditPageContext);
   const [search, setSearch] = useState("");
   const [kakaoAddress, setKakaoAddress] = useState("");
@@ -24,7 +25,6 @@ export default function KakaoMap(props: any) {
   };
 
   useEffect(() => {
-    console.log(props.lat, props.lng);
     const script = document.createElement("script");
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?appkey=ecc9f338d4140428f6915924ceaa0b69&autoload=false&libraries=services";

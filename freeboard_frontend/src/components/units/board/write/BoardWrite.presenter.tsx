@@ -112,6 +112,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
             type="text"
             placeholder=""
             onChange={props.onChangAddressDetail}
+            value={props.addressDetail}
           ></AddressDetail>
         </Body3>
 
