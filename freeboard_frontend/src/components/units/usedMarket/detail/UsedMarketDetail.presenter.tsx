@@ -40,6 +40,7 @@ import KakaoMapDetail from "../../../commons/kakaomapDetail/kakaomap.contaniner"
 import DOMPurify from "dompurify";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
+import { Tooltip } from "antd";
 
 export default function UsedMarketDetailUi(props: any) {
   const { userInfo } = useContext(GlobalContext);
@@ -66,7 +67,7 @@ export default function UsedMarketDetailUi(props: any) {
       <Wrapper>
         <WrapperHead>
           <SellerInfoLeft>
-            <SellerImg src="/images/ic_profile-96px.png" />
+            <SellerImg src="/images/ic_profile-96px.svg" />
             <SellerData>
               <SellerName>{props.data?.fetchUseditem.seller.name}</SellerName>
               <WriterDate>
@@ -75,8 +76,14 @@ export default function UsedMarketDetailUi(props: any) {
             </SellerData>
           </SellerInfoLeft>
           <SellerInfoRigth>
-            <SellerConnect src="/images/ic_link-32px.png" />
-            <Location src="/images/ic_location_on-32px.png" />
+            <SellerConnect src="/images/ic_link-32px.svg" />
+            <Tooltip
+              placement="topRight"
+              title={`${props.data?.fetchUseditem.useditemAddress?.address}
+               ${props.data?.fetchUseditem.useditemAddress?.addressDetail}`}
+            >
+              <Location src="/images/ic_location_on-32px.svg" />
+            </Tooltip>
           </SellerInfoRigth>
         </WrapperHead>
         <WrapperBody>

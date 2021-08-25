@@ -84,6 +84,7 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
             // name="contents"
             placeholder="내용을 작성해주세요."
             onChange={props.onChangeContents}
+            // @ts-ignore
             value={props.contents}
           />
         </Body2>

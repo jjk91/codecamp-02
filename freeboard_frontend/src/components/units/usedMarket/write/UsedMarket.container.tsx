@@ -37,7 +37,7 @@ const UsedMarketWrite = () => {
   useEffect(() => {
     if (!data) return;
 
-    ["name", "remarks", "contents", "price"].forEach((key) => {
+    ["name", "remarks", "contents", "price", "tag"].forEach((key) => {
       setValue(key, String(data?.fetchUseditem[key]));
     });
 
