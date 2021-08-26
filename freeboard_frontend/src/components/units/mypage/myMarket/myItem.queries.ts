@@ -44,6 +44,7 @@ export const FETCH_USED_ITEMS_IPICKED = gql`
       pickedCount
       buyer {
         _id
+        name
       }
       soldAt
       createdAt

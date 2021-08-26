@@ -9,12 +9,12 @@ import {
 
 export default function MyItemPage() {
   const [page, setPage] = useState(1);
+  const [isActive, setIsActive] = useState(false);
   const { data, refetch } = useQuery(FETCH_USED_ITEMS_ISOLD);
-  
+
   const { data: PickData, refetch: PickRefetch } = useQuery(
     FETCH_USED_ITEMS_IPICKED
   );
-  const [isActive, setIsActive] = useState(false);
 
   const dataCount = isActive
     ? data?.fetchUseditemsISold
@@ -38,7 +38,6 @@ export default function MyItemPage() {
       setPage={setPage}
       dataCount={dataCount}
       isActive={isActive}
-      setIsActive={setIsActive}
       onClickMyItemPage={onClickMyItemPage}
       onClickMyPick={onClickMyPick}
     />

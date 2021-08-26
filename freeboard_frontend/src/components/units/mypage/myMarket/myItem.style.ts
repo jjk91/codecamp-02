@@ -19,19 +19,23 @@ export const TitleNumber = styled.div`
 `;
 
 export const TitleName = styled.div`
-  width: 35%;
+  width: 30%;
 `;
 
 export const TitleSold = styled.div`
-  width: 15%;
+  width: ${(props: any) => (props.isActive ? "20%" : "15%")};
 `;
 
 export const TitlePrice = styled.div`
-  width: 20%;
+  width: ${(props: any) => (props.isActive ? "20%" : "15%")};
+`;
+
+export const TitleSeller = styled.div`
+  width: ${(props: any) => (props.isActive ? "" : "15%")};
 `;
 
 export const TitleCreatedAt = styled.div`
-  width: 20%;
+  width: ${(props: any) => (props.isActive ? "20%" : "15%")};
 `;
 
 export const MyItemListWrapper = styled.div`
@@ -44,19 +48,23 @@ export const ListNumber = styled.div`
 `;
 
 export const ListName = styled.div`
-  width: 35%;
+  width: 30%;
 `;
 export const ListSold = styled.div`
-  width: 15%;
+  width: ${(props: any) => (props.isActive ? "20%" : "15%")};
   color: midnightblue;
 `;
 
 export const ListPrice = styled.div`
-  width: 20%;
+  width: ${(props: any) => (props.isActive ? "20%" : "15%")};
+`;
+
+export const ListSeller = styled.div`
+  width: ${(props: any) => (props.isActive ? "" : "15%")};
 `;
 
 export const ListCreatedAt = styled.div`
-  width: 20%;
+  width: ${(props: any) => (props.isActive ? "20%" : "15%")};
 `;
 
 export const PageWrapper = styled.div`
@@ -67,10 +75,12 @@ export const PageWrapper = styled.div`
 
 export const MyItem = styled.div`
   cursor: pointer;
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const MyPick = styled.div`
   cursor: pointer;
+  color: ${(props: any) => (props.isActive ? "#cfcff4" : "midnightblue")};
 `;
 
 export const PaginationsWrapper = styled.div`

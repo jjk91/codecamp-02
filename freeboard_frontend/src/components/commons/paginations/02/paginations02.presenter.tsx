@@ -6,22 +6,27 @@ export default function Paginations02Ui(props: any) {
     <Paginations>
       <PageMove onClick={props.onClickPrevPage}>{"<"}</PageMove>
 
-      {new Array(10).fill(1).map((_, index) => {
-        const currentPage = props.startPage + index;
-        // console.log(currentPage);
-        return (
-          currentPage <= props.lastPage && (
-            <Page
-              key={currentPage}
-              id={currentPage}
-              onClick={props.onClickPage}
-              isActive={currentPage === props.activePage}
-            >
-              {currentPage}
-            </Page>
-          )
-        );
-      })}
+      {props.lastPage &&
+        new Array(props.lastPage - props.startPage > 10 ? 10 : props.lastPage)
+          .fill(1)
+          .map((_, index) => {
+            const currentPage =
+              props.startPage < 10
+                ? index + 1
+                : 10 * Math.trunc(props.startPage / 10) + (index + 1);
+            return (
+              // currentPage <= props.lastPage && (
+              <Page
+                key={currentPage}
+                id={String(currentPage)}
+                onClick={props.onClickPage}
+                isActive={currentPage === props.activePage}
+              >
+                {currentPage}
+              </Page>
+            );
+            // );
+          })}
 
       <PageMove onClick={props.onClickNextPage}>{">"}</PageMove>
     </Paginations>

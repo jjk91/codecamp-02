@@ -8,6 +8,7 @@ import {
   TitleNumber,
   TitleName,
   TitlePrice,
+  TitleSeller,
   TitleSold,
   TitleCreatedAt,
   MyItemListWrapper,
@@ -15,6 +16,7 @@ import {
   ListName,
   ListSold,
   ListPrice,
+  ListSeller,
   ListCreatedAt,
   PaginationsWrapper,
 } from "./myItem.style";
@@ -27,8 +29,13 @@ export default function MyItemPageUi(props: any) {
     <>
       <Wrapper>
         <PageWrapper>
-          <MyItem onClick={props.onClickMyItemPage}>{"나의상품"}</MyItem>|
-          <MyPick onClick={props.onClickMyPick}>{"마이찜"}</MyPick>
+          <MyItem onClick={props.onClickMyItemPage} isActive={props.isActive}>
+            {"나의상품"}
+          </MyItem>
+          |
+          <MyPick onClick={props.onClickMyPick} isActive={props.isActive}>
+            {"마이찜"}
+          </MyPick>
         </PageWrapper>
         {props.isActive ? (
           <MyItemWapper>
@@ -69,7 +76,7 @@ export default function MyItemPageUi(props: any) {
               <TitleName>{"제목"}</TitleName>
               <TitleSold>{""}</TitleSold>
               <TitlePrice>{"판매가격"}</TitlePrice>
-              {/* <TitleSeller></TitleSeller> */}
+              <TitleSeller>{"판매자"}</TitleSeller>
               <TitleCreatedAt>{"날짜"}</TitleCreatedAt>
             </MyItemsTitleWrapper>
             {props.PickData?.fetchUseditemsIPicked
@@ -81,14 +88,15 @@ export default function MyItemPageUi(props: any) {
                 <MyItemListWrapper key={uuidv4()}>
                   <ListNumber>{index + 1}</ListNumber>
                   <ListName>{data.name}</ListName>
+                  <ListSold>{data.buyer?._id ? "판매완료" : ""}</ListSold>
                   <ListPrice>{data.price}</ListPrice>
+                  <ListSeller>{data.buyer?.name}</ListSeller>
                   <ListCreatedAt>{getDate(data.createdAt)}</ListCreatedAt>
                 </MyItemListWrapper>
               ))}
             <PaginationsWrapper>
               <Paginations02
                 refetch={props.PickRefetch}
-            
                 startPage={props.page}
                 setStartPage={props.setPage}
                 dataCount={props.dataCount}
