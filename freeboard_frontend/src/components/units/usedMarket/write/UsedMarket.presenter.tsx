@@ -115,7 +115,7 @@ export default function UsedMarketWriteUi(props: any) {
         </LocationWrapper>
         <ItemUploadText>첨부</ItemUploadText>
         <UploadWrapper>
-          {new Array(4).fill(1).map((data, index) => (
+          {new Array(4).fill(1).map((data: string, index: number) => (
             <Uploads01
               key={`${data}_${index}`}
               index={index}

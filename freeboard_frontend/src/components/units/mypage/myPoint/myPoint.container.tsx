@@ -10,11 +10,15 @@ import {
 
 export default function MyPointPage() {
   const [page, setPage] = useState(1);
-  const [fetchData, setFetchData] = useState();
-  const [isActive, setIsActive] = useState(false);
 
-  const { data } = useQuery(FETCH_POINT_TRANSACTION);
-  console.log(data);
+  const [myMenu, setMyMenu] = useState("AllData");
+
+  const { data } = useQuery(FETCH_POINT_TRANSACTION, {
+    variables: { page: page },
+  });
+
+  const [fetchData, setFetchData] = useState(data);
+
   const { data: buyingData } = useQuery(
     FETCH_POINT_TRANSACTION_COUNT_OF_BUYING
   );
@@ -27,27 +31,25 @@ export default function MyPointPage() {
 
   const onClickMoveFetch = () => {
     setFetchData(data);
-    console.log(data);
+    setMyMenu("AllData");
   };
   const onClickMoveLoding = () => {
     setFetchData(buyingData);
-    console.log(buyingData);
+    setMyMenu("LodingData");
   };
   const onClickMoveBuying = () => {
     setFetchData(logingData);
-    console.log(logingData);
+    setMyMenu("BuyingData");
   };
   const onClickMoveSeller = () => {
     setFetchData(sellingData);
-    console.log(sellingData);
+    setMyMenu("SellingData");
   };
 
   return (
     <MyPointPageUi
       page={page}
       setPage={setPage}
-      isActive={isActive}
-      setIsActive={setIsActive}
       // ===========데이터=========
       fetchData={fetchData}
       // ===========조회=========
@@ -63,6 +65,7 @@ export default function MyPointPage() {
       onClickMoveLoding={onClickMoveLoding}
       onClickMoveBuying={onClickMoveBuying}
       onClickMoveSeller={onClickMoveSeller}
+      myMenu={myMenu}
     />
   );
 }

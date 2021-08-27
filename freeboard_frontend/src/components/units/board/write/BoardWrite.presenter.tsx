@@ -139,8 +139,6 @@ export default function BoardWriteUi(props: IBoardWritePresenterProps) {
                 onChangeFile={props.onChangeFile}
                 // @ts-ignore
                 thumb={props.data?.fetchBoard?.images?.[index]}
-                // fileUrl={data}
-                // onChangeFileUrls={props.onChangeFileUrls}
               />
             ))}
           </UploadWrapper>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Paginations01Ui from "./paginations02.presenter";
+import Paginations02Ui from "./paginations02.presenter";
 
 export default function Paginations02(props: any) {
   const [activePage, setActivePage] = useState(1);
@@ -25,7 +25,7 @@ export default function Paginations02(props: any) {
 
   return (
     <>
-      <Paginations01Ui
+      <Paginations02Ui
         lastPage={lastPage}
         startPage={props.startPage}
         activePage={activePage}

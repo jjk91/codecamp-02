@@ -1,43 +1,76 @@
 import styled from "@emotion/styled";
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  padding: 80px 0;
+`;
 
 export const PageListWarpper = styled.div`
+  width: 350px;
+  line-height: 52px;
   display: flex;
+  justify-content: space-between;
 `;
 
 export const FetchPoint = styled.div`
   cursor: pointer;
-  color: ${(props: any) => (props.data !== "" ? "midnightblue" : "#cfcff4")};
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const FetchPoingOfLoding = styled.div`
   cursor: pointer;
-  color: ${(props: any) =>
-    props.buyingData !== "" ? "midnightblue" : "#cfcff4"};
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const FetchPointOfBuying = styled.div`
   cursor: pointer;
-  color: ${(props: any) =>
-    props.logingData !== "" ? "midnightblue" : "#cfcff4"};
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const FetchPoingOfSelling = styled.div`
   cursor: pointer;
-  color: ${(props: any) =>
-    props.sellingData !== "" ? "midnightblue" : "#cfcff4"};
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
+export const TableWrapper = styled.div`
+  /* display: flex; */
+`;
+// ============= 충전내역 ====================
+
+// ============= 구매내역 ====================
+export const DataLodingWrapper = styled.div``;
+
 // ======= map 돌리는 구간 ====================
-export const TableWrapper = styled.div``;
+export const DataWrapper = styled.div`
+  width: 1000px;
+  text-align: center;
+  line-height: 52px;
+`;
 
-export const TableTitle = styled.div``;
+export const TableList = styled.div`
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #cfcff4;
+`;
 
-export const TableDate = styled.div``;
+export const TableTitle = styled.div`
+  display: flex;
+  border-top: 2px solid midnightblue;
+  border-bottom: 2px solid midnightblue;
+`;
 
-export const TableStatus = styled.div``;
+export const TableDate = styled.div`
+  width: 15%;
+  color: ${(props: any) =>
+    props.isStatus === "구매" ? "#cfcff4" : "midnightblue"};
+`;
+export const TableStatus = styled.div`
+  width: 35%;
+`;
 
-export const TableAmount = styled.div``;
+export const TableAmount = styled.div`
+  width: 30%;
+`;
 
-export const TableBalance = styled.div``;
+export const TableBalance = styled.div`
+  width: 20%;
+`;

@@ -22,11 +22,11 @@ const UsedMarketWrite = () => {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
-  const [files, setFiles] = useState("");
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
-  const [address, setAddress] = useState();
-  const [addressDetail, setAddressDetail] = useState();
+  const [files, setFiles] = useState([]);
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+  const [address, setAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
 
   const { register, handleSubmit, formState, setValue, trigger, watch } =
     useForm({
@@ -39,10 +39,13 @@ const UsedMarketWrite = () => {
     ["name", "remarks", "contents", "price", "tags"].forEach((key) => {
       setValue(key, String(data?.fetchUseditem[key]));
     });
-    setAddress(data?.fetchUseditem.useditemAddress.address);
-    setAddressDetail(data?.fetchUseditem.useditemAddress.addressDetail);
-    setLat(data?.fetchUseditem.useditemAddress.lat);
-    setLng(data?.fetchUseditem.useditemAddress.lng);
+    setFiles(data?.fetchUseditem?.images);
+    console.log(data);
+    setAddress(data?.fetchUseditem.useditemAddress?.address);
+    setAddressDetail(data?.fetchUseditem.useditemAddress?.addressDetail);
+    setLat(data?.fetchUseditem.useditemAddress?.lat);
+    setLng(data?.fetchUseditem.useditemAddress?.lng);
+    console.log(data?.fetchUseditem?.images);
   }, [data]);
 
   const onWriteSubmit = async (data: any) => {
@@ -87,19 +90,21 @@ const UsedMarketWrite = () => {
   };
 
   const onWriteUpdate = async (data: any) => {
+    console.log(data);
+
     try {
       const result = await Promise.all(
         // @ts-ignore
-        files.map((data: any) =>
-          typeof data !== "string"
-            ? uploadFile({ variables: { file: data } })
-            : data
+        files.map((ele) =>
+          typeof ele !== "string"
+            ? uploadFile({ variables: { file: ele } })
+            : ele
         )
       );
 
-      const resultFile = result.map((el: any) =>
-        el.data.uploadFile.url ? el.data.uploadFile.url : el
-      );
+      const uploadData = result
+        .filter((cur) => cur)
+        .map((el) => (el.data?.uploadFile.url ? el.data?.uploadFile.url : el));
 
       await updateUseditem({
         variables: {
@@ -110,7 +115,7 @@ const UsedMarketWrite = () => {
             contents: String(data.contents),
             price: Number(data.price),
             tags: data.tags,
-            images: resultFile,
+            images: uploadData, // ['', '', '']
             useditemAddress: {
               address: address,
               addressDetail: addressDetail,
@@ -123,15 +128,14 @@ const UsedMarketWrite = () => {
       Modal.success({ content: "상품이 수정되었습니다." });
       router.push(`/usedMarket/list`);
     } catch (error) {
-      Modal.error({ content: error.message });
+      Modal.error({ content: error });
     }
   };
 
   function onChangeFile(file: string, index: number) {
-    // @ts-ignore
     const newFiles = [...files];
-    newFiles[index] = file;
     // @ts-ignore
+    newFiles[index] = file;
     setFiles(newFiles);
   }
 

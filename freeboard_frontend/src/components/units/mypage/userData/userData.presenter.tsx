@@ -53,10 +53,10 @@ export default function MyPageDataUi(props: any) {
             </MyProfileWrapper>
           </MyPageList>
         </MyPageWrapper>
-        {props.market ? <MyItemPage /> : ""}
-        {props.amount ? <MyPointPage /> : ""}
+        {props.market === true ? <MyItemPage /> : ""}
+        {props.amount === true ? <MyPointPage /> : ""}
         {/* 여기는 프로필 들어갈자리 */}
-        {/* {props.amount ? <MyPointPage /> : ""}   */} 
+        {/* {props.amount ? <MyPointPage /> : ""}   */}
       </Wrapper>
     </>
   );

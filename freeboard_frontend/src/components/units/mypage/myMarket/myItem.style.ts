@@ -10,8 +10,8 @@ export const Wrapper = styled.div`
 
 export const MyItemsTitleWrapper = styled.div`
   display: flex;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  border-top: 2px solid midnightblue;
+  border-bottom: 2px solid midnightblue;
 `;
 export const MyItemWapper = styled.div``;
 export const TitleNumber = styled.div`

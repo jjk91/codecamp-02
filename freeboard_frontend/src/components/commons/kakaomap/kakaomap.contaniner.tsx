@@ -98,7 +98,7 @@ export default function KakaoMap(props: any) {
                 "</div>",
               setKakaoAddress(place.place_name)
             );
-            props.setAddress(place.place_name === props.address);
+            props.setAddress(place.place_name);
             props.setLat(marker.getPosition().getLat());
             props.setLng(marker.getPosition().getLng());
             // props.setLatLng(marker.getPosition());

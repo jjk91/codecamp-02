@@ -49,7 +49,7 @@ export default function BoardDetailUi(props: any) {
           refetch={props.refetch}
           startPage={props.startPage}
           setStartPage={props.setStartPage}
-          dataBoardsCount={props.dataBoardsCount?.fetchBoardsCount}
+          dataCount={props.dataBoardsCount?.fetchBoardsCount}
         />
         {/* <BoardPagination>
           <PagePrev

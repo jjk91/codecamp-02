@@ -16,8 +16,8 @@ import { gql } from "@apollo/client";
 
 // 내가 판매하는 상품
 export const FETCH_USED_ITEMS_ISOLD = gql`
-  query fetchUseditemsISold {
-    fetchUseditemsISold {
+  query fetchUseditemsISold($search: String, $page: Int) {
+    fetchUseditemsISold(search: $search, page: $page) {
       _id
       name
       remarks
@@ -32,10 +32,16 @@ export const FETCH_USED_ITEMS_ISOLD = gql`
   }
 `;
 
+export const FETCH_USED_ITEMS_COUNT_ISOLD = gql`
+  query fetchUseditemsCountISold {
+    fetchUseditemsCountISold
+  }
+`;
+
 // 내가 찜한 상품
 export const FETCH_USED_ITEMS_IPICKED = gql`
-  query fetchUseditemsIPicked {
-    fetchUseditemsIPicked {
+  query fetchUseditemsIPicked($page: Int) {
+    fetchUseditemsIPicked(page: $page) {
       _id
       name
       remarks
@@ -49,5 +55,11 @@ export const FETCH_USED_ITEMS_IPICKED = gql`
       soldAt
       createdAt
     }
+  }
+`;
+
+export const FETCH_USED_ITEMS_COUNT_PICKED = gql`
+  query fetchUseditemsCountIPicked {
+    fetchUseditemsCountIPicked
   }
 `;

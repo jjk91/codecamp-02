@@ -1,24 +1,33 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-// import { useRouter } from "next/router";
+import { IQuery } from "../../../../commons/types/generated/types";
 import MyItemPageUi from "./myItem.presenter";
 import {
+  FETCH_USED_ITEMS_COUNT_ISOLD,
+  FETCH_USED_ITEMS_COUNT_PICKED,
   FETCH_USED_ITEMS_IPICKED,
   FETCH_USED_ITEMS_ISOLD,
 } from "./myItem.queries";
 
 export default function MyItemPage() {
   const [page, setPage] = useState(1);
-  const [isActive, setIsActive] = useState(false);
-  const { data, refetch } = useQuery(FETCH_USED_ITEMS_ISOLD);
+  const [isActive, setIsActive] = useState(true);
 
-  const { data: PickData, refetch: PickRefetch } = useQuery(
-    FETCH_USED_ITEMS_IPICKED
+  const { data, refetch } = useQuery<Pick<IQuery, "fetchUseditemsISold">>(
+    FETCH_USED_ITEMS_ISOLD,
+    { variables: { page: page } }
   );
 
-  const dataCount = isActive
-    ? data?.fetchUseditemsISold
-    : PickData?.fetchUseditemsIPicked;
+  const { data: dataCountSold } = useQuery(FETCH_USED_ITEMS_COUNT_ISOLD);
+
+  const { data: PickData, refetch: PickRefetch } = useQuery(
+    FETCH_USED_ITEMS_IPICKED,
+    { variables: { page: page } }
+  );
+
+  const { data: dataCountPick } = useQuery(FETCH_USED_ITEMS_COUNT_PICKED);
+
+  // const dataCount = isActive ? dataCountSold : dataCountPick;
 
   const onClickMyItemPage = () => {
     setIsActive(true);
@@ -36,7 +45,9 @@ export default function MyItemPage() {
       PickRefetch={PickRefetch}
       page={page}
       setPage={setPage}
-      dataCount={dataCount}
+      // dataCount={dataCount}
+      dataCountSold={dataCountSold}
+      dataCountPick={dataCountPick}
       isActive={isActive}
       onClickMyItemPage={onClickMyItemPage}
       onClickMyPick={onClickMyPick}

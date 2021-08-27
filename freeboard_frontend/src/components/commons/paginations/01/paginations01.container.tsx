@@ -3,8 +3,9 @@ import Paginations01Ui from "./paginations01.presenter";
 
 export default function Paginations01(props: any) {
   const [activePage, setActivePage] = useState(1);
-  const lastPage = Math.ceil(props.dataBoardsCount / 10);
-
+  const lastPage = Math.ceil(Number(props.dataCount) / 10);
+  console.log(lastPage, "마지막");
+  console.log(props.dataCount);
   function onClickPage(event: any) {
     setActivePage(Number(event.target.id));
     props.refetch({ page: Number(event.target.id) });
