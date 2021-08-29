@@ -17,7 +17,7 @@ import { usedMarketEditPageContext } from "../../../../../pages/usedMarket/[used
 
 const UsedMarketWrite = () => {
   // @ts-ignore
-  const { data } = useContext(usedMarketEditPageContext);
+  const { data: fetchData } = useContext(usedMarketEditPageContext);
   const router = useRouter();
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
@@ -28,25 +28,24 @@ const UsedMarketWrite = () => {
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
 
-  const { register, handleSubmit, formState, setValue, trigger, watch } =
-    useForm({
-      mode: "onChange",
-      resolver: yupResolver(schema),
-    });
+  const { register, handleSubmit, formState, setValue, trigger } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
-    if (!data) return;
+    if (!fetchData) return;
     ["name", "remarks", "contents", "price", "tags"].forEach((key) => {
-      setValue(key, String(data?.fetchUseditem[key]));
+      setValue(key, String(fetchData?.fetchUseditem[key]));
     });
-    setFiles(data?.fetchUseditem?.images);
-    console.log(data);
-    setAddress(data?.fetchUseditem.useditemAddress?.address);
-    setAddressDetail(data?.fetchUseditem.useditemAddress?.addressDetail);
-    setLat(data?.fetchUseditem.useditemAddress?.lat);
-    setLng(data?.fetchUseditem.useditemAddress?.lng);
-    console.log(data?.fetchUseditem?.images);
-  }, [data]);
+    setFiles(fetchData?.fetchUseditem?.images);
+    setAddress(fetchData?.fetchUseditem.useditemAddress?.address || "");
+    setAddressDetail(
+      fetchData?.fetchUseditem.useditemAddress?.addressDetail || ""
+    );
+    setLat(fetchData?.fetchUseditem.useditemAddress?.lat);
+    setLng(fetchData?.fetchUseditem.useditemAddress?.lng);
+  }, [fetchData]);
 
   const onWriteSubmit = async (data: any) => {
     try {
@@ -62,7 +61,7 @@ const UsedMarketWrite = () => {
           createUseditemInput: {
             name: data.name,
             remarks: data.remarks,
-            contents: watch("contents"),
+            contents: data.contents,
             price: Number(data.price),
             tags: data.tags,
             images: resultFile.map((el: any) => el.data.uploadFile.url),
@@ -90,8 +89,6 @@ const UsedMarketWrite = () => {
   };
 
   const onWriteUpdate = async (data: any) => {
-    console.log(data);
-
     try {
       const result = await Promise.all(
         // @ts-ignore
@@ -112,13 +109,14 @@ const UsedMarketWrite = () => {
           updateUseditemInput: {
             name: data.name,
             remarks: data.remarks,
-            contents: String(data.contents),
+            contents: data.contents,
             price: Number(data.price),
             tags: data.tags,
             images: uploadData, // ['', '', '']
             useditemAddress: {
               address: address,
               addressDetail: addressDetail,
+              // fetchData?.fetchUseditem.useditemAddress?.addressDetail,
               lat: lat,
               lng: lng,
             },
@@ -146,7 +144,7 @@ const UsedMarketWrite = () => {
   return (
     <>
       <UsedMarketWriteUi
-        data={data}
+        data={fetchData}
         lat={lat}
         lng={lng}
         setLat={setLat}

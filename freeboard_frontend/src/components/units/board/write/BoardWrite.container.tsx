@@ -203,6 +203,11 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
             password: inputs.password, // inputs에 입력된 password
             updateBoardInput: {
               ...newInputs,
+              boardAddress: {
+                zipcode: zipcode,
+                address: address,
+                addressDetail: addressDetail,
+              },
               images: uploadData,
               // images: [...fetchBoardImages, ...newImages],
             },

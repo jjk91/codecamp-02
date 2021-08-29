@@ -60,6 +60,7 @@ export const MyItemsWarpper = styled.div`
   display: flex;
   margin-bottom: 30px;
   cursor: pointer;
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const MyItemImg = styled.img`
@@ -73,6 +74,8 @@ export const MyItems = styled.div``;
 export const MyAmountWrapper = styled.div`
   display: flex;
   margin-bottom: 30px;
+  cursor: pointer;
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const MyAmountImg = styled.img`
@@ -86,6 +89,8 @@ export const MyAmount = styled.div``;
 export const MyProfileWrapper = styled.div`
   display: flex;
   margin-bottom: 30px;
+  cursor: pointer;
+  color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const MyProfileImg = styled.img`

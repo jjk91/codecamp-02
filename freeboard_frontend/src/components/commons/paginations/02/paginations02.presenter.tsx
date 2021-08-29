@@ -1,7 +1,6 @@
 import { Paginations, PageMove, Page } from "./paginations02.styles";
 
 export default function Paginations02Ui(props: any) {
-  // console.log(props.lastPage);
   return (
     <Paginations>
       <PageMove onClick={props.onClickPrevPage}>{"<"}</PageMove>

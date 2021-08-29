@@ -5,7 +5,6 @@ export default function Paginations02(props: any) {
   const [activePage, setActivePage] = useState(1);
   const lastPage = Math.ceil(props.dataCount?.length / 10);
 
-  // console.log(props);
   function onClickPage(event: any) {
     setActivePage(Number(event.target.id));
     props.setStartPage(Number(event.target.id));

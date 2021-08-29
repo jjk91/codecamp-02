@@ -4,8 +4,7 @@ import Paginations01Ui from "./paginations01.presenter";
 export default function Paginations01(props: any) {
   const [activePage, setActivePage] = useState(1);
   const lastPage = Math.ceil(Number(props.dataCount) / 10);
-  console.log(lastPage, "마지막");
-  console.log(props.dataCount);
+
   function onClickPage(event: any) {
     setActivePage(Number(event.target.id));
     props.refetch({ page: Number(event.target.id) });
@@ -18,7 +17,7 @@ export default function Paginations01(props: any) {
   }
 
   function onClickNextPage() {
-    if (props.startPage + 5 > lastPage) return;
+    if (props.startPage + 10 > lastPage) return;
     props.setStartPage((prev: any) => prev + 10);
     setActivePage(props.startPage + 10);
   }

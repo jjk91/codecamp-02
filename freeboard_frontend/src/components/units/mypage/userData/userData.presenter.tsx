@@ -39,24 +39,32 @@ export default function MyPageDataUi(props: any) {
             </UserAmountWrapper>
           </UserWrapper>
           <MyPageList>
-            <MyItemsWarpper onClick={props.onClickMoveMyItems}>
+            <MyItemsWarpper
+              onClick={props.onClickMoveMyItems}
+              isActive={props.pageData === "myitems"}
+            >
               <MyItemImg src="/images/market.svg" />
               <MyItems>{"내 장터"}</MyItems>
             </MyItemsWarpper>
-            <MyAmountWrapper onClick={props.onClickMoveMyAmount}>
+            <MyAmountWrapper
+              onClick={props.onClickMoveMyAmount}
+              isActive={props.pageData === "myAmount"}
+            >
               <MyAmountImg src="/images/charger.svg" />
               <MyAmount>{"내 포인트"}</MyAmount>
             </MyAmountWrapper>
-            <MyProfileWrapper onClick={props.onClickMoveMyProfile}>
+            <MyProfileWrapper
+              onClick={props.onClickMoveMyProfile}
+              isActive={props.pageData === "myProfile"}
+            >
               <MyProfileImg src="/images/ic_profile-96px.svg" />
               <MyProfile>{"내 프로필"}</MyProfile>
             </MyProfileWrapper>
           </MyPageList>
         </MyPageWrapper>
-        {props.market === true ? <MyItemPage /> : ""}
-        {props.amount === true ? <MyPointPage /> : ""}
-        {/* 여기는 프로필 들어갈자리 */}
-        {/* {props.amount ? <MyPointPage /> : ""}   */}
+        {props.pageData === "myitems" ? <MyItemPage /> : ""}
+        {props.pageData === "myAmount" ? <MyPointPage /> : ""}
+        {props.pageData === "myProfile" ? <MyPointPage /> : ""}
       </Wrapper>
     </>
   );

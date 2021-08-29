@@ -39,6 +39,7 @@ export const LogoutWrapper = styled.div`
   display: flex;
   /* flex-direction: row; */
   padding: 25px 35px;
+  cursor: pointer;
 `;
 
 export const LogoutImg = styled.img`

@@ -41,6 +41,7 @@ const AddressDetail = styled.input`
 `;
 
 export default function KakaoMapUi(props: any) {
+  console.log(props, "asdfas");
   return (
     <>
       <WarpperMap>
@@ -52,11 +53,11 @@ export default function KakaoMapUi(props: any) {
         <Map id="map"></Map>
         <InputWrapper>
           주소:
-          <Address name="address" defaultValue={props.kakaoAddress} readOnly />
+          <Address name="address" defaultValue={props.address} readOnly />
           <AddressDetail
             name="addressDetail"
             onChange={props.onChangeAddressDetail}
-            value={props.addressDetail}
+            defaultValue={props.addressDetail}
             placeholder="상세주소를 입력해주세요"
           />
         </InputWrapper>

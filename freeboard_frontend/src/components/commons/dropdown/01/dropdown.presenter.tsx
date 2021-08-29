@@ -29,7 +29,7 @@ export default function Dropdown01Ui(props: any) {
       <PaymentWrapper>
         <Payment setIsOpen={props.setIsOpen} />
       </PaymentWrapper>
-      <LogoutWrapper>
+      <LogoutWrapper onClick={props.onClickLogout}>
         <LogoutImg src="/images/logout.svg" />
         <LogoutText>로그아웃</LogoutText>
       </LogoutWrapper>

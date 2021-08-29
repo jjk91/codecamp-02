@@ -14,13 +14,13 @@ export default function LayoutHeaderUi(props: any) {
       <Wrapper>
         <InnerWrapper>
           <InnerLogo src="/images/horizontal_on_white_by_logaster.png" />
-          {!props.token && (
+          {!props.data && (
             <div>
               <InnerButton onClick={props.onClickLogin}>Login</InnerButton>
               <InnerButton onClick={props.onClickSignUp}>Sign up</InnerButton>
             </div>
           )}
-          {props.token && (
+          {props.data && (
             <UserWrapper>
               <UserImg src="/images/ic_profile-96px.svg" />
 

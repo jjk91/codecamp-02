@@ -11,7 +11,6 @@ export default function Mypage() {
     <>
       <Wrapper>
         <MyPageData />
-        {/* <MyItemPage /> */}
       </Wrapper>
     </>
   );

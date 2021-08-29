@@ -10,7 +10,6 @@ export default function KakaoMap(props: any) {
   // @ts-ignore
   const { isEdit } = useContext(usedMarketEditPageContext);
   const [search, setSearch] = useState("");
-  const [kakaoAddress, setKakaoAddress] = useState("");
 
   // const [addressDetail, setAddressDetail] = useState("");
   // const { register, handleSubmit, formState, setValue } = useForm({
@@ -22,6 +21,7 @@ export default function KakaoMap(props: any) {
   };
   const onChangeAddressDetail = (event: any) => {
     props.setAddressDetail(event.target.value);
+    console.log(event.target.value);
   };
 
   useEffect(() => {
@@ -96,9 +96,8 @@ export default function KakaoMap(props: any) {
               '<div style="padding:5px;font-size:12px;">' +
                 place.place_name +
                 "</div>",
-              setKakaoAddress(place.place_name)
+              props.setAddress(place.place_name)
             );
-            props.setAddress(place.place_name);
             props.setLat(marker.getPosition().getLat());
             props.setLng(marker.getPosition().getLng());
             // props.setLatLng(marker.getPosition());
@@ -113,7 +112,8 @@ export default function KakaoMap(props: any) {
     <>
       <KakaoMapUi
         search={search}
-        kakaoAddress={kakaoAddress}
+        address={props.address}
+        addressDetail={props.addressDetail}
         onChangeSearch={onChangeSearch}
         onChangeAddressDetail={onChangeAddressDetail}
       />

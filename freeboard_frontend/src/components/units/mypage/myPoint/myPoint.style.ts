@@ -35,9 +35,31 @@ export const TableWrapper = styled.div`
   /* display: flex; */
 `;
 // ============= 충전내역 ====================
+export const DataLodingWrapper = styled.div`
+  width: 1000px;
+  text-align: center;
+  line-height: 52px;
+`;
+
+export const TableLodindDate = styled.div`
+  width: 15%;
+  color: ${(props: any) =>
+    props.isStatus === "구매" ? "#cfcff4" : "midnightblue"};
+`;
+
+export const TableLodingimpUid = styled.div`
+  width: 35%;
+`;
+
+export const TableLodingAmount = styled.div`
+  width: 30%;
+`;
+
+export const TableLodingBalance = styled.div`
+  width: 20%;
+`;
 
 // ============= 구매내역 ====================
-export const DataLodingWrapper = styled.div``;
 
 // ======= map 돌리는 구간 ====================
 export const DataWrapper = styled.div`
@@ -60,9 +82,12 @@ export const TableTitle = styled.div`
 
 export const TableDate = styled.div`
   width: 15%;
-  color: ${(props: any) =>
-    props.isStatus === "구매" ? "#cfcff4" : "midnightblue"};
 `;
+
+export const TableimpUid = styled.div`
+  width: 35%;
+`;
+
 export const TableStatus = styled.div`
   width: 35%;
 `;
@@ -73,4 +98,10 @@ export const TableAmount = styled.div`
 
 export const TableBalance = styled.div`
   width: 20%;
+`;
+
+export const PaginationsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 `;

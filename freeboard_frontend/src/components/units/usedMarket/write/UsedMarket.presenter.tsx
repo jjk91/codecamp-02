@@ -89,8 +89,8 @@ export default function UsedMarketWriteUi(props: any) {
               lng={props.lng}
               setLat={props.setLat}
               setLng={props.setLng}
-              // address={props.address}
-              // addresssDetail={props.addressDetail}
+              address={props.address}
+              addresssDetail={props.addressDetail}
             />
           </LocationLeft>
           {/* <LocationRight> */}
@@ -136,7 +136,7 @@ export default function UsedMarketWriteUi(props: any) {
             <Button01
               type="button"
               buttonText="취소"
-              onClic={props.onClickCancle}
+              onClick={props.onClickCancle}
             />
           )}
           <Button01

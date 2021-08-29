@@ -5,34 +5,24 @@ import { FETCH_USER_LOGGED_IN } from "./userData.queries";
 
 export default function MyPageData() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
-  const [market, setMarket] = useState(true);
-  const [amount, setAmount] = useState(false);
-  const [profile, setProfile] = useState(false);
+  const [pageData, setPageData] = useState("myItems");
 
   const onClickMoveMyItems = () => {
-    setMarket(true);
-    setAmount(false);
-    setProfile(false);
+    setPageData("myitems");
   };
 
   const onClickMoveMyAmount = () => {
-    setMarket(false);
-    setAmount(true);
-    setProfile(false);
+    setPageData("myAmount");
   };
 
   const onClickMoveMyProfile = () => {
-    setMarket(false);
-    setAmount(false);
-    setProfile(true);
+    setPageData("myProfile");
   };
 
   return (
     <MyPageDataUi
-      market={market}
-      amount={amount}
-      profile={profile}
       data={data}
+      pageData={pageData}
       onClickMoveMyItems={onClickMoveMyItems}
       onClickMoveMyAmount={onClickMoveMyAmount}
       onClickMoveMyProfile={onClickMoveMyProfile}

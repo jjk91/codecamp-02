@@ -13,7 +13,7 @@ export default function MyPointPage() {
 
   const [myMenu, setMyMenu] = useState("AllData");
 
-  const { data } = useQuery(FETCH_POINT_TRANSACTION, {
+  const { data, refetch } = useQuery(FETCH_POINT_TRANSACTION, {
     variables: { page: page },
   });
 
@@ -34,15 +34,18 @@ export default function MyPointPage() {
     setMyMenu("AllData");
   };
   const onClickMoveLoding = () => {
-    setFetchData(buyingData);
+    // setFetchData(logingData);
+    setFetchData(data);
     setMyMenu("LodingData");
   };
   const onClickMoveBuying = () => {
-    setFetchData(logingData);
+    setFetchData(data);
+    // setFetchData(buyingData);
     setMyMenu("BuyingData");
   };
   const onClickMoveSeller = () => {
-    setFetchData(sellingData);
+    // setFetchData(sellingData);
+    setFetchData(data);
     setMyMenu("SellingData");
   };
 
@@ -50,6 +53,7 @@ export default function MyPointPage() {
     <MyPointPageUi
       page={page}
       setPage={setPage}
+      refetch={refetch}
       // ===========데이터=========
       fetchData={fetchData}
       // ===========조회=========

@@ -29,11 +29,19 @@ export default function MyItemPageUi(props: any) {
     <>
       <Wrapper>
         <PageWrapper>
-          <MyItem onClick={props.onClickMyItemPage} isActive={props.isActive}>
+          <MyItem
+            onClick={props.onClickMyItemPage}
+            // @ts-ignore
+            isActive={props.isActive}
+          >
             {"나의상품"}
           </MyItem>
           |
-          <MyPick onClick={props.onClickMyPick} isActive={props.isActive}>
+          <MyPick
+            onClick={props.onClickMyPick}
+            // @ts-ignore
+            isActive={props.isActive}
+          >
             {"마이찜"}
           </MyPick>
         </PageWrapper>
