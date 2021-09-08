@@ -68,18 +68,19 @@ export const ListCreatedAt = styled.div`
 `;
 
 export const PageWrapper = styled.div`
-  width: 120px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 export const MyItem = styled.div`
   cursor: pointer;
+  margin-right: 10px;
   color: ${(props: any) => (props.isActive ? "midnightblue" : "#cfcff4")};
 `;
 
 export const MyPick = styled.div`
   cursor: pointer;
+  margin-left: 10px;
   color: ${(props: any) => (props.isActive ? "#cfcff4" : "midnightblue")};
 `;
 

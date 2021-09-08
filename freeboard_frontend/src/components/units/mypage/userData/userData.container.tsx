@@ -5,7 +5,7 @@ import { FETCH_USER_LOGGED_IN } from "./userData.queries";
 
 export default function MyPageData() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
-  const [pageData, setPageData] = useState("myItems");
+  const [pageData, setPageData] = useState("myitems");
 
   const onClickMoveMyItems = () => {
     setPageData("myitems");

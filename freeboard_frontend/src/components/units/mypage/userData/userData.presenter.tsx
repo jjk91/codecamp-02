@@ -1,5 +1,6 @@
 import MyItemPage from "../myMarket/myItem.container";
 import MyPointPage from "../myPoint/myPoint.container";
+import UserInfoPage from "../myprofile/myprofile.container";
 import {
   Wrapper,
   MyPageWrapper,
@@ -41,6 +42,7 @@ export default function MyPageDataUi(props: any) {
           <MyPageList>
             <MyItemsWarpper
               onClick={props.onClickMoveMyItems}
+              // @ts-ignore
               isActive={props.pageData === "myitems"}
             >
               <MyItemImg src="/images/market.svg" />
@@ -48,6 +50,7 @@ export default function MyPageDataUi(props: any) {
             </MyItemsWarpper>
             <MyAmountWrapper
               onClick={props.onClickMoveMyAmount}
+              // @ts-ignore
               isActive={props.pageData === "myAmount"}
             >
               <MyAmountImg src="/images/charger.svg" />
@@ -55,6 +58,7 @@ export default function MyPageDataUi(props: any) {
             </MyAmountWrapper>
             <MyProfileWrapper
               onClick={props.onClickMoveMyProfile}
+              // @ts-ignore
               isActive={props.pageData === "myProfile"}
             >
               <MyProfileImg src="/images/ic_profile-96px.svg" />
@@ -64,7 +68,7 @@ export default function MyPageDataUi(props: any) {
         </MyPageWrapper>
         {props.pageData === "myitems" ? <MyItemPage /> : ""}
         {props.pageData === "myAmount" ? <MyPointPage /> : ""}
-        {props.pageData === "myProfile" ? <MyPointPage /> : ""}
+        {props.pageData === "myProfile" ? <UserInfoPage /> : ""}
       </Wrapper>
     </>
   );
