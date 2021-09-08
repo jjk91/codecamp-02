@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { Modal } from "antd";
 import { GraphQLClient } from "graphql-request";
 
 const RESTORE_ACCESS_TOKEN = gql`
@@ -24,6 +23,6 @@ export const getAccessToken = async (setAccessToken: any) => {
     setAccessToken(newAccessToken);
     return newAccessToken;
   } catch (error) {
-    Modal.error({ content: error.message });
+    console.error({ content: error.message });
   }
 };
