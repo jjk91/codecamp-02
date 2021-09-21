@@ -17,6 +17,7 @@ export default function UsedMarketList() {
   const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS, {
     variables: { page: page },
   });
+  
   const onLoadMore = () => {
     if (!data) return;
     fetchMore({

@@ -86,7 +86,7 @@ export default function UsedMarketListUi(props: any) {
           </ItemsOfTheBestList>
         </ItemsOfTheBest>
         <BodyWrapper>
-          <div style={{ fontSize: "18px" }}>판매중 / 판매완료 라인</div>
+          <div style={{ fontSize: "18px" }}>판매중 / 판매완료</div>
           <SearchPage
             data={props.data}
             refetch={props.refetch}

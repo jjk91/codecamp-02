@@ -59,7 +59,6 @@ export default function Login() {
         },
       });
       setUserInfo(resultUser.data.fetchUserLoggedIn);
-
       localStorage.setItem(
         "refreshToken",
         result.data.loginUser.accessToken || ""
