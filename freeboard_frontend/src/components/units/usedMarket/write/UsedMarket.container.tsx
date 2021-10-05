@@ -154,7 +154,8 @@ const UsedMarketWrite = () => {
         onWriteSubmit={onWriteSubmit}
         onWriteUpdate={onWriteUpdate}
         onChangeFile={onChangeFile}
-        isActive={formState.isValid}x
+        isActive={formState.isValid}
+        x
         errors={formState.errors}
         address={address}
         setAddress={setAddress}

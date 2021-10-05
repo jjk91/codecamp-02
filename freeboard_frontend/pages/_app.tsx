@@ -20,6 +20,7 @@ import {
   useEffect,
 } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+import Home from "./index";
 
 interface IContext {
   accessToken: string;
@@ -32,6 +33,7 @@ interface IContext {
 export const GlobalContext = createContext<IContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [layout, setLayout] = useState("Home");
   const [accessToken, setAccessToken] = useState("");
 
   const [userInfo, setUserInfo] = useState();
@@ -83,10 +85,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
-        <Layout>
-          <Global styles={globalStyles} />
-          <Component {...pageProps} />
-        </Layout>
+        {layout === "Home" ? (
+          <>
+            <Global styles={globalStyles} />
+            <Component {...pageProps} />
+          </>
+        ) : (
+          <Layout>
+            <Global styles={globalStyles} />
+            <Component {...pageProps} />
+          </Layout>
+        )}
       </ApolloProvider>
     </GlobalContext.Provider>
   );

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import withAuth from "../../src/components/commons/hoc/wirhAuth";
 // import MyItemPage from "../../src/components/units/mypage/myMarket/myItem.container";
 import MyPageData from "../../src/components/units/mypage/userData/userData.container";
 
@@ -6,7 +7,7 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-export default function Mypage() {
+const Mypage = () => {
   return (
     <>
       <Wrapper>
@@ -14,4 +15,5 @@ export default function Mypage() {
       </Wrapper>
     </>
   );
-}
+};
+export default withAuth(Mypage);
