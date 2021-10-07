@@ -209,12 +209,9 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
                 addressDetail: addressDetail,
               },
               images: uploadData,
-              // images: [...fetchBoardImages, ...newImages],
             },
           },
         });
-        // console.log(fetchBoardImages, "fetchboardImage");
-        console.log(resultFile, "파일결과");
         Modal.info({
           title: "수정확인",
           content: "게시물을 수정 합니다.",
@@ -234,12 +231,6 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
     }
   }
 
-  // function onChangeFileUrls(fileUrl: string, index: number) {
-  //   const newFileUrls = [...fileUrls];
-  //   newFileUrls[index] = fileUrl;
-  //   setFileUrls(newFileUrls);
-  // }
-
   function onChangeFile(file: string, index: number) {
     const newFiles = [...files];
 
@@ -254,7 +245,6 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       addressDetail={addressDetail}
       zipcode={zipcode}
       isOpen={isOpen}
-      // files={files} // 이미지 업로드
       onOk={onOk}
       onChangAddressDetail={onChangAddressDetail}
       onComplete={onComplete}
@@ -263,7 +253,6 @@ export default function BoardWrite(props: IBoardWriteContainerProps) {
       onClickList={onClickList}
       onChangeInputs={onChangeInputs}
       onClickSubmit={onClickSubmit}
-      // onChangeFileUrls={onChangeFileUrls} // 이미지 업로드
       // @ts-ignore
       onChangeFile={onChangeFile}
       // @ts-ignore

@@ -20,7 +20,6 @@ import {
   useEffect,
 } from "react";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
-import Home from "./index";
 
 interface IContext {
   accessToken: string;
@@ -33,7 +32,8 @@ interface IContext {
 export const GlobalContext = createContext<IContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [layout, setLayout] = useState("Home");
+  const [layout, setLayout] = useState(false);
+  const [nonLayout, setNonLayout] = useState(false);
   const [accessToken, setAccessToken] = useState("");
 
   const [userInfo, setUserInfo] = useState();
@@ -69,7 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://backend02.codebootcamp.co.kr/graphql01",
+    uri: "https://backend02.codebootcamp.co.kr/graphql",
     headers: {
       authorization: `Bearer ${accessToken}`,
     },
@@ -81,20 +81,32 @@ function MyApp({ Component, pageProps }: AppProps) {
     link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
-
+  if (nonLayout === true) {
+    setLayout(false);
+  }
   return (
     <GlobalContext.Provider value={value}>
       <ApolloProvider client={client}>
-        {layout === "Home" ? (
-          <>
-            <Global styles={globalStyles} />
-            <Component {...pageProps} />
-          </>
-        ) : (
+        {layout !== false ? (
           <Layout>
             <Global styles={globalStyles} />
-            <Component {...pageProps} />
+            <Component
+              layout={layout}
+              setLayout={setLayout}
+              setNonLayout={setNonLayout}
+              {...pageProps}
+            />
           </Layout>
+        ) : (
+          <>
+            <Global styles={globalStyles} />
+            <Component
+              layout={layout}
+              setLayout={setLayout}
+              setNonLayout={setNonLayout}
+              {...pageProps}
+            />
+          </>
         )}
       </ApolloProvider>
     </GlobalContext.Provider>

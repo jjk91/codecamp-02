@@ -1,6 +1,12 @@
 import { useApolloClient, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useContext, createContext, ChangeEvent, useState } from "react";
+import {
+  useContext,
+  createContext,
+  ChangeEvent,
+  useState,
+  useEffect,
+} from "react";
 import { GlobalContext } from "../../../../pages/_app";
 import LoginUi from "./Login.presenter";
 import { FETCH_USER_LOGGENT_IN, LOGIN_USER } from "./Login.queries";
@@ -17,8 +23,13 @@ interface IContext {
 }
 
 export const Logincontext = createContext<IContext>({});
+export default function Login(props: any) {
+  useEffect(() => {
+    if (props.setLayout) {
+      props.setLayout(true);
+    }
+  }, [props.setLayout]);
 
-export default function Login() {
   const value = {
     onChangeLoginInput: onChangeLoginInput,
     onClickLogin: onClickLogin,

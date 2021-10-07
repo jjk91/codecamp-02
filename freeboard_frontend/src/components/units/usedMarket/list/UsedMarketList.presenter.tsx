@@ -48,7 +48,6 @@ import SearchPage from "../../../commons/search/01/search01.container";
 export default function UsedMarketListUi(props: any) {
   // @ts-ignore
   const { isEdit } = useContext(usedMarketEditPageContext);
-  // const { userInfo } = useContext(GlobalContext);
   return (
     <Contniner>
       <Wrapper>
@@ -131,7 +130,7 @@ export default function UsedMarketListUi(props: any) {
                     <ItemInfoBottom>
                       <SellerInfo>
                         <SellerImg src="/images/ic_profile-96px.svg" />
-                        <SellerName>{data.seller.name}</SellerName>
+                        <SellerName>{data.seller?.name}</SellerName>
                       </SellerInfo>
                       <ItemPickInfo>
                         <ItemPick />
