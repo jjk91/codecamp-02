@@ -32,7 +32,7 @@ const UsedMarketWrite = () => {
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-
+ // 
   useEffect(() => {
     if (!fetchData) return;
     ["name", "remarks", "contents", "price", "tags"].forEach((key) => {
